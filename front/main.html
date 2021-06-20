@@ -1,0 +1,63 @@
+<!DOCTYPE html> <html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			hello
+		</title>
+		<link rel="stylesheet" href="main.css">
+		<script src="main.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="navibar">
+				<image src="https://s-um.github.io/bobs_test/42bobs_logo.png" style="margin: auto 30px;height:100%;display:table-cell;vertical-align:middle;">
+				<span style="color:white; display:table-cell;vertical-align:middle;text-align:center;font-size:200%;">mtak</span>
+			</div>
+		</header>
+		<div class="widthAlign" style="padding:10vh 0 0 0;"><h2><span class="bold">내 밥 친구</span> 목록</h2></div>
+		<div class="horscroll" id="mymenu">
+			<script>
+				calljson();
+			</script>
+		</div>
+		<div class="widthAlign"><h2><span class="bold">밥 친구</span> 찾아볼까요?</h2></div>
+		<div class="menuinput">
+			<h3>출발 시간</h3>
+			<select name="meetTime" class="timeselector">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12" selected="selected">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+			</select>
+			<span style="font-size:30px; vertical-align: middle;">:00</span>
+			<h3>메뉴</h3>
+			<label><input type="radio" name="menu" value="korea" onchange="menuSelect(this)"><span class="menuselector" id="korea">한식</span></label>
+			<label><input type="radio" name="menu" value="china" onchange="menuSelect(this)"><span class="menuselector" id="china">중식</span></label>
+			<label><input type="radio" name="menu" value="us" onchange="menuSelect(this)"><span class="menuselector" id="us">양식</span></label>
+			<label><input type="radio" name="menu" value="fastfood" onchange="menuSelect(this)"><span class="menuselector" id="fastfood">패스트푸드</span></label>
+			<label><input type="radio" name="menu" value="chicken" onchange="menuSelect(this)"><span class="menuselector" id="chicken">치킨</span></label>
+			<label><input type="radio" name="menu" value="cafe" onchange="menuSelect(this)"><span class="menuselector" id="cafe">카페</span></label></br></br>
+			<input type="submit" onclick="getFormData();">
+		</div>
+	</body>
+</html>
