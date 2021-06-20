@@ -1,0 +1,16 @@
+2021-06-20 19:25:15.558  INFO 45400 --- [main] bobs.bobsMain                            : Starting bobsMain on DESKTOP-O768ARB with PID 45400 (C:\Users\Lido\IdeaProjects\42BoB-s_solution\out\production\classes started by Lido in C:\Users\Lido\IdeaProjects\42BoB-s_solution)
+2021-06-20 19:25:15.563  INFO 45400 --- [main] bobs.bobsMain                            : No active profile set, falling back to default profiles: default
+2021-06-20 19:25:16.978  INFO 45400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-06-20 19:25:17.010  INFO 45400 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-06-20 19:25:17.010  INFO 45400 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-06-20 19:25:17.168  INFO 45400 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-06-20 19:25:17.169  INFO 45400 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1551 ms
+2021-06-20 19:25:17.598  INFO 45400 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-20 19:25:17.926  INFO 45400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-06-20 19:25:17.930  INFO 45400 --- [main] bobs.bobsMain                            : Started bobsMain in 2.923 seconds (JVM running for 5.505)
+2021-06-20 19:25:34.339  INFO 45400 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-06-20 19:25:34.339  INFO 45400 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-20 19:25:34.349  INFO 45400 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2021-06-20 19:25:44.422  WARN 45400 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-20 19:25:44.422  INFO 45400 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-20 19:25:44.561  INFO 45400 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
