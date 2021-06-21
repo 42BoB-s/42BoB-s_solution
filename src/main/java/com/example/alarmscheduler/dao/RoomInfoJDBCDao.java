@@ -3,7 +3,6 @@ package com.example.alarmscheduler.dao;
 
 import com.example.alarmscheduler.dto.RoomInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -32,16 +31,9 @@ public class RoomInfoJDBCDao{
             "AND deadline <  date_format(DATE_ADD(NOW(),INTERVAL 20 MINUTE), '%Y.%m.%d %H:%i:%s') " +
             "AND deadline >  date_format(NOW(), '%Y.%m.%d %H:%i:%s')";
 
-    /* 테스트코드용 SQL */
+    /* for TestCase */
     private final String SQL_TESTcreate = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
             + "VALUES (?, NOW(), ?, date_format(DATE_ADD(NOW(),INTERVAL 10 MINUTE), '%Y.%m.%d %H:%i:%s'), ?, ?, ?)";
-
-    /*
-    private final String SQL_TESTroomList = "SELECT * FROM room_info " +
-            "WHERE deadline <=  date_format('2021/06/12 14:30:00', '%Y.%m.%d %H:%i:%s') " +
-            "AND deadline >= date_format('2021/06/12 14:00:00', '%Y.%m.%d %H:%i:%s')" +
-            "AND room_status = 'active'";
-    */
     private final String SQL_TESTgetstatus = "SELECT * FROM room_info WHERE id = ?";
 
     /*알람 대상 room_id를 추출 */
@@ -61,7 +53,7 @@ public class RoomInfoJDBCDao{
         }
     }
 
-    /* 테스트용 */
+    /* for TestCase */
     public int testRoomInsert(RoomInfoDto roomInfo) {
         int chk = 0;
         roomInfo.setId(jdbcTemplate.queryForObject(SQL_ROOMSEQ, Integer.class));
@@ -79,7 +71,7 @@ public class RoomInfoJDBCDao{
         return roomInfo.getId();
     }
 
-    /* 테스트용 */
+    /* for TestCase */
     public List<String> testFindRoom(List<String> roomIdList){
 
         List<String> roomStatusList = new ArrayList<>();

@@ -17,9 +17,9 @@ public class RoomInfoDaoTest {
     public DataSource mysqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("...");
-        dataSource.setUsername("...");
-        dataSource.setPassword("...");
+        dataSource.setUrl("jdbc:mysql://leeworld9.ipdisk.co.kr:53306/bobs_db?serverTimezone=Asia/Seoul");
+        dataSource.setUsername("bobs_admin");
+        dataSource.setPassword("bobs$@");
 
         return dataSource;
     }

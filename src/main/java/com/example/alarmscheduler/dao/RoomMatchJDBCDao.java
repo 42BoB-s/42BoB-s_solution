@@ -18,7 +18,7 @@ public class RoomMatchJDBCDao {
 
     // 추가해야하는 SQL문
     private final String SQL_FINDUSER = "SELECT * FROM room_match WHERE room_id = ?";
-
+    private final String SQL_MATCHINSERT = "INSERT INTO room_match(room_id, user_id, enter_at) VALUES (?, ?, NOW())";
     @Autowired
     public RoomMatchJDBCDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

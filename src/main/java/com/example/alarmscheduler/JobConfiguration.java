@@ -28,7 +28,7 @@ public class JobConfiguration {
     public void start() {
         try {
 
-            /* DAO를 스케줄러에 등록*/
+            /* Job을 스케줄러에 등록*/
             JobDetail AlarmJob = newJob(AlarmJob.class)
                     .withIdentity("Alarm", "AlarmGroup")
                     .usingJobData("ret_count", 0)

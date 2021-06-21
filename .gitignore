@@ -25,13 +25,11 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.gradle
+build
+out
+gen
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
+# DB info
+scr/main/resources/application.properties
+src/test/resources/application.properties
