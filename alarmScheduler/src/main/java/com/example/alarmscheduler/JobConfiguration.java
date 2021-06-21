@@ -29,8 +29,9 @@ public class JobConfiguration {
         try {
 
             /* DAO를 스케줄러에 등록*/
-            JobDetail AlarmJob = newJob(com.example.alarmscheduler.job.AlarmJob.class)
+            JobDetail AlarmJob = newJob(AlarmJob.class)
                     .withIdentity("Alarm", "AlarmGroup")
+                    .usingJobData("ret_count", 0)
                     .build();
 
             Trigger AlarmTrigger = newTrigger()
