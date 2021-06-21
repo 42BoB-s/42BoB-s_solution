@@ -3,6 +3,7 @@ package com.example.alarmscheduler.dao;
 
 import com.example.alarmscheduler.dto.RoomInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -15,30 +16,39 @@ public class RoomInfoJDBCDao{
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    public RoomInfoJDBCDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     // dohlee님 코드랑 일치시킴
+    private final String SQL_ROOMSEQ = "SELECT IFNULL(MAX(id) + 1, 1) FROM room_info";
     private final String SQL_ROOMSTATUSUPDATE = "UPDATE room_info SET room_status = ? WHERE id = ?";
+    private final String SQL_FINDROOM = "SELECT * FROM room_info where id = ?";
 
     // 추가해야하는 SQL문
     private final String SQL_FINDALARMROOM = "SELECT * FROM room_info " +
             "WHERE room_status = 'active' " +
             "AND deadline <  date_format(DATE_ADD(NOW(),INTERVAL 20 MINUTE), '%Y.%m.%d %H:%i:%s') " +
             "AND deadline >  date_format(NOW(), '%Y.%m.%d %H:%i:%s')";
-    private final String SQL_TEST = "SELECT * FROM room_info " +
+
+    /* 테스트코드용 SQL */
+    private final String SQL_TESTcreate = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
+            + "VALUES (?, NOW(), ?, date_format(DATE_ADD(NOW(),INTERVAL 10 MINUTE), '%Y.%m.%d %H:%i:%s'), ?, ?, ?)";
+
+    /*
+    private final String SQL_TESTroomList = "SELECT * FROM room_info " +
             "WHERE deadline <=  date_format('2021/06/12 14:30:00', '%Y.%m.%d %H:%i:%s') " +
             "AND deadline >= date_format('2021/06/12 14:00:00', '%Y.%m.%d %H:%i:%s')" +
             "AND room_status = 'active'";
-
-
-    @Autowired
-    public RoomInfoJDBCDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    */
+    private final String SQL_TESTgetstatus = "SELECT * FROM room_info WHERE id = ?";
 
     /*알람 대상 room_id를 추출 */
     public List<String> getAlarmRoomId() {
 
         List<String> roomIdList = new ArrayList<>();
-        for (RoomInfoDto ri : jdbcTemplate.query(SQL_TEST,rowMapper)) {
+        for ( RoomInfoDto ri: jdbcTemplate.query(SQL_FINDALARMROOM,rowMapper)) {
             roomIdList.add(String.valueOf(ri.getId()));
         }
         return roomIdList;
@@ -49,6 +59,36 @@ public class RoomInfoJDBCDao{
         for (String id : roomIdList) {
             jdbcTemplate.update(SQL_ROOMSTATUSUPDATE, "succeed", id);
         }
+    }
+
+    /* 테스트용 */
+    public int testRoomInsert(RoomInfoDto roomInfo) {
+        int chk = 0;
+        roomInfo.setId(jdbcTemplate.queryForObject(SQL_ROOMSEQ, Integer.class));
+        roomInfo.setMax_people(4);
+        roomInfo.setRoom_status("active");
+        roomInfo.setCategory_id(1);
+        roomInfo.setLocation_id(1);
+
+        chk = jdbcTemplate.update(SQL_TESTcreate,
+                roomInfo.getId(),
+                roomInfo.getMax_people(),
+                roomInfo.getRoom_status(),
+                roomInfo.getCategory_id(),
+                roomInfo.getLocation_id());
+        return roomInfo.getId();
+    }
+
+    /* 테스트용 */
+    public List<String> testFindRoom(List<String> roomIdList){
+
+        List<String> roomStatusList = new ArrayList<>();
+        for (String x : roomIdList) {
+            for(RoomInfoDto ri : jdbcTemplate.query(SQL_FINDROOM,rowMapper, x)) {
+                roomStatusList.add(ri.getRoom_status());
+            }
+        }
+        return roomStatusList;
     }
 
     RowMapper<RoomInfoDto> rowMapper = (rs, rowNum) -> {
