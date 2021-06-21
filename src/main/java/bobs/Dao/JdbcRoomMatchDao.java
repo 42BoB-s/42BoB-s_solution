@@ -1,16 +1,10 @@
 package bobs.Dao;
 
-import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 @Repository
 public class JdbcRoomMatchDao implements RoomMatchDao {
@@ -18,6 +12,7 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 	private final JdbcTemplate jdbcTemplate;
 	private final String SQL_ROOMUSERCNT = "SELECT COUNT(*) FROM room_match where room_id = ?";
 	private final String SQL_MATCHINSERT = "INSERT INTO room_match(room_id, user_id, enter_at) VALUES (?, ?, NOW())";
+	private final String SQL_DUPLECOUNT = "SELECT COUNT(*) FROM room_match where room_id = ? AND user_id = ?";
 
 	@Autowired
 	public JdbcRoomMatchDao(JdbcTemplate jdbcTemplate){
@@ -37,9 +32,13 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 					roomMatchDto.getRoom_id(),
 					roomMatchDto.getUser_id());
 		} catch (DuplicateKeyException d) {
-			//d.printStackTrace();
-			System.out.println("같은 방에 접근 할 수 없습니다.");
+			d.printStackTrace();
 		}
 		return chk;
+	}
+
+	@Override
+	public int roomDupleCount(RoomMatchDto roomMatchDto) {
+		return jdbcTemplate.queryForObject(SQL_DUPLECOUNT, Integer.class, roomMatchDto.getRoom_id(), roomMatchDto.getUser_id());
 	}
 }

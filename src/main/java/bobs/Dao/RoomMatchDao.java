@@ -8,4 +8,5 @@ import java.sql.SQLException;
 public interface RoomMatchDao {
 	int roomUserCount(RoomMatchDto roomMatchDto);
 	int matchInsert(RoomMatchDto roomMatchDto);
+	int roomDupleCount(RoomMatchDto roomMatchDto);
 }

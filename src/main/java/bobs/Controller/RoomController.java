@@ -24,7 +24,7 @@ public class RoomController {
 	@GetMapping("/test")
 	public List<RoomInfoDto> test(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String startTime, String endTime)
 	{
-		startTime = "2021-06-01 13:00:00";
+		startTime = "2021-06-01 12:00:00";
 		endTime = "2021-06-22 14:00:00";
 		return roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
 	}

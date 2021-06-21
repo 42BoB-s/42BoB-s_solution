@@ -18,8 +18,8 @@ public class JdbcRoomInfoDao implements RoomInfoDao {
 	private final String SQL_ROOMINSERT = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
 									+ "VALUES (?, NOW(), ?, date_format(?, '%Y-%m-%d %H:%i:%s'), ?, ?, ?)";
 	private final String SQL_FINDVAILDROOM = "SELECT * FROM room_info WHERE deadline > date_format(?, '%Y-%m-%d %H:%i:%s') "
-									+"AND deadline <= date_format(?, '%Y-%m-%d %H:%i:%s') AND room_status = 'active' "
-									+"AND category_id = ? AND location_id = ? ORDER BY deadline ASC";
+									+"AND deadline <= date_format(?, '%Y-%m-%d %H:%i:%s') "
+									+"AND room_status = 'active' AND category_id = ? AND location_id = ? ORDER BY deadline ASC";
 	private final String SQL_ROOMSTATUSUPDATE = "UPDATE room_info SET room_status = ? WHERE id = ?";
 	private final String SQL_FINDROOM = "SELECT * FROM room_info where id = ?";
 
@@ -28,7 +28,7 @@ public class JdbcRoomInfoDao implements RoomInfoDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	// 코드 안전성을 위해 추후 PrepareStatement 작업 필요. 또한 SQL 에러시 예외처리도 필요 (DataAccessException 사용?)
+	// 코드 안전성을 위해 추후 PrepareStatement 작업 필요. 또한 SQL 에러시 예외처리도 필요 (DataAccessException)
 	@Override
 	public int roomInsert(RoomInfoDto roomInfoDto) {
 		int chk = 0;
@@ -62,26 +62,5 @@ public class JdbcRoomInfoDao implements RoomInfoDao {
 						rs.getInt("category_id"),
 						rs.getInt("location_id"))
 				, startTime, endTime, roomInfoDto.getCategory_id(), roomInfoDto.getLocation_id());
-	}
-
-	@Override
-	public int statusUpdate(RoomInfoDto roomInfoDto){
-		return jdbcTemplate.update(SQL_ROOMSTATUSUPDATE, roomInfoDto.getRoom_status(), roomInfoDto.getId());
-	}
-
-	@Override
-	public RoomInfoDto roomSelect(RoomInfoDto roomInfoDto){
-		return jdbcTemplate.queryForObject(
-				SQL_FINDROOM,
-				new Object[] {roomInfoDto.getId()},
-				(rs, rowNum) -> new RoomInfoDto (
-						rs.getInt("id"),
-						rs.getString("created_at"),
-						rs.getInt("max_people"),
-						rs.getString("deadline"),
-						rs.getString("room_status"),
-						rs.getInt("category_id"),
-						rs.getInt("location_id")
-				));
 	}
 }
