@@ -31,12 +31,14 @@ public class RoomInfoJDBCDao{
             "AND deadline <  date_format(DATE_ADD(NOW(),INTERVAL 20 MINUTE), '%Y.%m.%d %H:%i:%s') " +
             "AND deadline >  date_format(NOW(), '%Y.%m.%d %H:%i:%s')";
 
-    /* for TestCase */
+    /* TestCase */
     private final String SQL_TESTcreate = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
             + "VALUES (?, NOW(), ?, date_format(DATE_ADD(NOW(),INTERVAL 10 MINUTE), '%Y.%m.%d %H:%i:%s'), ?, ?, ?)";
-    private final String SQL_TESTgetstatus = "SELECT * FROM room_info WHERE id = ?";
 
-    /*알람 대상 room_id를 추출 */
+    /*
+    * 스케줄러 서비스로직
+    *알람 대상 room_id를 추출
+    * */
     public List<String> getAlarmRoomId() {
 
         List<String> roomIdList = new ArrayList<>();
@@ -46,14 +48,17 @@ public class RoomInfoJDBCDao{
         return roomIdList;
     }
 
-    /*알람 대상 room_status를 succeed로 업데이트 */
+    /*
+     * 스케줄러 서비스로직
+     *알람 대상 room_status를 succeed로 업데이트
+     * */
     public void roomStatusUpdate(List<String> roomIdList){
         for (String id : roomIdList) {
             jdbcTemplate.update(SQL_ROOMSTATUSUPDATE, "succeed", id);
         }
     }
 
-    /* for TestCase */
+    /* TestCase */
     public int testRoomInsert(RoomInfoDto roomInfo) {
         int chk = 0;
         roomInfo.setId(jdbcTemplate.queryForObject(SQL_ROOMSEQ, Integer.class));
@@ -71,7 +76,7 @@ public class RoomInfoJDBCDao{
         return roomInfo.getId();
     }
 
-    /* for TestCase */
+    /* TestCase */
     public List<String> testFindRoom(List<String> roomIdList){
 
         List<String> roomStatusList = new ArrayList<>();
