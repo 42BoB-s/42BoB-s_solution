@@ -1,5 +1,6 @@
 package bobs.Controller;
 
+import bobs.Dto.SessionDto;
 import bobs.Service.RoomServiceImpl;
 import bobs.domain.CanceledRoom;
 import bobs.domain.Room;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,7 +23,14 @@ public class RoomController {
 	}
 
 	@GetMapping("/main")
-	public String listRoom(@RequestParam("id") String id, Model model) {
+	public String listRoom(HttpSession httpSession, Model model) {
+
+		//dohelee 추가
+		SessionDto sessionDto = (SessionDto)httpSession.getAttribute("session");
+		String id = "";
+		if (sessionDto != null)
+			id = sessionDto.getUser_id();
+
 		System.out.println("top");
 		List<Room> rooms = roomService.findRooms(id);
 		model.addAttribute("rooms", rooms);
