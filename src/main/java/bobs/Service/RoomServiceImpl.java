@@ -4,23 +4,30 @@ import bobs.Dao.JdbcRoomInfoDao;
 import bobs.Dao.JdbcRoomMatchDao;
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
+import bobs.domain.CanceledRoom;
+import bobs.domain.Room;
+import bobs.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Service
 public class RoomServiceImpl implements RoomService {
 
 	private JdbcRoomInfoDao jdbcRoomInfoDao;
 	private JdbcRoomMatchDao jdbcRoomMatchDao;
+	private RoomRepository roomRepository;
 
 	@Autowired
-	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao)
+	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao,  RoomRepository roomRepository)
 	{
 		this.jdbcRoomInfoDao = jdbcRoomInfoDao;
 		this.jdbcRoomMatchDao = jdbcRoomMatchDao;
+		this. roomRepository = roomRepository;
 	}
 
 
@@ -57,7 +64,7 @@ public class RoomServiceImpl implements RoomService {
 	//roomMatchDto(임시)의 user_id는 나중에 세션에서 받아와서 처리해야함
 	@Override
 	public List<RoomInfoDto> findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String startTime, String endTime) {
-		List<RoomInfoDto> result = new ArrayList<RoomInfoDto>();
+		List<RoomInfoDto> result = new ArrayList<>();
 		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, startTime, endTime);
 		for (RoomInfoDto dto : tmpList) {
 			roomMatchDto.setRoom_id(dto.getId());
@@ -91,6 +98,17 @@ public class RoomServiceImpl implements RoomService {
 		else
 			System.out.println("[[[ROOM ENTER FAIL]]]");
 		return chk;
+	}
+
+	//화면에 보여줄 방 조회
+	public List<Room> findRooms(String id) {
+		return roomRepository.findValidAll(id);
+	}
+
+	//방 취소
+	public List<String> cancelRoom(CanceledRoom canceledRoom) {
+		List<String> leftParticipants = roomRepository.deleteRoomMatch(canceledRoom);
+		return leftParticipants;
 	}
 
 }

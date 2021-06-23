@@ -40,8 +40,7 @@ public class RoomServiceImplTest {
 		roomMatchDto.setUser_id("test2");
 
 		List<RoomInfoDto> list = roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
-		for (RoomInfoDto dto : list)
-		{
+		for (RoomInfoDto dto : list) {
 			System.out.println("해당 방 내역 : " +
 						"ID : " + dto.getId() + " " +
 						"MAX_PEOPLE : " + 	dto.getMax_people() + " " +

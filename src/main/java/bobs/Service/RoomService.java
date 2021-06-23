@@ -2,6 +2,9 @@ package bobs.Service;
 
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
+import bobs.domain.CanceledRoom;
+import bobs.domain.Room;
+import bobs.repository.RoomRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,4 +15,6 @@ public interface RoomService {
 	boolean roomCountCheck(RoomMatchDto roomMatchDto);
 	boolean userDupleCheck(RoomMatchDto roomMatchDto);
 	int roomEnter(RoomMatchDto roomMatchDto);
+	List<Room> findRooms(String id);
+	List<String> cancelRoom(CanceledRoom canceledRoom);
 }

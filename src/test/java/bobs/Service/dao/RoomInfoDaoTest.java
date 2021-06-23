@@ -1,13 +1,12 @@
-package com.example.alarmscheduler.dao;
+package bobs.Service.dao;
 
 
-import com.example.alarmscheduler.dto.RoomInfoDto;
+
+import bobs.Dao.JdbcRoomInfoDao;
+import bobs.Dto.RoomInfoDto;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -16,18 +15,17 @@ public class RoomInfoDaoTest {
 
     public DataSource mysqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("...");
-        dataSource.setUsername("...");
-        dataSource.setPassword("...");
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+        dataSource.setUrl("jdbc:mariadb://leeworld9.ipdisk.co.kr:53306/bobs_db?serverTimezone=Asia/Seoul");
+        dataSource.setUsername("bobs_admin");
+        dataSource.setPassword("bobs$@");
 
         return dataSource;
     }
 
-    RoomInfoJDBCDao DAO = new RoomInfoJDBCDao(new JdbcTemplate(mysqlDataSource()));
+    JdbcRoomInfoDao DAO = new JdbcRoomInfoDao(new JdbcTemplate(mysqlDataSource()));
 
-    @Test
-    @DisplayName("서비스 로직에 맞춰 roomId를 조회할 수 있는지 확인")
+    @org.junit.Test
     public void roomIdListCheck() {
         RoomInfoDto roomInfo = new RoomInfoDto();
 
@@ -46,8 +44,7 @@ public class RoomInfoDaoTest {
 
     }
 
-    @Test
-    @DisplayName("조회된 room의 status 변경 active -> succeed")
+    @org.junit.Test
     public void roomStatusChangeCheck() {
 
         // room_info 에 row 하나 생성

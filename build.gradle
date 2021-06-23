@@ -16,17 +16,25 @@ apply plugin: 'io.spring.dependency-management'
 
 group 'org.leeworld9'
 version '1.0-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     compile('org.springframework.boot:spring-boot-starter-web')
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
     compile('org.projectlombok:lombok')
     testImplementation group: 'junit', name: 'junit', version: '4.12'
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation ('org.springframework.boot:spring-boot-starter-quartz')
+    implementation group: 'com.ullink.slack', name: 'simpleslackapi', version: '1.2.0'
+    compile ('com.googlecode.json-simple:json-simple:1.1.1')
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.3'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.3'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.12.3'
 }

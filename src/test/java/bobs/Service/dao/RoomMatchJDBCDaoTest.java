@@ -1,10 +1,10 @@
-package com.example.alarmscheduler.dao;
+package bobs.Service.dao;
 
-import com.example.alarmscheduler.dto.RoomInfoDto;
-import com.example.alarmscheduler.dto.RoomMatchDto;
+import bobs.Dao.JdbcRoomInfoDao;
+import bobs.Dao.JdbcRoomMatchDao;
+import bobs.Dto.RoomInfoDto;
+import bobs.Dto.RoomMatchDto;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -16,17 +16,17 @@ import java.util.List;
 import java.util.Map;
 
 
-class RoomMatchJDBCDaoTest {
+public class RoomMatchJDBCDaoTest {
 
-    RoomInfoJDBCDao RoomInfoDao = new RoomInfoJDBCDao(new JdbcTemplate(mysqlDataSource()));
-    RoomMatchJDBCDao RoomMatchDao = new RoomMatchJDBCDao(new JdbcTemplate(mysqlDataSource()));
+    JdbcRoomInfoDao RoomInfoDao = new JdbcRoomInfoDao(new JdbcTemplate(mysqlDataSource()));
+    JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(new JdbcTemplate(mysqlDataSource()));
 
-    private DataSource mysqlDataSource() {
+    public DataSource mysqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("...");
-        dataSource.setUsername("...");
-        dataSource.setPassword("...");
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+        dataSource.setUrl("jdbc:mariadb://leeworld9.ipdisk.co.kr:53306/bobs_db?serverTimezone=Asia/Seoul");
+        dataSource.setUsername("bobs_admin");
+        dataSource.setPassword("bobs$@");
 
         return dataSource;
     }
@@ -45,8 +45,7 @@ class RoomMatchJDBCDaoTest {
     }
 
 
-    @Test
-    @DisplayName("roomId의 userName을 제대로 추출하는지 확인")
+    @org.junit.Test
     public void userNameListCheck() {
         RoomInfoDto roomInfo = new RoomInfoDto();
         List<String> roomIdList = new ArrayList<>();
