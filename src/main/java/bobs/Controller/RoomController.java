@@ -31,11 +31,9 @@ public class RoomController {
 		if (sessionDto != null)
 			id = sessionDto.getUser_id();
 
-		System.out.println("top");
 		List<Room> rooms = roomService.findRooms(id);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("user_id", id);
-		System.out.println("bottom");
 		return "mainn";
 	}
 
