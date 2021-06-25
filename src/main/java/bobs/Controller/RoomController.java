@@ -37,7 +37,19 @@ public class RoomController {
 		return "mainn";
 	}
 
-//	@GetMapping("/main")
+@PostMapping("/main")
+public String cancel(HttpSession httpSession, CanceledRoom canceledRoom) {
+
+		SessionDto sessionDto = (SessionDto)httpSession.getAttribute("session");
+		String id = "";
+		if (sessionDto != null)
+			id = sessionDto.getUser_id();
+
+		roomService.cancelRoom(canceledRoom);
+		return "mainn";
+	}
+
+	//	@GetMapping("/main")
 //	public String listRoom(@RequestParam(value="id", required = false) String id, Model model){
 //		ObjectMapper objectMapper = new ObjectMapper();
 //		try{
@@ -57,10 +69,4 @@ public class RoomController {
 //		data.put("rooms", roomService.findRooms((user.getUser_id())));
 //		return data;
 //	}
-
-@PostMapping("/main")
-public Object cancel(CanceledRoom canceledRoom) {
-		List<String> leftParticipants = roomService.cancelRoom(canceledRoom);
-		return leftParticipants;
-	}
 }

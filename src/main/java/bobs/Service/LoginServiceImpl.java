@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 		System.out.println("Authorization Code======>{}" + code);
 
 		String uid = "629bdab8a98df03b4e7a38c0bbc9a9d5697a0964b0f21413def813faa8125917";
-		String secret = "";
+		String secret = "c870535679019de9bdafa88a81870320a75ea2c4e577f17f4b32de6838b4d05a";
 		String redirect_uri = "http://localhost:8080/42OAuth";
 
 		RestTemplate restTemplate = new RestTemplate();

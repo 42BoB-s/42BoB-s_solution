@@ -6616,3 +6616,265 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
 
 2021-06-24 05:51:49.164 ERROR 59596 --- [http-nio-8080-exec-2] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/maiun] and exception [Cannot call sendError() after the response has been committed] as the response has already been committed. As a result, the response may have the wrong status code.
+2021-06-24 16:37:27.825  INFO 12784 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 12784 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:37:27.826  INFO 12784 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:37:28.977  INFO 12784 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:37:28.989  INFO 12784 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:37:28.989  INFO 12784 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:37:28.990  INFO 12784 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:37:28.991  INFO 12784 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:37:28.991  INFO 12784 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:37:28.991  INFO 12784 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:37:28.991  INFO 12784 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4fa822ad
+2021-06-24 16:37:29.457  INFO 12784 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:37:29.932  INFO 12784 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:37:29.933  INFO 12784 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:37:29.944  INFO 12784 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.431 seconds (JVM running for 4.615)
+2021-06-24 16:37:30.301  WARN 12784 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:37:30.301  INFO 12784 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:37:30.398  INFO 12784 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:37:30.739  INFO 12784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:37:30.740  INFO 12784 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:37:30.741  INFO 12784 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:37:30.741  INFO 12784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:37:30.741  INFO 12784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:37:30.741  INFO 12784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:37:30.742  INFO 12784 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:37:30.823  INFO 12784 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:45:11.935  INFO 12436 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 12436 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:45:11.936  INFO 12436 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:45:13.067  INFO 12436 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:45:13.080  INFO 12436 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:45:13.080  INFO 12436 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:45:13.081  INFO 12436 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:45:13.082  INFO 12436 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:45:13.082  INFO 12436 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:45:13.082  INFO 12436 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:45:13.082  INFO 12436 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@597f0937
+2021-06-24 16:45:13.564  INFO 12436 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:45:14.076  INFO 12436 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:45:14.077  INFO 12436 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:45:14.088  INFO 12436 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.417 seconds (JVM running for 3.375)
+2021-06-24 16:45:14.448  WARN 12436 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:45:14.448  INFO 12436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:45:14.590  INFO 12436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:45:15.561  INFO 12436 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:45:15.563  INFO 12436 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:45:15.563  INFO 12436 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:45:15.563  INFO 12436 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:45:15.564  INFO 12436 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:45:15.564  INFO 12436 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:45:15.564  INFO 12436 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:45:15.663  INFO 12436 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:45:26.589  INFO 21276 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 21276 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:45:26.590  INFO 21276 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:45:27.701  INFO 21276 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:45:27.714  INFO 21276 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:45:27.714  INFO 21276 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:45:27.715  INFO 21276 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:45:27.716  INFO 21276 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:45:27.716  INFO 21276 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:45:27.717  INFO 21276 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:45:27.717  INFO 21276 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@600f5704
+2021-06-24 16:45:28.196  INFO 21276 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:45:28.642  INFO 21276 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:45:28.643  INFO 21276 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:45:28.652  INFO 21276 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.33 seconds (JVM running for 3.322)
+2021-06-24 16:45:28.961  WARN 21276 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:45:28.961  INFO 21276 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:45:29.070  INFO 21276 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:45:30.042  INFO 21276 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:45:30.044  INFO 21276 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:45:30.044  INFO 21276 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:45:30.044  INFO 21276 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:45:30.044  INFO 21276 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:45:30.045  INFO 21276 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:45:30.045  INFO 21276 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:45:30.099  INFO 21276 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:45:37.064  INFO 4088 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 4088 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:45:37.065  INFO 4088 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:45:38.181  INFO 4088 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:45:38.194  INFO 4088 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:45:38.194  INFO 4088 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:45:38.195  INFO 4088 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:45:38.196  INFO 4088 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:45:38.196  INFO 4088 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:45:38.196  INFO 4088 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:45:38.196  INFO 4088 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4fa822ad
+2021-06-24 16:45:38.662  INFO 4088 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:45:39.116  INFO 4088 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:45:39.116  INFO 4088 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:45:39.127  INFO 4088 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.329 seconds (JVM running for 3.27)
+2021-06-24 16:45:39.456  WARN 4088 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:45:39.456  INFO 4088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:45:39.620  INFO 4088 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:45:40.584  INFO 4088 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:45:40.585  INFO 4088 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:45:40.586  INFO 4088 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:45:40.586  INFO 4088 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:45:40.586  INFO 4088 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:45:40.586  INFO 4088 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:45:40.587  INFO 4088 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:45:40.691  INFO 4088 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:48:28.525  INFO 19008 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 19008 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:48:28.526  INFO 19008 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:48:29.641  INFO 19008 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:48:29.654  INFO 19008 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:48:29.655  INFO 19008 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:48:29.655  INFO 19008 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:48:29.656  INFO 19008 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:48:29.656  INFO 19008 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:48:29.656  INFO 19008 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:48:29.657  INFO 19008 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@597f0937
+2021-06-24 16:48:30.150  INFO 19008 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:48:30.611  INFO 19008 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:48:30.611  INFO 19008 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:48:30.620  INFO 19008 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.361 seconds (JVM running for 3.319)
+2021-06-24 16:48:30.929  WARN 19008 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:48:30.929  INFO 19008 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:48:31.023  INFO 19008 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:48:32.022  INFO 19008 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:48:32.023  INFO 19008 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:48:32.024  INFO 19008 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:48:32.024  INFO 19008 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:48:32.024  INFO 19008 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:48:32.024  INFO 19008 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:48:32.025  INFO 19008 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:48:32.077  INFO 19008 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:50:36.551  INFO 8136 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 8136 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:50:36.552  INFO 8136 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:50:37.635  INFO 8136 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:50:37.647  INFO 8136 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:50:37.648  INFO 8136 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:50:37.648  INFO 8136 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:50:37.649  INFO 8136 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:50:37.649  INFO 8136 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:50:37.650  INFO 8136 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:50:37.650  INFO 8136 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@285c6918
+2021-06-24 16:50:38.153  INFO 8136 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:50:38.617  INFO 8136 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:50:38.617  INFO 8136 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:50:38.628  INFO 8136 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.339 seconds (JVM running for 3.29)
+2021-06-24 16:50:38.917  WARN 8136 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:50:38.917  INFO 8136 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:50:39.013  INFO 8136 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:50:40.003  INFO 8136 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:50:40.005  INFO 8136 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:50:40.005  INFO 8136 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:50:40.006  INFO 8136 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:50:40.006  INFO 8136 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:50:40.006  INFO 8136 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:50:40.007  INFO 8136 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:50:40.065  INFO 8136 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:54:35.589  INFO 6004 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 6004 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:54:35.590  INFO 6004 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:54:36.717  INFO 6004 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:54:36.730  INFO 6004 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:54:36.730  INFO 6004 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:54:36.731  INFO 6004 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:54:36.731  INFO 6004 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:54:36.732  INFO 6004 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:54:36.732  INFO 6004 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:54:36.732  INFO 6004 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6296474f
+2021-06-24 16:54:37.212  INFO 6004 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:54:37.689  INFO 6004 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:54:37.690  INFO 6004 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:54:37.701  INFO 6004 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.407 seconds (JVM running for 3.427)
+2021-06-24 16:54:38.026  WARN 6004 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:54:38.026  INFO 6004 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:54:38.172  INFO 6004 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:54:40.074  INFO 6004 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:54:40.075  INFO 6004 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:54:40.076  INFO 6004 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:54:40.076  INFO 6004 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:54:40.076  INFO 6004 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:54:40.076  INFO 6004 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:54:40.077  INFO 6004 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:54:40.133  INFO 6004 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-24 16:55:39.197  INFO 18784 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-I9215HP with PID 18784 (started by 192293 in C:\Users\192293\Desktop\42bobs)
+2021-06-24 16:55:39.199  INFO 18784 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-24 16:55:40.308  INFO 18784 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-24 16:55:40.322  INFO 18784 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-24 16:55:40.322  INFO 18784 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-24 16:55:40.323  INFO 18784 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-24 16:55:40.323  INFO 18784 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-24 16:55:40.323  INFO 18784 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-24 16:55:40.323  INFO 18784 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-24 16:55:40.323  INFO 18784 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@3bc4ef12
+2021-06-24 16:55:40.802  INFO 18784 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:55:41.247  INFO 18784 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-24 16:55:41.247  INFO 18784 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-24 16:55:41.256  INFO 18784 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.31 seconds (JVM running for 4.381)
+2021-06-24 16:55:41.285  WARN 18784 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-24 16:55:41.286  INFO 18784 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-24 16:55:41.332  INFO 18784 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-24 16:55:41.795  INFO 18784 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [bobs.Service.RoomServiceImplTest], using SpringBootContextLoader
+2021-06-24 16:55:41.796  INFO 18784 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [bobs.Service.RoomServiceImplTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-24 16:55:41.796  INFO 18784 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [bobs.Service.RoomServiceImplTest]: RoomServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-24 16:55:41.797  INFO 18784 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration bobs.bobsMain for test class bobs.Service.RoomServiceImplTest
+2021-06-24 16:55:41.799  INFO 18784 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2021-06-24 16:55:41.799  INFO 18784 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2774dcf4, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@20b829d5, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7c5f29c6, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4baf997, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5280688, org.springframework.test.context.transaction.TransactionalTestExecutionListener@643f6179, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@61ab6521, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@328e4ec2, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7757025d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@68fc9167, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@52c46334, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@12fccff0]
+2021-06-24 16:55:42.907  INFO 18784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:55:42.908  INFO 18784 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-24 16:55:42.908  INFO 18784 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-24 16:55:42.908  INFO 18784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-24 16:55:42.908  INFO 18784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-24 16:55:42.909  INFO 18784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-24 16:55:42.909  INFO 18784 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-24 16:55:42.961  INFO 18784 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

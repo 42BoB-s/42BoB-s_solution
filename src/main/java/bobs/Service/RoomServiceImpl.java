@@ -4,6 +4,7 @@ import bobs.Dao.JdbcRoomInfoDao;
 import bobs.Dao.JdbcRoomMatchDao;
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
+import bobs.Slack.Slack;
 import bobs.domain.CanceledRoom;
 import bobs.domain.Room;
 import bobs.repository.RoomRepository;
@@ -106,9 +107,9 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	//방 취소
-	public List<String> cancelRoom(CanceledRoom canceledRoom) {
+	public void cancelRoom(CanceledRoom canceledRoom) {
+		Slack slack = new Slack();
 		List<String> leftParticipants = roomRepository.deleteRoomMatch(canceledRoom);
-		return leftParticipants;
+		slack.sendCancelMsg(leftParticipants);
 	}
-
 }
