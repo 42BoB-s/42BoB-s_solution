@@ -16,5 +16,5 @@ public interface RoomService {
 	boolean userDupleCheck(RoomMatchDto roomMatchDto);
 	int roomEnter(RoomMatchDto roomMatchDto);
 	List<Room> findRooms(String id);
-	List<String> cancelRoom(CanceledRoom canceledRoom);
+	void cancelRoom(CanceledRoom canceledRoom);
 }
