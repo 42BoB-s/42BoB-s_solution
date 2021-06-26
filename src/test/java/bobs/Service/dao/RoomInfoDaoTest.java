@@ -19,7 +19,6 @@ public class RoomInfoDaoTest {
         dataSource.setUrl("...");
         dataSource.setUsername("...");
         dataSource.setPassword("...");
-
         return dataSource;
     }
 

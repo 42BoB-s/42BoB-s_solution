@@ -6878,3 +6878,79 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 2021-06-24 16:55:42.909  INFO 18784 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
 2021-06-24 16:55:42.909  INFO 18784 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-06-24 16:55:42.961  INFO 18784 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-26 13:20:57.263  INFO 18248 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-F2J4U26 with PID 18248 (started by User in C:\Users\User\Desktop\fianlBase)
+2021-06-26 13:20:57.264  INFO 18248 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-26 13:20:58.462  INFO 18248 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-26 13:20:58.477  INFO 18248 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-26 13:20:58.477  INFO 18248 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-26 13:20:58.478  INFO 18248 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-26 13:20:58.478  INFO 18248 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-26 13:20:58.478  INFO 18248 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-26 13:20:58.479  INFO 18248 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-26 13:20:58.479  INFO 18248 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4bc33720
+2021-06-26 13:20:59.022  INFO 18248 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-26 13:20:59.514  INFO 18248 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-26 13:20:59.516  INFO 18248 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-26 13:20:59.526  INFO 18248 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.572 seconds (JVM running for 3.634)
+2021-06-26 13:20:59.960  WARN 18248 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-26 13:20:59.960  INFO 18248 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-26 13:21:00.070  INFO 18248 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-26 13:21:00.412  INFO 18248 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [bobs.Service.RoomServiceImplTest], using SpringBootContextLoader
+2021-06-26 13:21:00.412  INFO 18248 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [bobs.Service.RoomServiceImplTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-26 13:21:00.413  INFO 18248 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [bobs.Service.RoomServiceImplTest]: RoomServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-26 13:21:00.414  INFO 18248 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration bobs.bobsMain for test class bobs.Service.RoomServiceImplTest
+2021-06-26 13:21:00.416  INFO 18248 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2021-06-26 13:21:00.417  INFO 18248 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@8f39224, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7f642bf, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@43e3a390, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@44aa91e2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@50dc49e1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@650a1aff, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3babcaed, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2b9e69fb, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@19bfbe28, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2c579202, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@49ced9c7, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@11c7a0b4]
+2021-06-26 13:21:01.779  INFO 18248 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-26 13:21:01.781  INFO 18248 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-26 13:21:01.781  INFO 18248 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-26 13:21:01.781  INFO 18248 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-26 13:21:01.782  INFO 18248 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-26 13:21:01.782  INFO 18248 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-26 13:21:01.783  INFO 18248 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-26 13:21:01.851  INFO 18248 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-26 13:21:46.252  INFO 4996 --- [main] bobs.Service.RoomServiceImplTest         : Starting RoomServiceImplTest on DESKTOP-F2J4U26 with PID 4996 (started by User in C:\Users\User\Desktop\fianlBase)
+2021-06-26 13:21:46.253  INFO 4996 --- [main] bobs.Service.RoomServiceImplTest         : No active profile set, falling back to default profiles: default
+2021-06-26 13:21:47.430  INFO 4996 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-06-26 13:21:47.444  INFO 4996 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-06-26 13:21:47.444  INFO 4996 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-06-26 13:21:47.445  INFO 4996 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-06-26 13:21:47.446  INFO 4996 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-06-26 13:21:47.446  INFO 4996 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-06-26 13:21:47.446  INFO 4996 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-06-26 13:21:47.446  INFO 4996 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4bc33720
+2021-06-26 13:21:47.977  INFO 4996 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-26 13:21:48.471  INFO 4996 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-06-26 13:21:48.472  INFO 4996 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-06-26 13:21:48.482  INFO 4996 --- [main] bobs.Service.RoomServiceImplTest         : Started RoomServiceImplTest in 2.551 seconds (JVM running for 3.615)
+2021-06-26 13:21:48.826  WARN 4996 --- [main] com.zaxxer.hikari.HikariConfig           : {} - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-26 13:21:48.826  INFO 4996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-26 13:21:48.948  INFO 4996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-26 13:21:49.274  INFO 4996 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [bobs.Service.RoomServiceImplTest], using SpringBootContextLoader
+2021-06-26 13:21:49.275  INFO 4996 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [bobs.Service.RoomServiceImplTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-26 13:21:49.275  INFO 4996 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [bobs.Service.RoomServiceImplTest]: RoomServiceImplTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-26 13:21:49.277  INFO 4996 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration bobs.bobsMain for test class bobs.Service.RoomServiceImplTest
+2021-06-26 13:21:49.279  INFO 4996 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2021-06-26 13:21:49.279  INFO 4996 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@8f39224, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7f642bf, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@43e3a390, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@44aa91e2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@50dc49e1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@650a1aff, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3babcaed, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2b9e69fb, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@19bfbe28, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2c579202, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@49ced9c7, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@11c7a0b4]
+2021-06-26 13:21:50.599  INFO 4996 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-26 13:21:50.603  INFO 4996 --- [Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-26 13:21:50.603  INFO 4996 --- [Thread-1] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-06-26 13:21:50.603  INFO 4996 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-06-26 13:21:50.604  INFO 4996 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-06-26 13:21:50.604  INFO 4996 --- [Thread-1] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-06-26 13:21:50.605  INFO 4996 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-06-26 13:21:50.675  INFO 4996 --- [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -7,7 +7,6 @@ import bobs.Dto.RoomMatchDto;
 import bobs.Slack.Slack;
 import bobs.domain.CanceledRoom;
 import bobs.domain.Room;
-import bobs.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,14 +20,14 @@ public class RoomServiceImpl implements RoomService {
 
 	private JdbcRoomInfoDao jdbcRoomInfoDao;
 	private JdbcRoomMatchDao jdbcRoomMatchDao;
-	private RoomRepository roomRepository;
+	private JdbcRoomMatchDao RoomMatchDao;
 
 	@Autowired
-	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao,  RoomRepository roomRepository)
+	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao, JdbcRoomMatchDao RoomMatchDao)
 	{
 		this.jdbcRoomInfoDao = jdbcRoomInfoDao;
 		this.jdbcRoomMatchDao = jdbcRoomMatchDao;
-		this. roomRepository = roomRepository;
+		this. RoomMatchDao = RoomMatchDao;
 	}
 
 
@@ -103,13 +102,13 @@ public class RoomServiceImpl implements RoomService {
 
 	//화면에 보여줄 방 조회
 	public List<Room> findRooms(String id) {
-		return roomRepository.findValidAll(id);
+		return RoomMatchDao.findValidAll(id);
 	}
 
 	//방 취소
 	public void cancelRoom(CanceledRoom canceledRoom) {
 		Slack slack = new Slack();
-		List<String> leftParticipants = roomRepository.deleteRoomMatch(canceledRoom);
+		List<String> leftParticipants = RoomMatchDao.deleteRoomMatch(canceledRoom);
 		slack.sendCancelMsg(leftParticipants);
 	}
 }

@@ -25,13 +25,11 @@ public class JdbcRoomInfoDao implements RoomInfoDao {
 	private final String SQL_ROOMSTATUSUPDATE = "UPDATE room_info SET room_status = ? WHERE id = ?";
 	private final String SQL_FINDROOM = "SELECT * FROM room_info where id = ?";
 
-	// tjeong add
+	/* tjeong add */
 	private final String SQL_FINDALARMROOM = "SELECT * FROM room_info " +
 			"WHERE room_status = 'active' " +
 			"AND deadline <  date_format(DATE_ADD(NOW(),INTERVAL 20 MINUTE), '%Y.%m.%d %H:%i:%s') " +
 			"AND deadline >  date_format(NOW(), '%Y.%m.%d %H:%i:%s')";
-
-	// tjeong add
 	private final String SQL_TESTcreate = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
 			+ "VALUES (?, NOW(), ?, date_format(DATE_ADD(NOW(),INTERVAL 10 MINUTE), '%Y.%m.%d %H:%i:%s'), ?, ?, ?)";
 

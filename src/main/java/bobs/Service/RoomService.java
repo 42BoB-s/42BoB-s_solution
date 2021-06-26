@@ -4,9 +4,7 @@ import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
 import bobs.domain.CanceledRoom;
 import bobs.domain.Room;
-import bobs.repository.RoomRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface RoomService {

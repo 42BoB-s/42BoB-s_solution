@@ -1,5 +1,6 @@
 package bobs.Service.dao;
 
+import bobs.Dao.JdbcActivityLogDao;
 import bobs.Dao.JdbcRoomInfoDao;
 import bobs.Dao.JdbcRoomMatchDao;
 import bobs.Dto.RoomInfoDto;
@@ -19,7 +20,8 @@ import java.util.Map;
 public class RoomMatchJDBCDaoTest {
 
     JdbcRoomInfoDao RoomInfoDao = new JdbcRoomInfoDao(new JdbcTemplate(mysqlDataSource()));
-    JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(new JdbcTemplate(mysqlDataSource()));
+    JdbcActivityLogDao jdbcActivityLogDao = new JdbcActivityLogDao(new JdbcTemplate(mysqlDataSource()));
+    JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(new JdbcTemplate(mysqlDataSource()), jdbcActivityLogDao);
 
     public DataSource mysqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -27,7 +29,6 @@ public class RoomMatchJDBCDaoTest {
         dataSource.setUrl("...");
         dataSource.setUsername("...");
         dataSource.setPassword("...");
-
         return dataSource;
     }
 

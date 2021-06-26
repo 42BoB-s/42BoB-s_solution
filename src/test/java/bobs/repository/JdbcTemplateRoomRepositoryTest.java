@@ -1,10 +1,11 @@
 package bobs.repository;
 
+import bobs.Dao.JdbcActivityLogDao;
+import bobs.Dao.JdbcRoomMatchDao;
+import bobs.Dto.ActivityLogDto;
 import bobs.Dto.RoomInfoDto;
 import bobs.domain.CanceledRoom;
-import bobs.domain.Room;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -13,26 +14,27 @@ import java.util.List;
 
 class JdbcTemplateRoomRepositoryTest {
 
-	private final JdbcTemplate jdbcTemplate = new JdbcTemplate(mysqlDataSource());
+	JdbcTemplate jdbcTemplate = new JdbcTemplate(mysqlDataSource());
+	JdbcActivityLogDao activityLogDao = new JdbcActivityLogDao(jdbcTemplate);
+	JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(jdbcTemplate, activityLogDao);
+	ActivityLogDto LogDto = new ActivityLogDto();
 
 	public DataSource mysqlDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-		dataSource.setUrl("jdbc:mariadb://leeworld9.ipdisk.co.kr:53306/bobs_db?serverTimezone=Asia/Seoul");
-		dataSource.setUsername("bobs_admin");
-		dataSource.setPassword("bobs$@");
+		dataSource.setUrl("...");
+		dataSource.setUsername("...");
+		dataSource.setPassword("...");
 
 		return dataSource;
 	}
-
-	private JdbcTemplateRoomRepository jdbcTemplateRoomRepository = new JdbcTemplateRoomRepository(mysqlDataSource());
 
 	@Test
 	void deleteRoomMatch() {
 		CanceledRoom canceledRoom = new CanceledRoom();
 		canceledRoom.setRoom_id(9);
 		canceledRoom.setUser_id("testtesttest");
-		List<String> test = jdbcTemplateRoomRepository.deleteRoomMatch(canceledRoom);
+		List<String> test = RoomMatchDao.deleteRoomMatch(canceledRoom);
 		System.out.println("리턴할 친구들은" + test.size());
 		//status 변경 완료
 	}
@@ -42,10 +44,14 @@ class JdbcTemplateRoomRepositoryTest {
 		CanceledRoom canceledRoom = new CanceledRoom();
 		canceledRoom.setRoom_id(9);
 		canceledRoom.setUser_id("testtesttest");
-		RoomInfoDto tmp = jdbcTemplate.query("SELECT * FROM room_info WHERE id = ?" , jdbcTemplateRoomRepository.roomInfoRowMapper, canceledRoom.getRoom_id())
+		RoomInfoDto tmp = jdbcTemplate.query("SELECT * FROM room_info WHERE id = ?" , RoomMatchDao.roomInfoRowMapper, canceledRoom.getRoom_id())
 				.stream()
 				.findAny()
 				.get();
-		jdbcTemplateRoomRepository.leaveLog(canceledRoom.getUser_id(), "room_exit", tmp.getLocation_id());
+		/* tjeong 수정 */
+		LogDto.setUser_id(canceledRoom.getUser_id());
+		LogDto.setActivity_status("room_exit");
+		LogDto.setLocation_id(tmp.getLocation_id());
+		activityLogDao.leaveLog(LogDto);
 	}
 }
