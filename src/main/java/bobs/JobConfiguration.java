@@ -1,7 +1,7 @@
 package bobs;
 
-import bobs.Job.JobDetailBuilder;
-import bobs.Job.JobTriggerBuilder;
+import bobs.Job.JobDetailProducer;
+import bobs.Job.JobTriggerPorducer;
 import org.quartz.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +15,21 @@ import javax.annotation.PostConstruct;
 public class JobConfiguration {
 
     private final Scheduler scheduler;
-    private final JobDetailBuilder jobDetailBuilder;
-    private final JobTriggerBuilder jobTriggerBuilder;
+    private final JobDetailProducer jobDetailProducer;
+    private final JobTriggerPorducer jobTriggerPorducer;
 
     @Autowired
-    public JobConfiguration(Scheduler scheduler, JobDetailBuilder jobDetailBuilder,JobTriggerBuilder jobTriggerBuilder ) {
+    public JobConfiguration(Scheduler scheduler,  JobDetailProducer jobDetailProducer, JobTriggerPorducer jobTriggerPorducer) {
         this.scheduler = scheduler;
-        this.jobDetailBuilder = jobDetailBuilder;
-        this.jobTriggerBuilder = jobTriggerBuilder;
+        this.jobDetailProducer = jobDetailProducer;
+        this.jobTriggerPorducer = jobTriggerPorducer;
     }
 
     @PostConstruct
     public void start() {
         try {
-
             /* Job을 스케줄러에 등록*/
-            JobDetail AlarmJob = jobDetailBuilder.makeAlarmJobDetail();
-            Trigger AlarmTrigger =  jobTriggerBuilder.makeAlarmJobTrigger();
-            scheduler.scheduleJob(AlarmJob, AlarmTrigger);
+            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(), jobTriggerPorducer.getAlarmTrigger());
 
         } catch (SchedulerException e) {
             e.printStackTrace();

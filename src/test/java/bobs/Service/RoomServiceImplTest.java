@@ -2,6 +2,7 @@ package bobs.Service;
 
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
+import bobs.domain.CanceledRoom;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,5 +51,16 @@ public class RoomServiceImplTest {
 						"LOCATION_ID : " + 	dto.getLocation_id()
 				);
 		}
+	}
+
+	@org.junit.jupiter.api.Test
+	void cancelRoom() {
+
+		CanceledRoom canceledRoom = new CanceledRoom();
+		String user_id = "ttttt3";
+		int room_id = 52;
+		canceledRoom.setRoom_id(room_id);
+		canceledRoom.setUser_id(user_id);
+		roomService.cancelRoom(canceledRoom);
 	}
 }

@@ -1,4 +1,5 @@
 package bobs.Slack;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -7,9 +8,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class Slack {
     public static final String url = "https://slack.com/api/";
     private static final String token = "{slack-token}";
@@ -17,6 +20,7 @@ public class Slack {
     public RestTemplate restTemplate;
     public HttpEntity<String> entity;
     public JSONObject jsonObject;
+
     public Slack ()
     {
         header = new HttpHeaders();

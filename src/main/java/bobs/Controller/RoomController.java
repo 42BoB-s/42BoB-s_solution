@@ -1,5 +1,6 @@
 package bobs.Controller;
 
+import bobs.Dto.SessionDto;
 import bobs.Service.RoomServiceImpl;
 import bobs.domain.CanceledRoom;
 import bobs.domain.Room;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,16 +23,33 @@ public class RoomController {
 	}
 
 	@GetMapping("/main")
-	public String listRoom(@RequestParam("id") String id, Model model) {
-		System.out.println("top");
+	public String listRoom(HttpSession httpSession, Model model) {
+
+		//dohelee 추가
+		SessionDto sessionDto = (SessionDto)httpSession.getAttribute("session");
+		String id = "";
+		if (sessionDto != null)
+			id = sessionDto.getUser_id();
+
 		List<Room> rooms = roomService.findRooms(id);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("user_id", id);
-		System.out.println("bottom");
 		return "mainn";
 	}
 
-//	@GetMapping("/main")
+@PostMapping("/main")
+public String cancel(HttpSession httpSession, CanceledRoom canceledRoom) {
+
+		SessionDto sessionDto = (SessionDto)httpSession.getAttribute("session");
+		String id = "";
+		if (sessionDto != null)
+			id = sessionDto.getUser_id();
+
+		roomService.cancelRoom(canceledRoom);
+		return "mainn";
+	}
+
+	//	@GetMapping("/main")
 //	public String listRoom(@RequestParam(value="id", required = false) String id, Model model){
 //		ObjectMapper objectMapper = new ObjectMapper();
 //		try{
@@ -50,10 +69,4 @@ public class RoomController {
 //		data.put("rooms", roomService.findRooms((user.getUser_id())));
 //		return data;
 //	}
-
-@PostMapping("/main")
-public Object cancel(CanceledRoom canceledRoom) {
-		List<String> leftParticipants = roomService.cancelRoom(canceledRoom);
-		return leftParticipants;
-	}
 }

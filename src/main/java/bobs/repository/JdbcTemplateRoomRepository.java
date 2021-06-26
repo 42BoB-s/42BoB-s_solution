@@ -47,24 +47,16 @@ public class JdbcTemplateRoomRepository implements RoomRepository {
 				.stream()
 				.findAny()
 				.get();
-		//leaveLog(canceledRoom.getUser_id(), "room_exit", tmp.getLocation_id());
+		leaveLog(canceledRoom.getUser_id(), "room_exit", tmp.getLocation_id());
 		return leftParticipants;
 	}
 
 	public void leaveLog(String user_id, String activity_status, int location_id) {
-		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-		jdbcInsert.withTableName("activity_log").usingGeneratedKeyColumns("id");
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("activity_status", activity_status);
-		parameters.put("location_id", location_id);
-		parameters.put("user_id", user_id);
-		//parameters.put("created_at", System.currentTimeMillis());
-		jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-		/*jdbcTemplate.update("INSERT INTO activity_log(id, activity_status, location_id, created_at, user_id)" +
-				"VALUES (activity_log_SEQ, ?, ?, NOW(), ?)", activity_status, location_id, user_id);*/
+		String sql = "INSERT INTO activity_log(activity_status,location_id, created_at, user_id) VALUES(?, ?, NOW() , ?)";
+		jdbcTemplate.update(sql, activity_status, location_id, user_id);
 	}
 
-	private RowMapper<Room> roomRowMapper() {
+	public RowMapper<Room> roomRowMapper() {
 		return (rs, rowNum) -> {
 			Room room = new Room();
 			room.setEnter_at(rs.getString("enter_at"));
@@ -79,7 +71,6 @@ public class JdbcTemplateRoomRepository implements RoomRepository {
 					.get();
 			room.setLocation_name(findLocationById(tmp.getLocation_id()));
 			room.setCategory_name(findCategoryById(tmp.getCategory_id()));
-
 			return room;
 		};
 	}
@@ -150,7 +141,3 @@ public class JdbcTemplateRoomRepository implements RoomRepository {
 		return category;
 	}
 }
-/*user_id로 room_match를 조회해 오늘 이 친구가 있었던 room_id + enter_at을 수집한다.
-enter_at은 바로 저장하고
-room_id로 room_match를 다시 조회해서 이번엔 room_id이 같은 user_id들을 수잡해 저장한다.
-room_info에 접근해서 location_num, category_num 을 받아내고, 매핑된 이름들을 찾아 저장한다. */

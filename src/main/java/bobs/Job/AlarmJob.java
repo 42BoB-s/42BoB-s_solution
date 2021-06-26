@@ -1,37 +1,31 @@
 package bobs.Job;
+
 import bobs.Dao.JdbcRoomInfoDao;
 import bobs.Dao.JdbcRoomMatchDao;
 import bobs.Slack.Slack;
 import lombok.SneakyThrows;
-
 import org.quartz.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-@Component
 @PersistJobDataAfterExecution
 public class AlarmJob implements Job {
 
-    private final JdbcRoomInfoDao roomInfoDao;
-    private final JdbcRoomMatchDao roomMatchDao;
-    private final Scheduler scheduler;
-    private final JobDetailBuilder jobDetailBuilder;
-    private final JobTriggerBuilder jobTriggerBuilder;
+    private JdbcRoomInfoDao roomInfoDao;
+    private JdbcRoomMatchDao roomMatchDao;
     private Slack Slack = new Slack();
+    private JobDetailProducer jobDetailProducer;
+    private JobTriggerPorducer jobTriggerPorducer;
+    private Scheduler scheduler;
 
-    @Autowired
-    public AlarmJob(JdbcRoomInfoDao roomInfoDao, JdbcRoomMatchDao roomMatchDao, Scheduler scheduler, JobDetailBuilder jobDetailBuilder, JobTriggerBuilder jobTriggerBuilder) {
+    public AlarmJob(JdbcRoomInfoDao roomInfoDao,JdbcRoomMatchDao roomMatchDao,JobDetailProducer jobDetailProducer,JobTriggerPorducer jobTriggerPorducer, Scheduler scheduler) {
         this.roomInfoDao = roomInfoDao;
         this.roomMatchDao = roomMatchDao;
+        this.jobDetailProducer= jobDetailProducer;
+        this.jobTriggerPorducer = jobTriggerPorducer;
         this.scheduler = scheduler;
-        this.jobDetailBuilder = jobDetailBuilder;
-        this.jobTriggerBuilder = jobTriggerBuilder;
     }
 
     @SneakyThrows
@@ -41,16 +35,14 @@ public class AlarmJob implements Job {
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         int ret_count = dataMap.getIntValue("ret_count");
 
-        System.err.println("ret_count = " + ret_count);
 
-        // 5회까지 재시도 하도록 함.
+        /*5회 까지 재시도*/
         if(ret_count > 4){
             JobExecutionException e = new JobExecutionException("Retries exceeded");
-            // 5회까지 했는데도 Job에 Error가 계속 된다면
+            /* 5회 재시도에도 오류가 계속 된다면 스케줄을 멈추고 다시 등록*/
             e.setUnscheduleAllTriggers(true);
-            // 다시 AlarmJob 등록
-            dataMap.putAsString("ret_count", 0);
-            scheduler.scheduleJob(jobDetailBuilder.makeAlarmJobDetail(), jobTriggerBuilder.makeAlarmJobTrigger());
+            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(),jobTriggerPorducer.getAlarmTrigger());
+            /*여기에 로그를 남기면 좋을것 같은데..*/
             throw e;
         }
 
@@ -59,7 +51,7 @@ public class AlarmJob implements Job {
             if (roomIdList.isEmpty() == false) {
 
                 Map<String, List<String>> alarmUserIdMap = roomMatchDao.getAlarmUserId(roomIdList);
-               Set keyset = alarmUserIdMap.keySet();
+                Set keyset = alarmUserIdMap.keySet();
                 for (Object key : keyset) {
                     Slack.sendSuccessMsg(alarmUserIdMap.get(String.valueOf(key)));
                 }
@@ -68,10 +60,9 @@ public class AlarmJob implements Job {
             // reset ret_count to 0.
             dataMap.putAsString("ret_count", 0);
         } catch (Exception e) {
-            e.printStackTrace();
             ret_count++;
             dataMap.putAsString("ret_count", ret_count);
-            Thread.sleep(5000);
+            Thread.sleep(60000);
             JobExecutionException e2 = new JobExecutionException(e);
             e2.refireImmediately();
             throw e2;

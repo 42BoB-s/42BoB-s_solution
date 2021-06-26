@@ -30,28 +30,26 @@ public class RoomMatchJDBCDaoTest {
 
         return dataSource;
     }
+
     @org.junit.Test
-    public void validUserNameListCheck() {
+    public void validUserName() {
         RoomInfoDto roomInfo = new RoomInfoDto();
         List<String> roomIdList = new ArrayList<>();
         int targetId = RoomInfoDao.testRoomInsert(roomInfo);
         roomIdList.add(String.valueOf(targetId));
-        addValidName(targetId);
+        addValideUserName(targetId);
         Map<String, List<String>> resultMap =  RoomMatchDao.getAlarmUserId(roomIdList);
     }
 
-
-
     @org.junit.Test
-    public void randomUserNameListCheck() {
+    public void randomUserName() {
         RoomInfoDto roomInfo = new RoomInfoDto();
         List<String> roomIdList = new ArrayList<>();
 
         // 생성된 roomId에 유저를 4명 추가했을때, 그 id와 일치하는 유저 이름을 추출하는가
         int targetId = RoomInfoDao.testRoomInsert(roomInfo);
         roomIdList.add(String.valueOf(targetId));
-        String uniqueKey = addUserName(targetId);
-
+        String uniqueKey = addRandomUserName(targetId);
         Map<String, List<String>> resultMap =  RoomMatchDao.getAlarmUserId(roomIdList);
 
         int i = 1;
@@ -61,26 +59,25 @@ public class RoomMatchJDBCDaoTest {
         }
     }
 
-    private void addValidName(int targetRoomId) {
-        List<String> slackNmae = new ArrayList<>();
-        slackNmae.add("tjeong");
-        slackNmae.add("mtak");
+    private void addValideUserName(int targetRoomId) {
+        List<String> slackName = new ArrayList<>();
+        slackName.add("tjeong");
 
         RoomMatchDto roomMatch = new RoomMatchDto();
         roomMatch.setRoom_id(targetRoomId);
-        for (String x : slackNmae) {
+        for (String x : slackName) {
             roomMatch.setUser_id(x);
             RoomMatchDao.matchInsert(roomMatch);
         }
     }
 
-    private String addUserName(int targetRoomId) {
+    private String addRandomUserName(int targetRoomId) {
         RoomMatchDto roomMatch = new RoomMatchDto();
         Date now = new Date();
         SimpleDateFormat format = new SimpleDateFormat("mm:ss.sss");
         String uniqueKey = format.format(now);
         roomMatch.setRoom_id(targetRoomId);
-        for (int i = 1; i < 3 ; i++) {
+        for (int i = 1; i < 5 ; i++) {
             roomMatch.setUser_id("("+i+") " + uniqueKey);
             RoomMatchDao.matchInsert(roomMatch);
         }
