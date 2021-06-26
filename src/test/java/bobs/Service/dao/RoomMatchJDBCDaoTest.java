@@ -43,13 +43,16 @@ public class RoomMatchJDBCDaoTest {
 
     @org.junit.Test
     public void randomUserName() {
+
         RoomInfoDto roomInfo = new RoomInfoDto();
         List<String> roomIdList = new ArrayList<>();
 
         // 생성된 roomId에 유저를 4명 추가했을때, 그 id와 일치하는 유저 이름을 추출하는가
         int targetId = RoomInfoDao.testRoomInsert(roomInfo);
         roomIdList.add(String.valueOf(targetId));
+
         String uniqueKey = addRandomUserName(targetId);
+
         Map<String, List<String>> resultMap =  RoomMatchDao.getAlarmUserId(roomIdList);
 
         int i = 1;

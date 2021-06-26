@@ -26,6 +26,7 @@ public class AlarmJob implements Job {
         this.jobDetailProducer= jobDetailProducer;
         this.jobTriggerPorducer = jobTriggerPorducer;
         this.scheduler = scheduler;
+
     }
 
     @SneakyThrows
@@ -43,13 +44,13 @@ public class AlarmJob implements Job {
             e.setUnscheduleAllTriggers(true);
             scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(),jobTriggerPorducer.getAlarmTrigger());
             /*여기에 로그를 남기면 좋을것 같은데..*/
+
             throw e;
         }
 
         try {
             List<String> roomIdList = roomInfoDao.getAlarmRoomId();
             if (roomIdList.isEmpty() == false) {
-
                 Map<String, List<String>> alarmUserIdMap = roomMatchDao.getAlarmUserId(roomIdList);
                 Set keyset = alarmUserIdMap.keySet();
                 for (Object key : keyset) {
