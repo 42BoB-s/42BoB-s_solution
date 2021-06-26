@@ -1,10 +1,9 @@
 package bobs;
 
-import bobs.Job.AlarmJob;
+
+import bobs.Job.JobDetailProducer;
+import bobs.Job.JobTriggerPorducer;
 import org.quartz.*;
-import static org.quartz.JobBuilder.*;
-import static org.quartz.CronScheduleBuilder.*;
-import static org.quartz.TriggerBuilder.newTrigger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +16,15 @@ import javax.annotation.PostConstruct;
 public class JobConfiguration {
 
     private final Scheduler scheduler;
+    private final JobDetailProducer jobDetailProducer;
+    private final JobTriggerPorducer jobTriggerPorducer;
 
     @Autowired
-    public JobConfiguration(Scheduler scheduler) {
-        System.out.println("JobConfiguration Constructed");
+    public JobConfiguration(Scheduler scheduler,  JobDetailProducer jobDetailProducer, JobTriggerPorducer jobTriggerPorducer) {
         this.scheduler = scheduler;
+        this.jobDetailProducer = jobDetailProducer;
+        this.jobTriggerPorducer = jobTriggerPorducer;
+
     }
 
     @PostConstruct
@@ -29,18 +32,7 @@ public class JobConfiguration {
         try {
 
             /* Job을 스케줄러에 등록*/
-            JobDetail AlarmJob = newJob(AlarmJob.class)
-                    .withIdentity("Alarm", "AlarmGroup")
-                    .usingJobData("ret_count", 0)
-                    .build();
-
-            Trigger AlarmTrigger = newTrigger()
-                    .withIdentity("AlarmTrigger", "AlarmGroup")
-                    .withSchedule(cronSchedule("1/10 * * * * ?"))
-                    .forJob("Alarm", "AlarmGroup")
-                    .build();
-
-            scheduler.scheduleJob(AlarmJob, AlarmTrigger);
+            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(), jobTriggerPorducer.getAlarmTrigger());
 
         } catch (SchedulerException e) {
             e.printStackTrace();
