@@ -24,9 +24,9 @@ public class RoomMatchJDBCDaoTest {
     public DataSource mysqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-        dataSource.setUrl("jdbc:mariadb://leeworld9.ipdisk.co.kr:53306/bobs_db?serverTimezone=Asia/Seoul");
-        dataSource.setUsername("bobs_admin");
-        dataSource.setPassword("bobs$@");
+        dataSource.setUrl("...");
+        dataSource.setUsername("...");
+        dataSource.setPassword("...");
 
         return dataSource;
     }
