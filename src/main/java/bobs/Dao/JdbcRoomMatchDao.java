@@ -11,6 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.lang.ref.PhantomReference;
+import java.security.PrivilegedAction;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +32,17 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 	// tjeong add
 	private final String SQL_FINDUSER = "SELECT * FROM room_match WHERE room_id = ?";
 
+	//mtak add
+	private final String SQL_FINDVALIDROOM = "SELECT * FROM room_match WHERE user_id = ?" +
+			"AND enter_at < date_format(DATE_ADD(NOW(),INTERVAL 24 HOUR), '%Y.%m.%d %H:%i:%s')";/* +
+				"AND enter_at > date_format(NOW(), '%Y.%m.%d %H:%i:%s')";*/
+	private final String SQL_GETLOCATION = "SELECT * FROM location WHERE id = ?";
+	private final String SQL_GETCATEGORY = "SELECT * FROM category WHERE id = ?";
+	private final String SQL_GETROOMINFO = "SELECT * FROM room_info WHERE id = ?";
+	private final String SQL_GETUSERID = "SELECT * FROM room_match WHERE room_id = ?";
+	private final String SQL_DELROOM_MATCH = "DELETE FROM room_match WHERE user_id = ? AND room_id = ?";
+	private final String SQL_UPDATE_ROOM_STATUS_DESTROYED = "UPDATE room_info SET room_status = 'destroyed' WHERE id = ?";
+	
 	@Autowired
 	public JdbcRoomMatchDao(JdbcTemplate jdbcTemplate, JdbcActivityLogDao activityLogDao){
 		this.jdbcTemplate = jdbcTemplate;
@@ -90,17 +105,13 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 
 	@Override
 	public List<Room> findValidAll(String id) {
-		String sql = "SELECT * FROM room_match WHERE user_id = ?" +
-				"AND enter_at < date_format(DATE_ADD(NOW(),INTERVAL 24 HOUR), '%Y.%m.%d %H:%i:%s')";/* +
-				"AND enter_at > date_format(NOW(), '%Y.%m.%d %H:%i:%s')";*/
-		return jdbcTemplate.query(sql, roomRowMapper(), id);
+		return jdbcTemplate.query(SQL_FINDVALIDROOM, roomRowMapper(), id);
 	}
 
 	@Override
 	public List<String> findParticipants(int room_id) {
 		List<String> participantsList = new ArrayList<>();
-		String sql = "SELECT * FROM room_match WHERE room_id = ?";
-		for (Member member : jdbcTemplate.query(sql, StrRowMapper("user_id"), room_id)) {
+		for (Member member : jdbcTemplate.query(SQL_GETUSERID, StrRowMapper("user_id"), room_id)) {
 			participantsList.add(String.valueOf(member.getName()));
 		}
 		return participantsList;
@@ -108,28 +119,23 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 
 	@Override
 	public List<String> deleteRoomMatch(CanceledRoom canceledRoom) {
-		String sql = "DELETE FROM room_match WHERE user_id = ? AND room_id = ?";
-		jdbcTemplate.update(sql, canceledRoom.getUser_id(), canceledRoom.getRoom_id());
+		jdbcTemplate.update(SQL_DELROOM_MATCH, canceledRoom.getUser_id(), canceledRoom.getRoom_id());
 		List<String> leftParticipants = findParticipants(canceledRoom.getRoom_id());
-		if (leftParticipants.size() == 0) {
-			sql = "UPDATE room_info SET room_status = 'destroyed' WHERE id = ?";
-			jdbcTemplate.update(sql, canceledRoom.getRoom_id());
-		}
-		RoomInfoDto tmp = jdbcTemplate.query("SELECT * FROM room_info WHERE id = " +
-				canceledRoom.getRoom_id(), roomInfoRowMapper)
-				.stream()
-				.findAny()
-				.get();
-		ActivityLogDto LogDto = new ActivityLogDto();
-		/* tjeong 수정 : ActivityLog를 업데이트는 하는 방식을 다른 INSERT문과 일치시킴  */
-		LogDto.setUser_id(canceledRoom.getUser_id());
-		LogDto.setActivity_status("room_exit");
-		LogDto.setLocation_id(tmp.getLocation_id());
-		activityLogDao.leaveLog(LogDto);
-		/* tejogn 수정 끝 */
+		if (leftParticipants.size() == 0)
+			jdbcTemplate.update(SQL_UPDATE_ROOM_STATUS_DESTROYED, canceledRoom.getRoom_id());
+		RoomInfoDto tmp = getRoomInfoDto(canceledRoom.getRoom_id());
+		activityLogDao.leaveLog(updateActivityLogDto(canceledRoom, tmp, "room_exit"));
 		return leftParticipants;
 	}
-
+	
+	public ActivityLogDto updateActivityLogDto(CanceledRoom canceledRoom, RoomInfoDto tmp, String status) {
+		ActivityLogDto LogDto = new ActivityLogDto();
+		LogDto.setUser_id(canceledRoom.getUser_id());
+		LogDto.setActivity_status(status);
+		LogDto.setLocation_id(tmp.getLocation_id());
+		return LogDto;
+	}
+	
 	/* *
 	 * Mtak - Util Code
 	 * */
@@ -162,33 +168,25 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 			room.setRoom_id(rs.getInt("room_id"));
 
 			room.setParticipants(findParticipants(rs.getInt("room_id")));
-
-			RoomInfoDto tmp = jdbcTemplate.query("SELECT * FROM room_info WHERE id = " +
-					rs.getInt("room_id"), roomInfoRowMapper)
-					.stream()
-					.findAny()
-					.get();
+			
+			RoomInfoDto tmp = getRoomInfoDto(rs.getInt("room_id"));
 			room.setLocation_name(findLocationById(tmp.getLocation_id()));
 			room.setCategory_name(findCategoryById(tmp.getCategory_id()));
 			return room;
 		};
 	}
-
-	/* *
-	 * IntRowMapper는 사용되는 곳이 없는듯
-	 */
-	private RowMapper<Member> IntRowMapper(String col) {
-		return (rs, rowNum) -> {
-			Member member = new Member();
-			member.setName(rs.getString(col));
-			return member;
-		};
+	
+	private RoomInfoDto getRoomInfoDto(int room_id) {
+		return jdbcTemplate.query(SQL_GETROOMINFO, roomInfoRowMapper, room_id)
+				.stream()
+				.findAny()
+				.get();
 	}
-
+	
 	private String findLocationById(int id) {
 		String location;
 
-		List<Member> result = jdbcTemplate.query("SELECT * FROM location WHERE id = " + id, StrRowMapper("name"));
+		List<Member> result = jdbcTemplate.query(SQL_GETLOCATION, StrRowMapper("name"), id);
 		location = result.stream().findAny().get().getName();
 		return location;
 	}
@@ -196,7 +194,7 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 	private String findCategoryById(int id) {
 		String category;
 
-		List<Member> result = jdbcTemplate.query("SELECT * FROM category WHERE id = " + id, StrRowMapper("name"));
+		List<Member> result = jdbcTemplate.query(SQL_GETCATEGORY, StrRowMapper("name"), id);
 		category = result.stream().findAny().get().getName();
 		return category;
 	}

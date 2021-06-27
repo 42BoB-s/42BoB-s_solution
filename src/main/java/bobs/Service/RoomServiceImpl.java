@@ -101,11 +101,13 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	//화면에 보여줄 방 조회
+	@Override
 	public List<Room> findRooms(String id) {
 		return RoomMatchDao.findValidAll(id);
 	}
 
 	//방 취소
+	@Override
 	public void cancelRoom(CanceledRoom canceledRoom) {
 		Slack slack = new Slack();
 		List<String> leftParticipants = RoomMatchDao.deleteRoomMatch(canceledRoom);
