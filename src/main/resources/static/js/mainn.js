@@ -5,7 +5,8 @@ function calljson() {
     for (var menudata in menus) {
         var newbutton = document.createElement("button");
         newbutton.setAttribute('class', 'mymenubutton');
-        newbutton.setAttribute('onclick', 'console.log("click")');
+        newbutton.setAttribute('onclick', 'cancelRoom(this)');
+        newbutton.setAttribute('value', menus[menudata].category_name + "|" + menus[menudata].enter_at);
         newbutton.innerHTML = "<span class='menu'>" + menus[menudata].category_name + " 먹어요!</span></br>" + menus[menudata].enter_at + " ~";
         mymenu.appendChild(newbutton);
     }
@@ -30,4 +31,53 @@ function getFormData() {
     //})
     console.log("time : " + time);
     console.log("menu : " + menu);
+
+    if (confirm(time + "시에 있는 " + menu + "예약을 하시겠습니까?")) {
+        var json_data = {
+            id: myID,
+            menu: menu,
+            time: time
+        }
+        $.ajax({
+            url: "enter"
+            , method: "POST"
+            , dataType: "text"
+            , data: JSON.stringify(json_data)
+            , contentType: "application/json; charset=UTF-8"
+            , success: function () {
+                alert("등록이 완료되었습니다.");
+            }
+            , error: function (a, b, err) {
+                console.log(err);
+            }
+        })
+    }
+}
+
+function cancelRoom(self) { 
+    var value = self.value;
+    var sep = value.split('|');
+    var menu = sep[0];
+    var time = sep[1];
+    var json_data = {
+        id : myID,
+        menu : menu,
+        time : time
+    }
+
+	if (confirm(time + "시에 있는 " + menu + " 예약을 취소하시겠습니까?")) {
+        $.ajax({
+            url: "cancel"
+            , method: "POST"
+            , dataType: "text"
+            , data: JSON.stringify(json_data)
+            , contentType: "application/json; charset=UTF-8"
+            , success: function () {
+                alert("약속이 취소되었습니다.");
+            }
+            , error: function (a, b, err) {
+                console.log(err);
+            }
+        })
+    }
 }
