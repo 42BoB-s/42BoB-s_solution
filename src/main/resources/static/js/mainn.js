@@ -23,23 +23,37 @@ function menuSelect(self) {
     document.getElementById(self.value).style.backgroundColor = "rgb(171,227,228)";
 }
 
+function locationSelect(self) {
+    var selectors = document.getElementsByClassName("locationselector");
+    var i = 0;
+    while (i < selectors.length) {
+        if (selectors[i].value != self.value)
+            selectors[i].style.backgroundColor = "rgb(249, 249, 249)";
+        ++i;
+    }
+    document.getElementById(self.value).style.backgroundColor = "rgb(171,227,228)";
+}
+
 function getFormData() {
     var timeFrom = document.getElementsByName("meetTimeFrom")[0].value;
     var timeTo = document.getElementsByName("meetTimeTo")[0].value;
     var menu = document.querySelector('input[name="menu"]:checked').value;
+    var location = document.querySelector('input[name="location"]:checked').value;
     //$(document).ready(function(){
     //  $('submit').click(f)
     //})
     console.log("timeFrom : " + timeFrom);
     console.log("timeTo : " + timeTo);
     console.log("menu : " + menu);
+    console.log("location: " + location);
 
-    if (confirm(timeFrom + "시부터 " + timeTo + "까지" + menu + "예약을 하시겠습니까?")) {
+    if (confirm(timeFrom + "시부터 " + timeTo + "까지" + location + "에서" + menu + "예약을 하시겠습니까?")) {
         var json_data = {
             id: myID,
             menu: menu,
             timeFrom: timeFrom,
-            timeTo: timeTo
+            timeTo: timeTo,
+            location: location
         }
         $.ajax({
             url: "enter"
@@ -49,6 +63,7 @@ function getFormData() {
             , contentType: "application/json; charset=UTF-8"
             , success: function () {
                 alert("등록이 완료되었습니다.");
+                window.location.replace("http://localhost:8080/main");
             }
             , error: function (a, b, err) {
                 console.log(err);
@@ -79,6 +94,7 @@ function cancelRoom(self) {
             , contentType: "application/json; charset=UTF-8"
             , success: function () {
                 alert("약속이 취소되었습니다.");
+                window.location.replace("http://localhost:8080/main");
             }
             , error: function (a, b, err) {
                 console.log(err);

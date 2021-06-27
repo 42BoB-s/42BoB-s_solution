@@ -34,7 +34,7 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 
 	//mtak add
 	private final String SQL_FINDVALIDROOM = "SELECT * FROM room_match WHERE user_id = ?" +
-			"AND enter_at < date_format(DATE_ADD(NOW(),INTERVAL 24 HOUR), '%Y.%m.%d %H:%i:%s')";/* +
+			"AND enter_at < date_format(DATE_ADD(NOW(),INTERVAL 24 HOUR), '%Y.%m.%d %H:%i:%s') ORDER BY enter_at desc";/* +
 				"AND enter_at > date_format(NOW(), '%Y.%m.%d %H:%i:%s')";*/
 	private final String SQL_GETLOCATION = "SELECT * FROM location WHERE id = ?";
 	private final String SQL_GETCATEGORY = "SELECT * FROM category WHERE id = ?";
