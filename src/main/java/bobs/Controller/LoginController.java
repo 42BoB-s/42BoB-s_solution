@@ -56,6 +56,4 @@ public class LoginController {
 			loginService.destorySession(httpSession);
 		return "login";
 	}
-
-
 }
