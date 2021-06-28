@@ -1,7 +1,7 @@
 package bobs.Job;
 
-import bobs.Dao.JdbcRoomInfoDao;
-import bobs.Dao.JdbcRoomMatchDao;
+import bobs.Dao.Class.JdbcRoomInfoDao;
+import bobs.Dao.Class.JdbcRoomMatchDao;
 import bobs.Slack.Slack;
 import lombok.SneakyThrows;
 import org.quartz.*;
@@ -26,7 +26,6 @@ public class AlarmJob implements Job {
         this.jobDetailProducer= jobDetailProducer;
         this.jobTriggerPorducer = jobTriggerPorducer;
         this.scheduler = scheduler;
-
     }
 
     @SneakyThrows
@@ -55,8 +54,9 @@ public class AlarmJob implements Job {
                 Set keyset = alarmUserIdMap.keySet();
                 for (Object key : keyset) {
                     Slack.sendSuccessMsg(alarmUserIdMap.get(String.valueOf(key)));
+                    roomInfoDao.roomStatusUpdate(Integer.parseInt(String.valueOf(key)), "succeed");
                 }
-                roomInfoDao.roomStatusUpdate(roomIdList);
+
             }
             // reset ret_count to 0.
             dataMap.putAsString("ret_count", 0);

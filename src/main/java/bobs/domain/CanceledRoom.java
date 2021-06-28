@@ -4,7 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
 
-@Getter @Setter
+@Getter
+@Setter
 @Controller
 public class CanceledRoom {
 	private String user_id;

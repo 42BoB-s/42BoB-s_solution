@@ -1,7 +1,6 @@
 package bobs.repository;
 
-import bobs.Dao.JdbcActivityLogDao;
-import bobs.Dao.JdbcRoomMatchDao;
+import bobs.Dao.Class.*;
 import bobs.Dto.ActivityLogDto;
 import bobs.Dto.RoomInfoDto;
 import bobs.domain.CanceledRoom;
@@ -15,16 +14,18 @@ import java.util.List;
 class JdbcTemplateRoomRepositoryTest {
 
 	JdbcTemplate jdbcTemplate = new JdbcTemplate(mysqlDataSource());
-	JdbcActivityLogDao activityLogDao = new JdbcActivityLogDao(jdbcTemplate);
-	JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(jdbcTemplate, activityLogDao);
-	ActivityLogDto LogDto = new ActivityLogDto();
+	JdbcRoomInfoDao roomInfoDao = new JdbcRoomInfoDao(new JdbcTemplate(mysqlDataSource()));
+	JdbcActivityLogDao activityLogDao = new JdbcActivityLogDao(new JdbcTemplate(mysqlDataSource()));
+	JdbcCategoryDao categoryDao = new JdbcCategoryDao(new JdbcTemplate(mysqlDataSource()));
+	JdbcLocationDao locationDao = new JdbcLocationDao(new JdbcTemplate(mysqlDataSource()));
+	JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(new JdbcTemplate(mysqlDataSource()), roomInfoDao, locationDao, categoryDao, activityLogDao);
 
 	public DataSource mysqlDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-		dataSource.setUrl("...");
-		dataSource.setUsername("...");
-		dataSource.setPassword("...");
+		dataSource.setUrl("");
+		dataSource.setUsername("");
+		dataSource.setPassword("");
 
 		return dataSource;
 	}
@@ -44,14 +45,20 @@ class JdbcTemplateRoomRepositoryTest {
 		CanceledRoom canceledRoom = new CanceledRoom();
 		canceledRoom.setRoom_id(9);
 		canceledRoom.setUser_id("testtesttest");
-		RoomInfoDto tmp = jdbcTemplate.query("SELECT * FROM room_info WHERE id = ?" , RoomMatchDao.roomInfoRowMapper, canceledRoom.getRoom_id())
+		RoomInfoDto tmp = jdbcTemplate.query("SELECT * FROM room_info WHERE id = ?" , roomInfoDao.rowMapper, canceledRoom.getRoom_id())
 				.stream()
 				.findAny()
 				.get();
-		/* tjeong 수정 */
-		LogDto.setUser_id(canceledRoom.getUser_id());
-		LogDto.setActivity_status("room_exit");
-		LogDto.setLocation_id(tmp.getLocation_id());
-		activityLogDao.leaveLog(LogDto);
+		activityLogDao.create(updateActivityLogDto(canceledRoom, tmp, "room_exit"));
 	}
+
+
+	public ActivityLogDto updateActivityLogDto(CanceledRoom canceledRoom, RoomInfoDto tmp, String status) {
+		ActivityLogDto LogDto = new ActivityLogDto();
+		LogDto.setUser_id(canceledRoom.getUser_id());
+		LogDto.setActivity_status(status);
+		LogDto.setLocation_id(tmp.getLocation_id());
+		return LogDto;
+	}
+
 }
