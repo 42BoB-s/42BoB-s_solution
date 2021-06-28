@@ -117,12 +117,11 @@ public class JdbcRoomMatchDao implements Dao<RoomMatchDto>, RoomMatchDao {
 	private RowMapper<Room> roomRowMapper() {
 		return (rs, rowNum) -> {
 			Room room = new Room();
-			room.setEnter_at(rs.getString("enter_at"));
 			room.setRoom_id(rs.getInt("room_id"));
-
 			room.setParticipants(findParticipants(rs.getInt("room_id")));
 
 			RoomInfoDto tmp = roomInfoDao.getRoomInfoDto(rs.getInt("room_id"));
+			room.setEnter_at(tmp.getDeadline());
 			room.setLocation_name(locationDao.findById(tmp.getLocation_id()).stream().findAny().get().getName());
 			room.setCategory_name(categoryDao.findById(tmp.getCategory_id()).stream().findAny().get().getName());
 			return room;
