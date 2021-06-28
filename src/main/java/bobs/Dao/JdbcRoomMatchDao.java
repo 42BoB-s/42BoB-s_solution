@@ -165,11 +165,9 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 		return (rs, rowNum) -> {
 			Room room = new Room();
 			room.setEnter_at(rs.getString("enter_at"));
-			room.setRoom_id(rs.getInt("room_id"));
-
 			room.setParticipants(findParticipants(rs.getInt("room_id")));
-			
 			RoomInfoDto tmp = getRoomInfoDto(rs.getInt("room_id"));
+			room.setRoom_id(Integer.parseInt(tmp.getDeadline()));
 			room.setLocation_name(findLocationById(tmp.getLocation_id()));
 			room.setCategory_name(findCategoryById(tmp.getCategory_id()));
 			return room;
