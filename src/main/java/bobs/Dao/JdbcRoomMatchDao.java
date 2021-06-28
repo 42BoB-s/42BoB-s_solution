@@ -160,21 +160,19 @@ public class JdbcRoomMatchDao implements RoomMatchDao {
 			return member;
 		};
 	}
-
+	
 	private RowMapper<Room> roomRowMapper() {
-		return (rs, rowNum) -> {
-			Room room = new Room();
-			room.setEnter_at(rs.getString("enter_at"));
-			room.setRoom_id(rs.getInt("room_id"));
-
-			room.setParticipants(findParticipants(rs.getInt("room_id")));
-			
-			RoomInfoDto tmp = getRoomInfoDto(rs.getInt("room_id"));
-			room.setLocation_name(findLocationById(tmp.getLocation_id()));
-			room.setCategory_name(findCategoryById(tmp.getCategory_id()));
-			return room;
-		};
-	}
+        return (rs, rowNum) -> {
+            Room room = new Room();
+            room.setRoom_id(rs.getInt("room_id"));
+            room.setParticipants(findParticipants(rs.getInt("room_id")));
+            RoomInfoDto tmp = roomInfoDao.getRoomInfoDto(rs.getInt("room_id"));
+            room.setEnter_at(tmp.getDeadline());
+            room.setLocation_name(locationDao.findById(tmp.getLocation_id()).stream().findAny().get().getName());
+            room.setCategory_name(categoryDao.findById(tmp.getCategory_id()).stream().findAny().get().getName());
+            return room;
+        };
+    }
 	
 	private RoomInfoDto getRoomInfoDto(int room_id) {
 		return jdbcTemplate.query(SQL_GETROOMINFO, roomInfoRowMapper, room_id)
