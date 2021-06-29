@@ -1,7 +1,8 @@
 package bobs.Service;
 
-import bobs.Dao.JdbcRoomInfoDao;
-import bobs.Dao.JdbcRoomMatchDao;
+
+import bobs.Dao.Class.JdbcRoomInfoDao;
+import bobs.Dao.Class.JdbcRoomMatchDao;
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
 import bobs.Slack.Slack;
@@ -33,7 +34,7 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public int roomCreate(RoomInfoDto roomInfoDto) {
-		int room_id = jdbcRoomInfoDao.roomInsert(roomInfoDto);
+		int room_id = jdbcRoomInfoDao.create(roomInfoDto);
 		if (room_id != 0)
 			System.out.println("[[[ROOM INSERT OK]]]");
 		else
@@ -92,7 +93,7 @@ public class RoomServiceImpl implements RoomService {
 		int chk = 0;
 		RoomInfoDto status = new RoomInfoDto();
 		status.setId(roomMatchDto.getRoom_id());
-		chk = jdbcRoomMatchDao.matchInsert(roomMatchDto);
+		chk = jdbcRoomMatchDao.create(roomMatchDto);
 		if (chk == 1)
 			System.out.println("[[[ROOM ENTER OK]]]");
 		else
@@ -103,7 +104,7 @@ public class RoomServiceImpl implements RoomService {
 	//화면에 보여줄 방 조회
 	@Override
 	public List<Room> findRooms(String id) {
-		return RoomMatchDao.findValidAll(id);
+		return RoomMatchDao.findByUserId(id);
 	}
 
 	//방 취소

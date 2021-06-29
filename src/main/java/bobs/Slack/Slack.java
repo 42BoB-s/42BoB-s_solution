@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Slack {
     public static final String url = "https://slack.com/api/";
-    private static final String token = "xoxb-2213307174208-2189616646066-4DTRjtEwmKxmRZLSXmPI6NTq";
+    private static final String token = "";
     public HttpHeaders header;
     public RestTemplate restTemplate;
     public HttpEntity<String> entity;
