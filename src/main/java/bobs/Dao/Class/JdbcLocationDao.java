@@ -1,6 +1,6 @@
 package bobs.Dao.Class;
 
-import bobs.Dao.Dao;
+import bobs.Dao.BaseDao;
 import bobs.Dao.LocationDao;
 import bobs.Dto.BaseDto;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +11,9 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcLocationDao implements Dao<BaseDto>, LocationDao {
+public class JdbcLocationBaseDao implements BaseDao<BaseDto>, LocationDao {
 
     private final JdbcTemplate jdbcTemplate;
-
 
     @Override
     public int create(BaseDto locationDto) {

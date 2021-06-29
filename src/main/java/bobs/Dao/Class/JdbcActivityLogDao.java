@@ -1,7 +1,7 @@
 package bobs.Dao.Class;
 
 import bobs.Dao.ActivityLogDao;
-import bobs.Dao.Dao;
+import bobs.Dao.BaseDao;
 import bobs.Dto.ActivityLogDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcActivityLogDao implements Dao<ActivityLogDto>,ActivityLogDao {
+public class JdbcActivityLogBaseDao implements BaseDao<ActivityLogDto>,ActivityLogDao {
 
     private final JdbcTemplate jdbcTemplate;
 

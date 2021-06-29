@@ -1,6 +1,6 @@
 package bobs.Dao.Class;
 
-import bobs.Dao.Dao;
+import bobs.Dao.BaseDao;
 import bobs.Dao.RoomInfoDao;
 import bobs.Dto.RoomInfoDto;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +13,11 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcRoomInfoDao implements Dao<RoomInfoDto>,RoomInfoDao {
+public class JdbcRoomInfoBaseDao implements BaseDao<RoomInfoDto>,RoomInfoDao {
 
 	private final JdbcTemplate jdbcTemplate;
 
 	// 코드 안전성을 위해 추후 PrepareStatement 작업 필요. 또한 SQL 에러시 예외처리도 필요 (DataAccessException)
-
 
 	@Override
 	public int create(RoomInfoDto roomInfoDto) {
@@ -72,5 +71,4 @@ public class JdbcRoomInfoDao implements Dao<RoomInfoDto>,RoomInfoDao {
 	public void roomStatusUpdate(int id, String status){
 			jdbcTemplate.update(SQL_ROOMSTATUSUPDATE, status, id);
 	}
-
 }

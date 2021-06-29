@@ -1,7 +1,7 @@
 package bobs.Dao.Class;
 
+import bobs.Dao.BaseDao;
 import bobs.Dao.CategoryDao;
-import bobs.Dao.Dao;
 import bobs.Dto.BaseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcCategoryDao implements Dao<BaseDto>, CategoryDao {
+public class JdbcCategoryBaseDao implements BaseDao<BaseDto>, CategoryDao {
 
     private final JdbcTemplate jdbcTemplate;
 

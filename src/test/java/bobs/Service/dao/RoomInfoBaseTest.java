@@ -1,32 +1,19 @@
 package bobs.Service.dao;
 
-import bobs.Dao.Class.*;
+
+
 import bobs.Dto.RoomInfoDto;
-import bobs.Dto.RoomMatchDto;
 import org.assertj.core.api.Assertions;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
+public class RoomInfoBaseDaoTest {
 
-public class RoomMatchJDBCDaoTest {
-
-    testDao RoomInfoDao = new testDao(new JdbcTemplate(mysqlDataSource()));
-    JdbcRoomInfoDao roomInfoDao = new JdbcRoomInfoDao(new JdbcTemplate(mysqlDataSource()));
-    JdbcActivityLogDao activityLogDao = new JdbcActivityLogDao(new JdbcTemplate(mysqlDataSource()));
-    JdbcCategoryDao categoryDao = new JdbcCategoryDao(new JdbcTemplate(mysqlDataSource()));
-    JdbcLocationDao locationDao = new JdbcLocationDao(new JdbcTemplate(mysqlDataSource()));
-    JdbcRoomMatchDao RoomMatchDao = new JdbcRoomMatchDao(new JdbcTemplate(mysqlDataSource()), roomInfoDao, locationDao, categoryDao, activityLogDao);
-
-
-    testDao Dao = new testDao(new JdbcTemplate(mysqlDataSource()));
     public DataSource mysqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
@@ -36,60 +23,44 @@ public class RoomMatchJDBCDaoTest {
         return dataSource;
     }
 
-    @org.junit.Test
-    public void validUserName() {
-        RoomInfoDto roomInfo = new RoomInfoDto();
-        List<String> roomIdList = new ArrayList<>();
-        int targetId = RoomInfoDao.testRoomInsert(roomInfo);
-        roomIdList.add(String.valueOf(targetId));
-        addValideUserName(targetId);
-        Map<String, List<String>> resultMap =  RoomMatchDao.getAlarmUserId(roomIdList);
-    }
+    testDao DAO = new testDao(new JdbcTemplate(mysqlDataSource()));
 
     @org.junit.Test
-    public void randomUserName() {
-
+    public void roomIdListCheck() {
         RoomInfoDto roomInfo = new RoomInfoDto();
-        List<String> roomIdList = new ArrayList<>();
 
-        // 생성된 roomId에 유저를 4명 추가했을때, 그 id와 일치하는 유저 이름을 추출하는가
-        int targetId = RoomInfoDao.testRoomInsert(roomInfo);
-        roomIdList.add(String.valueOf(targetId));
+        // 10분뒤에 deadline인 roominfo 생성
+        int id = DAO.testRoomInsert(roomInfo);
 
-        String uniqueKey = addRandomUserName(targetId);
+        List<String> roomIdList = DAO.getAlarmRoomId();
+        System.out.println("insert room id : " + id);
+        System.out.print("finded room ids : ");
+        Assertions.assertThat(id).isEqualTo(Integer.parseInt(roomIdList.get(roomIdList.size() - 1)));
 
-        Map<String, List<String>> resultMap =  RoomMatchDao.getAlarmUserId(roomIdList);
-
-        int i = 1;
-        for(String userName : resultMap.get(String.valueOf(targetId)) ) {
-            Assertions.assertThat(userName).isEqualTo("("+i+") " + uniqueKey);
-            i++;
+        for (String x : roomIdList) {
+            System.out.print(x + ",");
         }
+        System.out.println();
+
     }
 
-    private void addValideUserName(int targetRoomId) {
-        List<String> slackName = new ArrayList<>();
-        slackName.add("tjeong");
+    @org.junit.Test
+    public void roomStatusChangeCheck() {
 
-        RoomMatchDto roomMatch = new RoomMatchDto();
-        roomMatch.setRoom_id(targetRoomId);
-        for (String x : slackName) {
-            roomMatch.setUser_id(x);
-            RoomMatchDao.create(roomMatch);
-        }
-    }
+        // room_info 에 row 하나 생성
+        RoomInfoDto roomInfo = new RoomInfoDto();
+        DAO.testRoomInsert(roomInfo);
 
-    private String addRandomUserName(int targetRoomId) {
-        RoomMatchDto roomMatch = new RoomMatchDto();
-        Date now = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("mm:ss.sss");
-        String uniqueKey = format.format(now);
-        roomMatch.setRoom_id(targetRoomId);
-        for (int i = 1; i < 5 ; i++) {
-            roomMatch.setUser_id("("+i+") " + uniqueKey);
-            RoomMatchDao.create(roomMatch);
+        // room_info 에서 alarm후보 추출
+        List<String> roomIdList = DAO.getAlarmRoomId();
+
+        // status update 해주고
+        DAO.roomStatusUpdate(roomIdList);
+
+        List<String> roomStatusList = DAO.testFindRoom(roomIdList);
+        for (String x : roomStatusList) {
+            Assertions.assertThat(x).isEqualTo("succeed");
         }
-        return uniqueKey;
     }
 
     class testDao {

@@ -1,6 +1,6 @@
 package bobs.Dao.Class;
 
-import bobs.Dao.Dao;
+import bobs.Dao.BaseDao;
 import bobs.Dao.RoomMatchDao;
 import bobs.Dto.ActivityLogDto;
 import bobs.Dto.BaseDto;
@@ -21,10 +21,10 @@ import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcRoomMatchDao implements Dao<RoomMatchDto>, RoomMatchDao {
+public class JdbcRoomMatchBaseDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
 
 	private final JdbcTemplate jdbcTemplate;
-	private final JdbcRoomInfoDao roomInfoDao;
+	private final JdbcRoomInfoBaseDao roomInfoDao;
 	private final JdbcLocationDao locationDao;
 	private final JdbcCategoryDao categoryDao;
 	private final JdbcActivityLogDao activityLogDao;
