@@ -74,7 +74,9 @@ public class RoomController {
 		String endTime = year + "-" + tmp_month + "-" + tmp_day + " " + request.get("timeTo")
 				+ ":" + "00:00";
 		System.out.println(endTime);
-		
+
+		//false 일때 alert 출력해서 실패했다고 출력 필요.
+		//id는 roomMatchDto가 아니라 session에서 받아와야함.
 		roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
 		return "mainn";
 	}

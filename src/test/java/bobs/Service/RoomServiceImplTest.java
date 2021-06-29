@@ -40,17 +40,7 @@ public class RoomServiceImplTest {
 		RoomMatchDto roomMatchDto = new RoomMatchDto();
 		roomMatchDto.setUser_id("test2");
 
-		List<RoomInfoDto> list = roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
-		for (RoomInfoDto dto : list) {
-			System.out.println("해당 방 내역 : " +
-						"ID : " + dto.getId() + " " +
-						"MAX_PEOPLE : " + 	dto.getMax_people() + " " +
-						"DEADLINE : " + 	dto.getDeadline() + " " +
-						"ROOMSTATUS : " + 	dto.getRoom_status() + " " +
-						"CATEGORY_ID : " + 	dto.getCategory_id() + " " +
-						"LOCATION_ID : " + 	dto.getLocation_id()
-				);
-		}
+		roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
 	}
 
 	@org.junit.jupiter.api.Test
