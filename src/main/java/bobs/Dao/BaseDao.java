@@ -6,7 +6,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 import java.util.List;
 
-public interface Dao<Dto> {
+public interface BaseDao<Dto> {
     JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
     int create(Dto dto);
