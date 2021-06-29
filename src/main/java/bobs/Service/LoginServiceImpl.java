@@ -59,7 +59,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String getUserID(String token) {
+	public SessionDto getUserInfo(String token) {
 
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -74,35 +74,29 @@ public class LoginServiceImpl implements LoginService {
 
 		System.out.println("INFO Response======>{}" + response.getBody());
 
-		//json parse 필요
+		SessionDto sessionDto = new SessionDto();
 		JSONParser parser = new JSONParser();
-		String login_id = null;
 		try{
 			Object obj = parser.parse(response.getBody());
 			JSONObject jsonObj = (JSONObject) obj;
-			login_id = (String)jsonObj.get("login");
+			sessionDto.setUser_id((String)jsonObj.get("login"));
+			sessionDto.setEmail((String)jsonObj.get("email"));
+			System.out.println("login : "+ sessionDto.getUser_id());
+			System.out.println("email : "+ sessionDto.getEmail());
 		}catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		System.out.println("user_id : " + login_id);
-		return login_id;
+		return sessionDto;
 	}
 
 	@Override
-	public HttpSession getSession(HttpServletRequest req, String user_id, int location_id) {
+	public HttpSession getSession(HttpServletRequest req, SessionDto sessionDto) {
 
 		HttpSession session = req.getSession();
-		SessionDto sessionDto = (SessionDto)session.getAttribute("session");
 
-		if (sessionDto == null)
-		{
-			sessionDto = new SessionDto();
-			sessionDto.setUser_id(user_id);
-			//임시
-			sessionDto.setLocation_id(location_id);
+		if ((SessionDto)session.getAttribute("session") == null)
 			session.setAttribute("session", sessionDto);
-		}
 		return session;
 	}
 

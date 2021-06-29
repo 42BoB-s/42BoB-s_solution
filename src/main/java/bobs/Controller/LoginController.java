@@ -31,11 +31,12 @@ public class LoginController {
 	}
 
 	@GetMapping("/42OAuth")
-	public void OAtuh(HttpServletRequest req, HttpServletResponse rep, @RequestParam(value="code") String code)
-	{
+	public void OAtuh(HttpServletRequest req, HttpServletResponse rep, @RequestParam(value="code") String code) {
 		String token = loginService.getOAuthToken(code);
-		String user_id = loginService.getUserID(token);
-		HttpSession httpSession = loginService.getSession(req, user_id, 1);
+		SessionDto sessionDto = loginService.getUserInfo(token);
+		//임시
+		sessionDto.setLocation_id(1);
+		HttpSession httpSession = loginService.getSession(req, sessionDto);
 		try {
 			rep.sendRedirect("http://localhost:8080/main");
 		} catch (IOException e) {
