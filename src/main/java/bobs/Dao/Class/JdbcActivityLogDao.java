@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcActivityLogBaseDao implements BaseDao<ActivityLogDto>,ActivityLogDao {
+public class JdbcActivityLogDao implements BaseDao<ActivityLogDto>,ActivityLogDao {
 
     private final JdbcTemplate jdbcTemplate;
 

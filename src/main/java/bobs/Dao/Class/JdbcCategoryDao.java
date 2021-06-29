@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcCategoryBaseDao implements BaseDao<BaseDto>, CategoryDao {
+public class JdbcCategoryDao implements BaseDao<BaseDto>, CategoryDao {
 
     private final JdbcTemplate jdbcTemplate;
 

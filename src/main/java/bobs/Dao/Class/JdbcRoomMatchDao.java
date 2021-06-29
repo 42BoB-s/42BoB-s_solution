@@ -21,10 +21,10 @@ import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcRoomMatchBaseDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
+public class JdbcRoomMatchDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
 
 	private final JdbcTemplate jdbcTemplate;
-	private final JdbcRoomInfoBaseDao roomInfoDao;
+	private final JdbcRoomInfoDao roomInfoDao;
 	private final JdbcLocationDao locationDao;
 	private final JdbcCategoryDao categoryDao;
 	private final JdbcActivityLogDao activityLogDao;

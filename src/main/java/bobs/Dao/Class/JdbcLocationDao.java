@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcLocationBaseDao implements BaseDao<BaseDto>, LocationDao {
+public class JdbcLocationDao implements BaseDao<BaseDto>, LocationDao {
 
     private final JdbcTemplate jdbcTemplate;
 

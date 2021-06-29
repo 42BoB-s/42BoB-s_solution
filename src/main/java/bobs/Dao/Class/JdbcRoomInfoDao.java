@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcRoomInfoBaseDao implements BaseDao<RoomInfoDto>,RoomInfoDao {
+public class JdbcRoomInfoDao implements BaseDao<RoomInfoDto>,RoomInfoDao {
 
 	private final JdbcTemplate jdbcTemplate;
 
