@@ -74,8 +74,11 @@ function getFormData() {
             , dataType: "text"
             , data: JSON.stringify(json_data)
             , contentType: "application/json; charset=UTF-8"
-            , success: function () {
-                alert("등록이 완료되었습니다.");
+            , success: function (data) {
+                if (data == "flase")
+                    alert("방 생성 및 참여에 실패했습니다");
+                else
+                    alert("등록이 완료되었습니다.");
                 window.location.replace("http://localhost:8080/main");
             }
             , error: function (a, b, err) {

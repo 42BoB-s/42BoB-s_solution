@@ -43,12 +43,16 @@ public class RoomController {
 	}
 	
 	@PostMapping("/enter")
-	public String enterOrCreate(HttpServletResponse response, @RequestBody Map<String, String> request){
+	public @ResponseBody String enterOrCreate(HttpServletResponse response, @RequestBody Map<String, String> request, HttpSession httpSession){
 		RoomInfoDto roomInfoDto = new RoomInfoDto();
 		roomInfoDto.setLocation_id(Integer.parseInt(request.get("location")));
 		roomInfoDto.setCategory_id(Integer.parseInt(request.get("menu")));
 		RoomMatchDto roomMatchDto = new RoomMatchDto();
-		roomMatchDto.setUser_id(request.get("id"));
+		SessionDto sessionDto = (SessionDto) httpSession.getAttribute("session");
+		String id = "";
+		if (sessionDto != null)
+			id = sessionDto.getUser_id();
+		roomMatchDto.setUser_id(id);
 		System.out.println("revervation");
 		
 		Calendar cal = Calendar.getInstance();
@@ -77,8 +81,8 @@ public class RoomController {
 
 		//false 일때 alert 출력해서 실패했다고 출력 필요.
 		//id는 roomMatchDto가 아니라 session에서 받아와야함.
-		roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
-		return "mainn";
+/*방 생성 및 참여에 실패했다는 경고메시지 출력*/
+		return String.valueOf(roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime));
 	}
 	
 	@PostMapping("/cancel")
