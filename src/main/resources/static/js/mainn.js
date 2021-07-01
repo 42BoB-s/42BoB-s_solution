@@ -5,9 +5,20 @@ var menuSet = {
     '3' : 'us'
 };
 
+var menuSet_kor = {
+    '1' : '한식',
+    '2' : '중식',
+    '3' : '양식'
+}
+
 var locationSet = {
     '1' : 'gaepo',
     '2' : 'seocho'
+};
+
+var locationSet_kor = {
+    '1' : '개포',
+    '2' : '서초'
 };
 
 function calljson() {
@@ -46,21 +57,28 @@ function locationSelect(self) {
 }
 
 function getFormData() {
-    var timeFrom = document.getElementsByName("meetTimeFrom")[0].value;
-    var timeTo = document.getElementsByName("meetTimeTo")[0].value;
+    var timeFrom = timeConvert(document.getElementsByName("meetTimeFrom")[0].value);
+    var timeTo = timeConvert(document.getElementsByName("meetTimeTo")[0].value);
     var menu_html = document.querySelector('input[name="menu"]:checked');
     var menu = menu_html.value;
     var location_html = document.querySelector('input[name="location"]:checked');
     var location = location_html.value;
+    var tt = new Date;
+    var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
     //$(document).ready(function(){
     //  $('submit').click(f)
     //})
     menuSelect(menu_html);
     locationSelect(location_html);
+    console.log('curtime : ' + curTime);
+    console.log('timeFrom : ' + timeFrom);
+    console.log('timeTo : ' + timeTo);
 
-    if (timeFrom > timeTo) {
-        alert('시작 시간이 마지막 시간보다 빠릅니다');
-    } else if (confirm(timeFrom + "시부터 " + timeTo + "까지" + locationSet[location] + "에서" + menuSet[menu] + "예약을 하시겠습니까?")) {
+    if (timeFrom < curTime) {
+        alert('시작 시간이 현재 시간보다 이릅니다');
+    } else if (timeTo < timeFrom) {
+        alert('마지막 시간이 시작 시간보다 빠릅니다');
+    } else if (confirm(timeFrom + "시부터 " + timeTo + "까지" + locationSet_kor[location] + "에서" + menuSet_kor[menu] + "예약을 하시겠습니까?")) {
         var json_data = {
             id: myID,
             menu: menu,
@@ -117,4 +135,12 @@ function cancelRoom(self) {
             }
         })
     }
+}
+
+function fillZero(str) {
+    return ('0' + str).slice(-2);
+}
+
+function timeConvert(str) {
+    return str.toString().replace('T', ' ') + ':00';
 }
