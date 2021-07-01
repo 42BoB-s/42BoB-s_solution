@@ -54,30 +54,8 @@ public class RoomController {
 			id = sessionDto.getUser_id();
 		roomMatchDto.setUser_id(id);
 		System.out.println("revervation");
-		
-		Calendar cal = Calendar.getInstance();
-		
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		String tmp_month = null;
-		String tmp_day = null;
-		if (month < 10)
-			tmp_month = "0" + String.valueOf(month);
-		else
-			tmp_month = String.valueOf(month);
-		if (day < 10)
-			tmp_day = "0" + String.valueOf(day);
-		else
-			tmp_day = String.valueOf(day);
-		
-		
-		String startTime = year + "-" + tmp_month + "-" + tmp_day + " " + request.get("timeFrom")
-				+ ":" + "00:00";
-		System.out.println(startTime);
-		String endTime = year + "-" + tmp_month + "-" + tmp_day + " " + request.get("timeTo")
-				+ ":" + "00:00";
-		System.out.println(endTime);
+		String startTime = request.get("timeFrom");
+		String endTime = request.get("timeTo");
 
 		//false 일때 alert 출력해서 실패했다고 출력 필요.
 		//id는 roomMatchDto가 아니라 session에서 받아와야함.
