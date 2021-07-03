@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <title>
-    hello
-  </title>
-  <!--<base href="C:/Users/192293/Desktop/mtak42BOBs/src/main/resources/templates/">-->
+    <meta charset="utf-8">
+    <title>42BoB-s</title>
+    <!-- Bootstrap Section -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../5/flatly/bootstrap.css">
+    <link rel="stylesheet" href="../_vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../_vendor/prismjs/themes/prism-okaidia.css">
+    <link rel="stylesheet" href="../_assets/css/custom.min.css">
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-23019901-1');
+    </script>
+  <script id="_carbonads_projs" type="text/javascript" src="https://srv.carbonads.net/ads/CKYIE23N.json?segment=placement:bootswatchcom&amp;callback=_carbonads_go"></script></head>
+
+  <!-- Origin Section -->
   <link rel="stylesheet" type="text/css" href="mainn.css">
   <script type="text/javascript" th:inline="javascript">
 	  var myMSG = [
@@ -40,11 +55,27 @@
 </head>
 <body>
 <header>
-  <div class="navibar">
-    <image src="https://s-um.github.io/bobs_test/42bobs_logo.png" style="margin: auto 30px;height:100%;display:table-cell;vertical-align:middle;"/>
-    <span style="color:white; display:table-cell;vertical-align:middle;text-align:center;font-size:200%;" th:text="${user_id}">user_name</span>
-    <a style="color:white; display:table-cell;vertical-align:middle;text-align:center;font-size:200%;" href="http://localhost:8080/logout">logout</a>
-  </div>
+  <!-- Header -->
+  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
+      <div class="container">
+        <image src="https://s-um.github.io/bobs_test/42bobs_logo.png" style="margin: auto 30px;height:100%;display:table-cell;vertical-align:middle;"/>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+          <ul class="navbar-nav ms-md-auto">
+            <li class="nav-item">
+              <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/thomaspark/bootswatch/"><i class="fa fa-github"></i> GitHub</a>
+            </li>
+            <li class="nav-item">
+              <a target="_blank" rel="noopener" class="nav-link" href="https://twitter.com/bootswatch"><i class="fa fa-twitter"></i> Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End of Header -->
+
 </header>
 <div class="widthAlign" style="padding:10vh 0 0 0;"><h2><span class="bold">내 밥 친구</span> 목록</h2></div>
 <div class="horscroll" id="mymenu">
@@ -70,7 +101,6 @@
   <label><input type="radio" name="location" value="2" onchange="locationSelect(this)"><span class="locationselector" id="seocho">서초</span></label>
 
   <input type="submit" onclick="getFormData();">
-
 </div>
 </body>
 </html>
