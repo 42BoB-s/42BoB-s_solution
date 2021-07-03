@@ -31,62 +31,10 @@
 <div class="widthAlign"><h2><span class="bold">밥 친구</span> 찾아볼까요?</h2></div>
 <div class="menuinput">
   <h3>몇시부터 가능한가</h3>
-  <select name="meetTimeFrom" class="timeselector">
-    <option value="00">0</option>
-    <option value="01">1</option>
-    <option value="02">2</option>
-    <option value="03">3</option>
-    <option value="04">4</option>
-    <option value="05">5</option>
-    <option value="06">6</option>
-    <option value="07">7</option>
-    <option value="08">8</option>
-    <option value="09">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12" selected="selected">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-  </select>
-  <span style="font-size:30px; vertical-align: middle;">:00</span>
+  <input name="meetTimeFrom" type="datetime-local" class="timeselector"></input>
 
   <h3>몇시까지 가능한가</h3>
-  <select name="meetTimeTo" class="timeselector">
-    <option value="00">0</option>
-    <option value="01">1</option>
-    <option value="02">2</option>
-    <option value="03">3</option>
-    <option value="04">4</option>
-    <option value="05">5</option>
-    <option value="06">6</option>
-    <option value="07">7</option>
-    <option value="08">8</option>
-    <option value="09">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12" selected="selected">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-  </select>
-  <span style="font-size:30px; vertical-align: middle;">:00</span>
+  <input name="meetTimeTo" type="datetime-local" class="timeselector"></input>
 
   <h3>메뉴</h3>
   <label><input type="radio" name="menu" value="1" onchange="menuSelect(this)" checked="checked"><span class="menuselector" id="korea" style="background-color: rgb(171,227,228)">한식</span></label>
