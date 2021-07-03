@@ -1,0 +1,148 @@
+
+body{
+    background-color: rgb(249,249,249);
+    font-family: 'Hanna', sans-serif;
+    font-weight: 100;
+    margin: 0;
+}
+
+h2{
+    font-size: 50px;
+    font-weight: 100;
+}
+
+h3{
+    font-size: 40px;
+}
+
+input[type="radio"]{
+    display: none;
+    width: 150px;
+    height: 30px;
+    background-color: red;
+}
+
+image{
+    max-height: 100%;
+    width:auto !important;
+    object-fit: contain;
+}
+
+.navibar{
+    display: table;
+    width: 100vw;
+    height: 7vh;
+    background-color: rgb(37,49,40);
+    position: fixed;
+    vertical-align: center;
+}
+
+.horscroll{
+    white-space: nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    width: 80%;
+    margin: auto;
+}
+
+.menu{
+    font-size: 45px;
+}
+
+.participate_data{
+    font-size: 25px;
+}
+
+.bold{
+    font-weight: 700;
+}
+
+.mymenubutton{
+    display: inline-block;
+    height: 250px;
+    border-radius: 20px;
+    border: 3px solid rgb(21,178,179);
+    background-color: rgb(255,255,255);
+    color: rgb(21,178,179);
+    text-align: left;
+    font-size: 30px;
+    padding: 0px 30px;
+    margin: 10px 10px;
+}
+
+.widthAlign{
+    width: 80%;
+    margin: auto;
+}
+
+.menuinput{
+    width: 60%;
+    background-color: white;
+    border-radius: 30px;
+    border: 3px solid rgb(21,178,179);
+    margin: auto;
+    padding: 5% 10%;
+}
+
+.timeselector{
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+    text-align-last: center;
+    vertical-align: middle;
+    border-radius: 15px;
+}
+
+.menuselector, .locationselector{
+    display: inline-block;
+    border-radius: 15px;
+    border: 3px solid rgb(21,178,179);
+    background-color: rgb(249,249,249);
+    color: rgb(21,178,179);
+    text-align: center;
+    vertical-align: middle;
+    text-items: center;
+    font-size: 40px;
+    padding: 15px;
+    margin: 5px;
+}
+
+#mymenu{
+    display: block;
+}
+
+@media (min-width: 1000px) {
+
+    h2{
+        font-size: 25px;
+    }
+
+    h3{
+        font-size: 20px;
+    }
+
+    .menu{
+        font-size: 35px;
+    }
+
+    .participate_data{
+        font-size: 18px;
+    }
+
+    .mymenubutton{
+        height: 150px;
+        color: rgb(21,178,179);
+        font-size: 20px;
+        padding: 0px 15px;
+    }
+
+    .timeselector{
+        width: 150px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .menuselector, .locationselector{
+        font-size: 20px;
+    }
+}
