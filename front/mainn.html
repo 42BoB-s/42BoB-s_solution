@@ -1,106 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <title>42BoB-s</title>
-    <!-- Bootstrap Section -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../5/flatly/bootstrap.css">
-    <link rel="stylesheet" href="../_vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../_vendor/prismjs/themes/prism-okaidia.css">
-    <link rel="stylesheet" href="../_assets/css/custom.min.css">
-    <!-- Global Site Tag (gtag.js) - Google Analytics -->
-    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-23019901-1');
-    </script>
-  <script id="_carbonads_projs" type="text/javascript" src="https://srv.carbonads.net/ads/CKYIE23N.json?segment=placement:bootswatchcom&amp;callback=_carbonads_go"></script></head>
-
-  <!-- Origin Section -->
-  <link rel="stylesheet" type="text/css" href="mainn.css">
-  <script type="text/javascript" th:inline="javascript">
-	  var myMSG = [
-		  {
-			  category_name: '한식',
-			  room_id: '111',
-			  enter_at: '2021-8-13 18:00:00',
-			  participants: 'chahan,myoon',
-		  },
-		  {
-			  category_name: '한식',
-			  room_id: '111',
-			  enter_at: '2021-8-13 18:00:00',
-			  participants: 'chahan,myoon',
-		  },
-		  {
-			  category_name: '한식',
-			  room_id: '111',
-			  enter_at: '2021-8-13 18:00:00',
-			  participants: 'chahan,myoon',
-		  },
-		  {
-			  category_name: '한식',
-			  room_id: '111',
-			  enter_at: '2021-8-13 18:00:00',
-			  participants: 'chahan,myoon',
-		  },
-	  ];
-    var myID = 'chahan';
-  </script>
-  <script type="text/javascript" th:inline="javascript" src="mainn.js"></script>
-</head>
-<body>
-<header>
-  <!-- Header -->
-  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" style="">
-      <div class="container">
-        <image src="https://s-um.github.io/bobs_test/42bobs_logo.png" style="margin: auto 30px;height:100%;display:table-cell;vertical-align:middle;"/>
-        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbarResponsive" style="">
-          <ul class="navbar-nav ms-md-auto">
-            <li class="nav-item">
-				<a target="_blank" rel="noopener" class="nav-link"><i class="fa fa-userid"></i><script>document.write(myID);</script></a>
-            </li>
-            <li class="nav-item">
-              <a target="_blank" rel="noopener" class="nav-link" href="localhost:8080/logout"><i class="fa fa-logout"></i>Logout</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- End of Header -->
-
-</header>
-<div class="widthAlign" style="padding:10vh 0 0 0;"><h2><span class="bold">내 밥 친구</span> 목록</h2></div>
-<div class="horscroll" id="mymenu">
-  <script>
-    calljson();
-  </script>
-</div>
-<div class="widthAlign"><h2><span class="bold">밥 친구</span> 찾아볼까요?</h2></div>
-<div class="menuinput">
-  <h3>몇시부터 가능한가</h3>
-  <input name="meetTimeFrom" type="datetime-local" class="timeselector"></input>
-
-  <h3>몇시까지 가능한가</h3>
-  <input name="meetTimeTo" type="datetime-local" class="timeselector"></input>
-
-  <h3>메뉴</h3>
-  <label><input type="radio" name="menu" value="1" onchange="menuSelect(this)" checked="checked"><span class="menuselector" id="korea" style="background-color: rgb(171,227,228)">한식</span></label>
-  <label><input type="radio" name="menu" value="2" onchange="menuSelect(this)"><span class="menuselector" id="china">중식</span></label>
-  <label><input type="radio" name="menu" value="3" onchange="menuSelect(this)"><span class="menuselector" id="us">양식</span></label>
-
-  <h3>위치</h3>
-  <label><input type="radio" name="location" value="1" onchange="locationSelect(this)" checked="checked"><span class="locationselector" id="gaepo" style="background-color: rgb(171,227,228)">개포</span></label>
-  <label><input type="radio" name="location" value="2" onchange="locationSelect(this)"><span class="locationselector" id="seocho">서초</span></label>
-
-  <input type="submit" onclick="getFormData();">
-</div>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Heroic Features - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="_assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="py-5">
+            <div class="container px-lg-5">
+                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                    <div class="m-4 m-lg-5">
+                        <h1 class="display-5 fw-bold">A warm welcome!</h1>
+                        <p class="fs-4">Bootstrap utility classes are used to create this jumbotron since the old component has been removed from the framework. Why create custom CSS when you can use utilities?</p>
+                        <a class="btn btn-primary btn-lg" href="#!">Call to action</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Page Content-->
+        <section class="pt-4">
+            <div class="container px-lg-5">
+                <!-- Page Features-->
+                <div class="row gx-lg-5">
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
+                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
+                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div>
+                                <h2 class="fs-4 fw-bold">Free to download</h2>
+                                <p class="mb-0">As always, Start Bootstrap has a powerful collectin of free templates.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
+                                <h2 class="fs-4 fw-bold">Jumbotron hero header</h2>
+                                <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
+                                <h2 class="fs-4 fw-bold">Feature boxes</h2>
+                                <p class="mb-0">We've created some custom feature boxes using Bootstrap icons!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-code"></i></div>
+                                <h2 class="fs-4 fw-bold">Simple clean code</h2>
+                                <p class="mb-0">We keep our dependencies up to date and squash bugs as they come!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-patch-check"></i></div>
+                                <h2 class="fs-4 fw-bold">A name you trust</h2>
+                                <p class="mb-0">Start Bootstrap has been the leader in free Bootstrap templates since 2013!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
 </html>
