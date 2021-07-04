@@ -25,11 +25,9 @@ function calljson() {
     var menus = myMSG;
     var mymenu = document.getElementById('mymenu');
     for (var menudata in menus) {
-        var newbutton = document.createElement("button");
-        newbutton.setAttribute('class', 'mymenubutton');
-        newbutton.setAttribute('onclick', 'cancelRoom(this)');
-        newbutton.setAttribute('value', menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id);
-        newbutton.innerHTML = "<span class='menu'>" + menus[menudata].category_name + " 먹어요!</span></br>" + menus[menudata].enter_at + " ~</br><span class='participate_data'>" + menus[menudata].participants + "</span>";
+        var newbutton = document.createElement("div");
+        newbutton.setAttribute('class', 'col-lg-6 col-xxl-4 mb-5');
+        newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
         mymenu.appendChild(newbutton);
     }
 }
@@ -87,23 +85,8 @@ function getFormData() {
             timeTo: timeTo,
             location: location
         }
-        $.ajax({
-            url: "enter"
-            , method: "POST"
-            , dataType: "text"
-            , data: JSON.stringify(json_data)
-            , contentType: "application/json; charset=UTF-8"
-            , success: function (data) {
-                if (data == "flase")
-                    alert("방 생성 및 참여에 실패했습니다");
-                else
-                    alert("등록이 완료되었습니다.");
-                window.location.replace("http://localhost:8080/main");
-            }
-            , error: function (a, b, err) {
-                console.log(err);
-            }
-        })
+		console.log(json_data);
+		console.log('예약 완료');
     }
 }
 
@@ -121,20 +104,8 @@ function cancelRoom(self) {
     }
 
     if (confirm(time + "시에 있는 " + menu + " 예약을 취소하시겠습니까?")) {
-        $.ajax({
-            url: "cancel"
-            , method: "POST"
-            , dataType: "text"
-            , data: JSON.stringify(json_data)
-            , contentType: "application/json; charset=UTF-8"
-            , success: function () {
-                alert("약속이 취소되었습니다.");
-                window.location.replace("http://localhost:8080/main");
-            }
-            , error: function (a, b, err) {
-                console.log(err);
-            }
-        })
+		console.log(json_data);
+		console.log('취소 완료');
     }
 }
 
