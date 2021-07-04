@@ -26,8 +26,8 @@ function calljson() {
     var mymenu = document.getElementById('mymenu');
     for (var menudata in menus) {
         var newbutton = document.createElement("div");
-        newbutton.setAttribute('class', 'col-lg-6 col-xxl-4 mb-5');
-        newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
+        newbutton.setAttribute('class', 'col-xs-6 col-sm-6 col-lg-6 col-xxl-4 mb-5');
+        newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' onclick='cancelRoom(this)' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
         mymenu.appendChild(newbutton);
     }
 }
@@ -55,19 +55,17 @@ function locationSelect(self) {
 }
 
 function getFormData() {
-    var timeFrom = timeConvert(document.getElementsByName("meetTimeFrom")[0].value);
-    var timeTo = timeConvert(document.getElementsByName("meetTimeTo")[0].value);
+    var tt = new Date;
+    var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
+    var timeFrom = timeConvert(document.getElementsByName("meetTimeFrom")[0].value, tt);
+    var timeTo = timeConvert(document.getElementsByName("meetTimeTo")[0].value, tt);
     var menu_html = document.querySelector('input[name="menu"]:checked');
     var menu = menu_html.value;
     var location_html = document.querySelector('input[name="location"]:checked');
     var location = location_html.value;
-    var tt = new Date;
-    var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
     //$(document).ready(function(){
     //  $('submit').click(f)
     //})
-    menuSelect(menu_html);
-    locationSelect(location_html);
 
     if (timeFrom === ':00') {
         alert('시작 시간을 선택해주세요');
@@ -86,6 +84,23 @@ function getFormData() {
             location: location
         }
 		console.log(json_data);
+        $.ajax({
+            url: "enter"
+            , method: "POST"
+            , dataType: "text"
+            , data: JSON.stringify(json_data)
+            , contentType: "application/json; charset=UTF-8"
+            , success: function (data) {
+                if (data == "false")
+                    alert("방 생성 및 참여에 실패했습니다");
+                else
+                    alert("등록이 완료되었습니다.");
+                window.location.replace("http://localhost:8080/main");
+            }
+            , error: function (a, b, err) {
+                console.log(err);
+            }
+        })
 		console.log('예약 완료');
     }
 }
@@ -105,6 +120,20 @@ function cancelRoom(self) {
 
     if (confirm(time + "시에 있는 " + menu + " 예약을 취소하시겠습니까?")) {
 		console.log(json_data);
+        $.ajax({
+            url: "cancel"
+            , method: "POST"
+            , dataType: "text"
+            , data: JSON.stringify(json_data)
+            , contentType: "application/json; charset=UTF-8"
+            , success: function () {
+                alert("약속이 취소되었습니다.");
+                window.location.replace("http://localhost:8080/main");
+            }
+            , error: function (a, b, err) {
+                console.log(err);
+            }
+        })
 		console.log('취소 완료');
     }
 }
@@ -113,6 +142,8 @@ function fillZero(str) {
     return ('0' + str).slice(-2);
 }
 
-function timeConvert(str) {
-    return str.toString().replace('T', ' ') + ':00';
+function timeConvert(str, tt) {
+    str = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+str+':00';
+    console.log(str);
+    return str;
 }
