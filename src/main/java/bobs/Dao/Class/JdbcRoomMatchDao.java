@@ -121,6 +121,7 @@ public class JdbcRoomMatchDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
 			room.setParticipants(findParticipants(rs.getInt("room_id")));
 
 			RoomInfoDto tmp = roomInfoDao.getRoomInfoDto(rs.getInt("room_id"));
+			room.setRoom_status(tmp.getRoom_status());
 			room.setEnter_at(tmp.getDeadline());
 			room.setLocation_name(locationDao.findById(tmp.getLocation_id()).stream().findAny().get().getName());
 			room.setCategory_name(categoryDao.findById(tmp.getCategory_id()).stream().findAny().get().getName());
