@@ -38,7 +38,7 @@ public class LoginController {
 		sessionDto.setLocation_id(1);
 		HttpSession httpSession = loginService.getSession(req, sessionDto);
 		try {
-			rep.sendRedirect("http://leeworld9.ipdisk.co.kr:58080/main");
+			rep.sendRedirect("http://localhost:8080/main");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
