@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RoomInfoDao {
 
-	List<RoomInfoDto> vaildRoomSelect(RoomInfoDto roomInfoDto, String startTime, String endTime);
+	List<RoomInfoDto> vaildRoomSelect(RoomInfoDto roomInfoDto, String endTime);
 	List<String> getAlarmRoomId();
 	void roomStatusUpdate(int roomId, String status);
 	RoomInfoDto getRoomInfoDto(int room_id);
@@ -15,9 +15,12 @@ public interface RoomInfoDao {
 	String SQL_ROOMSEQ = "SELECT IFNULL(MAX(id) + 1, 1) FROM room_info";
 	String SQL_ROOMINSERT = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
 			+ "VALUES (?, NOW(), ?, date_format(?, '%Y-%m-%d %H:%i:%s'), ?, ?, ?)";
-	String SQL_FINDVAILDROOM = "SELECT * FROM room_info WHERE deadline > date_format(?, '%Y-%m-%d %H:%i:%s') "
-			+"AND deadline <= date_format(?, '%Y-%m-%d %H:%i:%s') "
-			+"AND room_status = 'active' AND category_id = ? AND location_id = ? ORDER BY deadline ASC";
+	String SQL_FINDVAILDROOM = "SELECT * FROM room_info"
+			+" WHERE deadline >= DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
+			+" AND deadline <= DATE_FORMAT(?, '%Y-%m-%d %H:%i:%s')"
+			+" AND room_status = 'active' AND location_id = ?";
+	String WHERE_CATEGORY = "category_id = ?";
+	String WHERE_ROOMINFO_ORDER = " ORDER BY created_at ASC";
 	String SQL_ROOMSTATUSUPDATE = "UPDATE room_info SET room_status = ? WHERE id = ?";
 	String SQL_FINDROOM = "SELECT * FROM room_info where id = ?";
 	String SQL_FINDALARMROOM = "SELECT * FROM room_info " +

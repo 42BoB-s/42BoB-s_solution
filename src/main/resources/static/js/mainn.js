@@ -1,11 +1,13 @@
 
 var menuSet = {
+    '0' : 'all',
     '1' : 'korea',
     '2' : 'china',
     '3' : 'us'
 };
 
 var menuSet_kor = {
+    '0' : '모두',
     '1' : '한식',
     '2' : '중식',
     '3' : '양식'
@@ -95,7 +97,7 @@ function getFormData() {
                     alert("방 생성 및 참여에 실패했습니다");
                 else
                     alert("등록이 완료되었습니다.");
-                window.location.replace("http://localhost:8080/main");
+                window.location.replace("http://leeworld9.ipdisk.co.kr:58080/main");
             }
             , error: function (request, status, error) {
 				alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
@@ -127,7 +129,7 @@ function cancelRoom(self) {
             , contentType: "application/json; charset=UTF-8"
             , success: function () {
                 alert("약속이 취소되었습니다.");
-                window.location.replace("http://localhost:8080/main");
+                window.location.replace("http://leeworld9.ipdisk.co.kr:58080/main");
             }
             , error: function (request, status, error) {
 				alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');

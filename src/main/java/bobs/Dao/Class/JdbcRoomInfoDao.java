@@ -51,10 +51,23 @@ public class JdbcRoomInfoDao implements BaseDao<RoomInfoDto>,RoomInfoDao {
 
 
 	@Override
-	public List<RoomInfoDto> vaildRoomSelect(RoomInfoDto roomInfoDto, String startTime, String endTime){
-		return jdbcTemplate.query(
-				SQL_FINDVAILDROOM, rowMapper,
-				startTime, endTime, roomInfoDto.getCategory_id(), roomInfoDto.getLocation_id());
+	public List<RoomInfoDto> vaildRoomSelect(RoomInfoDto roomInfoDto, String endTime){
+		String NEW_SQL_FINDVAILDROOM = SQL_FINDVAILDROOM;
+		//0 은 '모두' 카테고리
+		if(roomInfoDto.getCategory_id() == 0) {
+			NEW_SQL_FINDVAILDROOM += WHERE_ROOMINFO_ORDER;
+			System.out.println(NEW_SQL_FINDVAILDROOM);
+			return jdbcTemplate.query(
+					NEW_SQL_FINDVAILDROOM, rowMapper,
+					endTime, endTime, roomInfoDto.getLocation_id());
+		}
+		else {
+			NEW_SQL_FINDVAILDROOM += (" AND (" + WHERE_CATEGORY +" OR " +WHERE_CATEGORY + ")" + WHERE_ROOMINFO_ORDER);
+			System.out.println(NEW_SQL_FINDVAILDROOM);
+			return jdbcTemplate.query(
+					NEW_SQL_FINDVAILDROOM, rowMapper,
+					endTime, endTime, roomInfoDto.getLocation_id(), roomInfoDto.getCategory_id(), 0);
+		}
 	}
 
 	@Override
