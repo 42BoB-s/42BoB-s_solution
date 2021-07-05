@@ -1,52 +1,130 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8">
-  <title>
-    hello
-  </title>
-  <!--<base href="C:/Users/192293/Desktop/mtak42BOBs/src/main/resources/templates/">-->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/mainn.css">
-  <script type="text/javascript" th:inline="javascript">
-    var myMSG = [[${rooms}]];
-    var myID = [[${user_id}]];
-  </script>
-  <script type="text/javascript" th:inline="javascript" src="js/mainn.js"></script>
-</head>
-<body>
-<header>
-  <div class="navibar">
-    <image src="https://s-um.github.io/bobs_test/42bobs_logo.png" style="margin: auto 30px;height:100%;display:table-cell;vertical-align:middle;"/>
-    <span style="color:white; display:table-cell;vertical-align:middle;text-align:center;font-size:200%;" th:text="${user_id}">user_name</span>
-    <a style="color:white; display:table-cell;vertical-align:middle;text-align:center;font-size:200%;" href="http://localhost:8080/logout">logout</a>
-  </div>
-</header>
-<div class="widthAlign" style="padding:10vh 0 0 0;"><h2><span class="bold">내 밥 친구</span> 목록</h2></div>
-<div class="horscroll" id="mymenu">
-  <script>
-    calljson();
-  </script>
-</div>
-<div class="widthAlign"><h2><span class="bold">밥 친구</span> 찾아볼까요?</h2></div>
-<div class="menuinput">
-  <h3>몇시부터 가능한가</h3>
-  <input name="meetTimeFrom" type="datetime-local"></input>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>42Bob's - 동료와 함께 밥을</title>
+		<!-- Favicon-->
+		<link rel="icon" type="image/x-icon" href="_assets/favicon.ico" />
+		<!-- Bootstrap icons-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link href="_assets/css/styles.css" rel="stylesheet" />
 
-  <h3>몇시까지 가능한가</h3>
-  <input name="meetTimeTo" type="datetime-local"></input>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- End of Bootswatch-->
+		<style>
+			body{
+				color: rgb(21,178,179);
+			}
+.flex-row{
+	overflow-x: auto;
+}
+		.mymenubutton{
+			width: 100%;
+			height: 100%;
+			border: 3px solid rgb(21,178,179);
+			border-radius: 15px;
+			background-color: rgb(255,255,255);
+			color: rgb(21,178,179);
+		}
+		</style>
 
-  <h3>메뉴</h3>
-  <label><input type="radio" name="menu" value="1" onchange="menuSelect(this)" checked="checked"><span class="menuselector" id="korea" style="background-color: rgb(171,227,228)">한식</span></label>
-  <label><input type="radio" name="menu" value="2" onchange="menuSelect(this)"><span class="menuselector" id="china">중식</span></label>
-  <label><input type="radio" name="menu" value="3" onchange="menuSelect(this)"><span class="menuselector" id="us">양식</span></label>
 
-  <h3>위치</h3>
-  <label><input type="radio" name="location" value="1" onchange="locationSelect(this)" checked="checked"><span class="locationselector" id="gaepo" style="background-color: rgb(171,227,228)">개포</span></label>
-  <label><input type="radio" name="location" value="2" onchange="locationSelect(this)"><span class="locationselector" id="seocho">서초</span></label>
-
-  <input type="submit" onclick="getFormData();">
-
-</div>
-</body>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--		<link rel="stylesheet" type="text/css" href="css/mainn.css">-->
+		<script type="text/javascript" th:inline="javascript">
+			var myMSG = [[${rooms}]];
+			var myID = [[${user_id}]];
+		</script>
+		<script type="text/javascript" th:inline="javascript" src="js/mainn.js"></script>
+	</head>
+	<body>
+		<!-- Responsive navbar-->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container px-lg-5">
+				<image class="nav-brand" src="https://s-um.github.io/bobs_test/42bobs_logo.png" style="margin: auto 30px;height:100%;display:table-cell;vertical-align:middle;"/>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item"><span class="nav-link active"><script>document.write(myID);</script></span></li>
+						<li class="nav-item"><a class="nav-link" href="localhost:8080/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- Page Content-->
+		<section class="pt-4">
+			<div class="container px-lg-5">
+				<!-- Page Features-->
+				<div class="row gx-lg-5 flex-row flex-nowrap" id="mymenu">
+					<script>
+						calljson();
+					</script>
+				</div>
+			</div>
+		</section>
+		<!-- Header-->
+		<header class="py-5">
+			<div class="container px-lg-5">
+				<div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+					<div class="m-4 m-lg-5">
+						<h3>밥친구 찾아볼까요?</h3></br></br>
+						<div class="mob input-group mb-3">
+							<label class="text-grey mr-1 m-2">시작 시간</label>
+							<input class="ml-1 form-control" type="time" name="meetTimeFrom" aria-label="name" aria-describedby="basic-addon2">
+							<p class="text-center m-2">&nbsp~&nbsp</p>
+							<label class="text-grey mr-1 m-2">종료 시간</label>
+							<input class="ml-1 form-control" type="time" name="meetTimeTo" aria-label="name" aria-describedby="basic-addon2">
+						</div>
+						<!-- <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="시작시간" aria-label="name"
+                                aria-describedby="basic-addon2">
+                            <p class="text-center">&nbsp~&nbsp</p>
+                            <input type="text" class="form-control" placeholder="종료시간" aria-label="name"
+                                aria-describedby="basic-addon2">
+                        </div> -->
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="menu" value="1" id="btnradio1" autocomplete="off" checked>
+							<label class="btn btn-lg btn-outline-primary" for="btnradio1">한식</label>
+						</div>
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="menu" value="2" id="btnradio2" autocomplete="off">
+							<label class="btn btn-lg btn-outline-primary" for="btnradio2">중식</label>
+						</div>
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="menu" value="3" id="btnradio3" autocomplete="off">
+							<label class="btn btn-lg btn-outline-primary" for="btnradio3">양식</label>
+						</div>
+						<br>
+						<br>
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="location" value="1" id="btnplace1" autocomplete="off" checked>
+							<label class="btn btn-lg btn-outline-primary" for="btnplace1">서초</label>
+						</div>
+						<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+							<input type="radio" class="btn-check" name="location" value="2" id="btnplace2" autocomplete="off">
+							<label class="btn btn-lg btn-outline-primary" for="btnplace2">강남</label>
+						</div>
+						<br>
+						<br>
+						<div class="d-grid gap-2">
+							<button class="btn btn-primary" type="button" onclick="getFormData()">생성하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- Footer-->
+		<footer class="py-5 bg-dark">
+			<div class="container"><p class="m-0 text-center text-white">Copyright &copy; 42Bob's 2021</p></div>
+		</footer>
+		<!-- Bootstrap core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Core theme JS-->
+		<script src="_assets/js/scripts.js"></script>
+	</body>
 </html>
