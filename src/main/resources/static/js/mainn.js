@@ -143,7 +143,6 @@ function fillZero(str) {
 
 function timeConvert(str, tt) {
     str = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+str+':00';
-    console.log(str);
     return str;
 }
 
