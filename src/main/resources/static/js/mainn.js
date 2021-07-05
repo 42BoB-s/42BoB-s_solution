@@ -63,10 +63,11 @@ function getFormData() {
     var menu = menu_html.value;
     var location_html = document.querySelector('input[name="location"]:checked');
     var location = location_html.value;
+    var tt = new Date;
+    var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
     //$(document).ready(function(){
     //  $('submit').click(f)
     //})
-
     if (timeFrom === ':00') {
         alert('시작 시간을 선택해주세요');
     } else if (timeTo === ':00') {
@@ -147,3 +148,4 @@ function timeConvert(str, tt) {
     console.log(str);
     return str;
 }
+

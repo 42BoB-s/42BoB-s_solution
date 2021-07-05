@@ -43,42 +43,24 @@ public class RoomController {
 	}
 	
 	@PostMapping("/enter")
-	public String enterOrCreate(HttpServletResponse response, @RequestBody Map<String, String> request){
+	public @ResponseBody String enterOrCreate(HttpServletResponse response, @RequestBody Map<String, String> request, HttpSession httpSession){
 		RoomInfoDto roomInfoDto = new RoomInfoDto();
 		roomInfoDto.setLocation_id(Integer.parseInt(request.get("location")));
 		roomInfoDto.setCategory_id(Integer.parseInt(request.get("menu")));
 		RoomMatchDto roomMatchDto = new RoomMatchDto();
-		roomMatchDto.setUser_id(request.get("id"));
+		SessionDto sessionDto = (SessionDto) httpSession.getAttribute("session");
+		String id = "";
+		if (sessionDto != null)
+			id = sessionDto.getUser_id();
+		roomMatchDto.setUser_id(id);
 		System.out.println("revervation");
-		
-		Calendar cal = Calendar.getInstance();
-		
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		String tmp_month = null;
-		String tmp_day = null;
-		if (month < 10)
-			tmp_month = "0" + String.valueOf(month);
-		else
-			tmp_month = String.valueOf(month);
-		if (day < 10)
-			tmp_day = "0" + String.valueOf(day);
-		else
-			tmp_day = String.valueOf(day);
-		
-		
-		String startTime = year + "-" + tmp_month + "-" + tmp_day + " " + request.get("timeFrom")
-				+ ":" + "00:00";
-		System.out.println(startTime);
-		String endTime = year + "-" + tmp_month + "-" + tmp_day + " " + request.get("timeTo")
-				+ ":" + "00:00";
-		System.out.println(endTime);
+		String startTime = request.get("timeFrom");
+		String endTime = request.get("timeTo");
 
 		//false 일때 alert 출력해서 실패했다고 출력 필요.
 		//id는 roomMatchDto가 아니라 session에서 받아와야함.
-		roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime);
-		return "mainn";
+/*방 생성 및 참여에 실패했다는 경고메시지 출력*/
+		return String.valueOf(roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime));
 	}
 	
 	@PostMapping("/cancel")
