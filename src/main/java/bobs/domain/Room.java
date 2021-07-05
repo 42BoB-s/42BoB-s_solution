@@ -14,4 +14,5 @@ public class Room {
 	private String location_name;
 	private String category_name;
 	private int room_id;
+	private String room_status;
 }
