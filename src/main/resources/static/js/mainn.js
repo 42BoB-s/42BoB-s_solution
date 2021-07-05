@@ -76,7 +76,7 @@ function getFormData() {
         alert('시작 시간이 현재 시간보다 이릅니다');
     } else if (timeTo < timeFrom) {
         alert('마지막 시간이 시작 시간보다 빠릅니다');
-    } else if (confirm(timeFrom + "시부터 " + timeTo + "까지" + locationSet_kor[location] + "에서" + menuSet_kor[menu] + "예약을 하시겠습니까?")) {
+    } else if (confirm(timeFrom + "시부터 " + timeTo + "까지 " + locationSet_kor[location] + "에서 " + menuSet_kor[menu] + " 예약을 하시겠습니까?")) {
         var json_data = {
             id: myID,
             menu: menu,
