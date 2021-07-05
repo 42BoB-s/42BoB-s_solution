@@ -126,6 +126,6 @@ public class RoomServiceImpl implements RoomService {
 	public void cancelRoom(CanceledRoom canceledRoom) {
 		Slack slack = new Slack();
 		List<String> leftParticipants = RoomMatchDao.deleteRoomMatch(canceledRoom);
-		//slack.sendCancelMsg(leftParticipants);
+		slack.sendCancelMsg(leftParticipants);
 	}
 }
