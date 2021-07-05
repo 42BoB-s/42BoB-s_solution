@@ -84,7 +84,6 @@ function getFormData() {
             timeTo: timeTo,
             location: location
         }
-		console.log(json_data);
         $.ajax({
             url: "enter"
             , method: "POST"
@@ -98,11 +97,11 @@ function getFormData() {
                     alert("등록이 완료되었습니다.");
                 window.location.replace("http://localhost:8080/main");
             }
-            , error: function (a, b, err) {
-                console.log(err);
+            , error: function (request, status, error) {
+				alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
+				alert('code:' + request.status+ '\n' + 'message:' + request.responseText + '\n' + 'error:' + error);
             }
         })
-		console.log('예약 완료');
     }
 }
 
@@ -120,7 +119,6 @@ function cancelRoom(self) {
     }
 
     if (confirm(time + "시에 있는 " + menu + " 예약을 취소하시겠습니까?")) {
-		console.log(json_data);
         $.ajax({
             url: "cancel"
             , method: "POST"
@@ -131,11 +129,11 @@ function cancelRoom(self) {
                 alert("약속이 취소되었습니다.");
                 window.location.replace("http://localhost:8080/main");
             }
-            , error: function (a, b, err) {
-                console.log(err);
+            , error: function (request, status, error) {
+				alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
+				alert('code:' + request.status+ '\n' + 'message:' + request.responseText + '\n' + 'error:' + error);
             }
         })
-		console.log('취소 완료');
     }
 }
 
