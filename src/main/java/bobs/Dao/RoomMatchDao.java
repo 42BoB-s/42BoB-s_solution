@@ -27,9 +27,7 @@ public interface RoomMatchDao {
 	String SQL_MATCHINSERT = "INSERT INTO room_match(room_id, user_id, enter_at) VALUES (?, ?, NOW())";
 	String SQL_DUPLECOUNT = "SELECT COUNT(*) FROM room_match where room_id = ? AND user_id = ?";
 	String SQL_FINDUSER = "SELECT * FROM room_match WHERE room_id = ?";
-	String SQL_FINDVALIDROOM = "SELECT * FROM room_match WHERE user_id = ?" +
-			"AND enter_at < date_format(DATE_ADD(NOW(),INTERVAL 24 HOUR), '%Y.%m.%d %H:%i:%s') ORDER BY enter_at desc";/* +
-				"AND enter_at > date_format(NOW(), '%Y.%m.%d %H:%i:%s')";*/
+	String SQL_FINDVALIDROOM = "SELECT * FROM room_match WHERE enter_at < DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 24 HOUR),'%Y.%m.%d %H:%i:%s')AND enter_at > DATE_FORMAT(DATE_ADD(NOW(), INTERVAL -24 HOUR), '%Y.%m.%d %H:%i:%s')";
 	String SQL_GETUSERID = "SELECT * FROM room_match WHERE room_id = ?";
 	String SQL_DELROOM_MATCH = "DELETE FROM room_match WHERE user_id = ? AND room_id = ?";
 
