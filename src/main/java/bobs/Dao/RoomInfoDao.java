@@ -11,6 +11,8 @@ public interface RoomInfoDao {
 	List<String> getAlarmRoomId();
 	void roomStatusUpdate(int roomId, String status);
 	RoomInfoDto getRoomInfoDto(int room_id);
+	List<RoomInfoDto> findSameTimeRoomSelect(RoomInfoDto roomInfoDto, String endTime);
+
 
 	String SQL_ROOMSEQ = "SELECT IFNULL(MAX(id) + 1, 1) FROM room_info";
 	String SQL_ROOMINSERT = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
@@ -19,8 +21,12 @@ public interface RoomInfoDao {
 			+" WHERE deadline >= DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
 			+" AND deadline <= DATE_FORMAT(?, '%Y-%m-%d %H:%i:%s')"
 			+" AND room_status = 'active' AND location_id = ?";
-	String WHERE_CATEGORY = "category_id = ?";
+	String WHERE_CATEGORY = " AND category_id = ?";
 	String WHERE_ROOMINFO_ORDER = " ORDER BY created_at ASC";
+	String SQL_FINDSAMETIMEROOM = "SELECT * FROM room_info"
+			+" WHERE deadline >= DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
+			+" AND deadline <= DATE_FORMAT(?, '%Y-%m-%d %H:%i:%s')"
+			+" AND (room_status = 'active' OR room_status = 'succeed')";
 	String SQL_ROOMSTATUSUPDATE = "UPDATE room_info SET room_status = ? WHERE id = ?";
 	String SQL_FINDROOM = "SELECT * FROM room_info where id = ?";
 	String SQL_FINDALARMROOM = "SELECT * FROM room_info " +

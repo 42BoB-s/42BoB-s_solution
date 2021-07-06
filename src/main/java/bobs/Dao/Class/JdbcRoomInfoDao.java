@@ -49,6 +49,12 @@ public class JdbcRoomInfoDao implements BaseDao<RoomInfoDto>,RoomInfoDao {
 		return findById(roomId).stream().findAny().get();
 	}
 
+	@Override
+	public List<RoomInfoDto> findSameTimeRoomSelect(RoomInfoDto roomInfoDto, String endTime) {
+		return jdbcTemplate.query(
+				SQL_FINDSAMETIMEROOM, rowMapper,
+				endTime, endTime);
+	}
 
 	@Override
 	public List<RoomInfoDto> vaildRoomSelect(RoomInfoDto roomInfoDto, String endTime){
@@ -62,11 +68,11 @@ public class JdbcRoomInfoDao implements BaseDao<RoomInfoDto>,RoomInfoDao {
 					endTime, endTime, roomInfoDto.getLocation_id());
 		}
 		else {
-			NEW_SQL_FINDVAILDROOM += (" AND (" + WHERE_CATEGORY +" OR " +WHERE_CATEGORY + ")" + WHERE_ROOMINFO_ORDER);
+			NEW_SQL_FINDVAILDROOM += (WHERE_CATEGORY + WHERE_ROOMINFO_ORDER);
 			System.out.println(NEW_SQL_FINDVAILDROOM);
 			return jdbcTemplate.query(
 					NEW_SQL_FINDVAILDROOM, rowMapper,
-					endTime, endTime, roomInfoDto.getLocation_id(), roomInfoDto.getCategory_id(), 0);
+					endTime, endTime, roomInfoDto.getLocation_id(), roomInfoDto.getCategory_id());
 		}
 	}
 

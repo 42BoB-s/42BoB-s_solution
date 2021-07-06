@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -68,7 +70,10 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public boolean findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
 		List<RoomInfoDto> result = new ArrayList<>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
+			return (false);
+		if (!enterCheck(roomInfoDto, roomMatchDto, endTime)) // 같은 시간대에 등록한적이 있는지 체크
+			return (false);
 		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, endTime);
 		for (RoomInfoDto dto : tmpList) {
 			roomMatchDto.setRoom_id(dto.getId());
@@ -118,5 +123,32 @@ public class RoomServiceImpl implements RoomService {
 		Slack slack = new Slack();
 		List<String> leftParticipants = RoomMatchDao.deleteRoomMatch(canceledRoom);
 		//slack.sendCancelMsg(leftParticipants);
+	}
+
+	@Override
+	public boolean enterCheck(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
+		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.findSameTimeRoomSelect(roomInfoDto, endTime);
+		for (RoomInfoDto dto : tmpList) {
+			roomMatchDto.setRoom_id(dto.getId());
+			if (userDupleCheck(roomMatchDto))
+				return (false);
+		}
+		return (true);
+	}
+
+	@Override
+	public boolean timeCheck(String endTime) {
+		// 이전 시간인지 체크하는 로직은 추후 추가
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(sdf.parse(endTime));
+			if (cal.get(Calendar.MINUTE) != 0)
+				return (false);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return (false);
+		}
+		return (true);
 	}
 }

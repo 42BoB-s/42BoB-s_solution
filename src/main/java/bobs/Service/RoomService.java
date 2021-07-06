@@ -21,4 +21,8 @@ public interface RoomService {
 	int roomEnter(RoomMatchDto roomMatchDto);
 	List<Room> findRooms(String id);
 	void cancelRoom(CanceledRoom canceledRoom);
+	// 같은 시간대에 등록됬는지 체크
+	boolean enterCheck(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime);
+	// 1시간 단위로 들어오는지 체크
+	boolean timeCheck(String endTime);
 }
