@@ -21,14 +21,18 @@ var locationSet_kor = {
 	'2' : '서초'
 };
 
+
 function calljson() {
 	var menus = myMSG;
-	var mymenu = document.getElementById('mymenu');
+	var mymenu = {
+		'succeed' : document.getElementById('succeed'),
+		'active' : document.getElementById('active'),
+	};
 	for (var menudata in menus) {
 		var newbutton = document.createElement("div");
-		newbutton.setAttribute('class', 'col-xs-6 col-sm-6 col-lg-6 col-xxl-4 mb-5');
+		newbutton.setAttribute('class', 'col-8 col-sm-5 col-lg-4 col-xl-4 col-md-4 col-xxl-4 mb-5');
 		newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' onclick='cancelRoom(this)' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
-		mymenu.appendChild(newbutton);
+		mymenu[menus[menudata].room_status].appendChild(newbutton);
 	}
 }
 
