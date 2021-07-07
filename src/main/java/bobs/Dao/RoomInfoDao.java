@@ -18,7 +18,7 @@ public interface RoomInfoDao {
 	String SQL_ROOMINSERT = "INSERT INTO room_info (id, created_at, max_people, deadline, room_status, category_id, location_id) "
 			+ "VALUES (?, NOW(), ?, date_format(?, '%Y-%m-%d %H:%i:%s'), ?, ?, ?)";
 	String SQL_FINDVAILDROOM = "SELECT * FROM room_info"
-			+" WHERE deadline >= DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
+			+" WHERE deadline > DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
 			+" AND deadline <= DATE_FORMAT(?, '%Y-%m-%d %H:%i:%s')"
 			+" AND room_status = 'active' AND location_id = ?";
 	String WHERE_CATEGORY = " AND category_id = ?";

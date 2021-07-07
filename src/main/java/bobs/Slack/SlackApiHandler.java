@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface SlackApiHandler {
     String url = "https://slack.com/api/";
-    String token = "{slack-token}";
+    String token = "{slack token}";
 
     // https://slack.com/api/{apiName} 에서 get으로 요청한 정보를 반환하는 함수
     ResponseEntity<String> getResponseEntity(String apiName);

@@ -69,6 +69,8 @@ public class RoomServiceImpl implements RoomService {
 	//roomMatchDto(임시)의 user_id는 나중에 세션에서 받아와서 처리해야함
 	@Override
 	public boolean findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
+		Slack slack = new Slack();
+		List<String> participants = new ArrayList<>();
 		List<RoomInfoDto> result = new ArrayList<>();
 		if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
 			return (false);
@@ -92,6 +94,8 @@ public class RoomServiceImpl implements RoomService {
 		} else { // 방이 있는 경우 ( 4명인 방 제외 )
 			System.out.println("[[[ROOM FIND OK]]]");
 			roomMatchDto.setRoom_id(result.get(0).getId());
+			participants = jdbcRoomMatchDao.findParticipants(roomMatchDto.getRoom_id());
+			slack.sendSuccessMsg(participants);
 		}
 		//방참가
 		roomEnter(roomMatchDto);
