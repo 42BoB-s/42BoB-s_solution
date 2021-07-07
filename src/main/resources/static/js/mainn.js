@@ -1,14 +1,16 @@
 
 var menuSet = {
-	'1' : 'korea',
-	'2' : 'china',
-	'3' : 'us'
+    '0' : 'all',
+    '1' : 'korea',
+    '2' : 'china',
+    '3' : 'us'
 };
 
 var menuSet_kor = {
-	'1' : '한식',
-	'2' : '중식',
-	'3' : '양식'
+    '0' : '모두',
+    '1' : '한식',
+    '2' : '중식',
+    '3' : '양식'
 }
 
 var locationSet = {

@@ -60,7 +60,7 @@ public class RoomController {
 		//false 일때 alert 출력해서 실패했다고 출력 필요.
 		//id는 roomMatchDto가 아니라 session에서 받아와야함.
 /*방 생성 및 참여에 실패했다는 경고메시지 출력*/
-		return String.valueOf(roomService.findVaildRoom(roomInfoDto, roomMatchDto, startTime, endTime));
+		return String.valueOf(roomService.findVaildRoom(roomInfoDto, roomMatchDto, endTime));
 	}
 	
 	@PostMapping("/cancel")

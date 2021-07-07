@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -66,26 +68,20 @@ public class RoomServiceImpl implements RoomService {
 
 	//roomMatchDto(임시)의 user_id는 나중에 세션에서 받아와서 처리해야함
 	@Override
-	public boolean findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String startTime, String endTime) {
+	public boolean findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
 		List<RoomInfoDto> result = new ArrayList<>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, startTime, endTime);
+		if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
+			return (false);
+		if (!enterCheck(roomInfoDto, roomMatchDto, endTime)) // 같은 시간대에 등록한적이 있는지 체크
+			return (false);
+		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, endTime);
 		for (RoomInfoDto dto : tmpList) {
 			roomMatchDto.setRoom_id(dto.getId());
 			if (roomCountCheck(roomMatchDto)) { // 4명 미만의 방인지 체크
 				if (!userDupleCheck(roomMatchDto)) // 4명미만의 방이나, 이미 내가 참가한 곳이 있을수 있으니 체크
 					result.add(dto);
 				else
-				{
-					try {
-						if (sdf.parse(endTime).compareTo(sdf.parse(dto.getDeadline())) >= 0) {
-							System.out.println("[[[FAIL]]]");
-							return false;
-						}
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+					return (false);
 			}
 		}
 		if (result.size() == 0) { // 방이 없는 경우
@@ -127,5 +123,32 @@ public class RoomServiceImpl implements RoomService {
 		Slack slack = new Slack();
 		List<String> leftParticipants = RoomMatchDao.deleteRoomMatch(canceledRoom);
 		slack.sendCancelMsg(leftParticipants);
+	}
+
+	@Override
+	public boolean enterCheck(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
+		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.findSameTimeRoomSelect(roomInfoDto, endTime);
+		for (RoomInfoDto dto : tmpList) {
+			roomMatchDto.setRoom_id(dto.getId());
+			if (userDupleCheck(roomMatchDto))
+				return (false);
+		}
+		return (true);
+	}
+
+	@Override
+	public boolean timeCheck(String endTime) {
+		// 이전 시간인지 체크하는 로직은 추후 추가
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(sdf.parse(endTime));
+			if (cal.get(Calendar.MINUTE) != 0)
+				return (false);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return (false);
+		}
+		return (true);
 	}
 }

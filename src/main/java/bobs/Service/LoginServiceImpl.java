@@ -22,9 +22,9 @@ public class LoginServiceImpl implements LoginService {
 
 		System.out.println("Authorization Code======>{}" + code);
 
-		String uid = "629bdab8a98df03b4e7a38c0bbc9a9d5697a0964b0f21413def813faa8125917";
+		String uid = "bac0e2c7574fd240738f0e0f708beef36b750b8e14b2448a5dc41cc2dc338077";
 		String secret = "";
-		String redirect_uri = "http://localhost:8080/42OAuth";
+		String redirect_uri = "http://leeworld9.ipdisk.co.kr:58080/42OAuth";
 
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
