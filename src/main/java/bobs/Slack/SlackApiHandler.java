@@ -1,14 +1,13 @@
 package bobs.Slack;
-
 import org.json.simple.JSONArray;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
 
-public interface SlackService {
-    public static final String url = "https://slack.com/api/";
-    public static final String token = "{slack-token}";
+public interface SlackApiHandler {
+    String url = "https://slack.com/api/";
+    String token = "{slack-token}";
 
     // https://slack.com/api/{apiName} 에서 get으로 요청한 정보를 반환하는 함수
     ResponseEntity<String> getResponseEntity(String apiName);

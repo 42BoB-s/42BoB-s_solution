@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Slack implements SlackService {
+public class Slack implements SlackApiHandler {
     public HttpHeaders header;
     public RestTemplate restTemplate;
     public HttpEntity<String> entity;
