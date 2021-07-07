@@ -1,6 +1,8 @@
 package bobs.Controller;
 
 import bobs.Dto.SessionDto;
+import bobs.PropInjector.PropInjector;
+import bobs.PropInjector.PropInjectorImpl;
 import bobs.Service.LoginService;
 
 import org.json.simple.JSONObject;
@@ -24,10 +26,12 @@ import java.nio.charset.Charset;
 public class LoginController {
 
 	private final LoginService loginService;
+	private final PropInjector propInject;
 
 	@Autowired
 	public LoginController(LoginService loginService) {
 		this.loginService = loginService;
+		this.propInject = new PropInjectorImpl();
 	}
 
 	@GetMapping("/42OAuth")
@@ -38,7 +42,7 @@ public class LoginController {
 		sessionDto.setLocation_id(1);
 		HttpSession httpSession = loginService.getSession(req, sessionDto);
 		try {
-			rep.sendRedirect("http://localhost:8080/main");
+			rep.sendRedirect(propInject.getBaseUrl() + "main");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
