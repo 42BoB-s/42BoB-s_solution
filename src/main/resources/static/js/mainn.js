@@ -32,7 +32,7 @@ function calljson() {
 		var newbutton = document.createElement("div");
 		newbutton.setAttribute('class', 'col-8 col-sm-5 col-lg-4 col-xl-4 col-md-4 col-xxl-4 mb-5');
 		if (menus[menudata].room_status === 'succeed') {
-			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton'' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
+			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button disabled class='mymenubutton'' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
 			succeedSet.appendChild(newbutton);
 		} else if (menus[menudata].room_status === 'active') {
 			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' onclick='cancelRoom(this)' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + "~</br>" + menus[menudata].enter_at + menus[menudata].participants + "</p></br></button></div>";
@@ -106,7 +106,7 @@ function getFormData() {
 						alert("방 생성 및 참여에 실패했습니다");
 					else
 						alert("등록이 완료되었습니다.");
-					window.location.replace("http://localhost:8080/main");
+					window.location.replace("http://leeworld9.ipdisk.co.kr:58080/main");
 				}
 				, error: function (request, status, error) {
 					alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
@@ -139,7 +139,7 @@ function cancelRoom(self) {
 			, contentType: "application/json; charset=UTF-8"
 			, success: function () {
 				alert("약속이 취소되었습니다.");
-				window.location.replace("http://localhost:8080/main");
+				window.location.replace("http://leeworld9.ipdisk.co.kr:58080/main");
 			}
 			, error: function (request, status, error) {
 				alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');

@@ -16,5 +16,6 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 				.addPathPatterns("/*")
 				.excludePathPatterns("/login") //로그인 쪽은 예외처리를 한다.
 				.excludePathPatterns("/42OAuth");
+
 	}
 }
