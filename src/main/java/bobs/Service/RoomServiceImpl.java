@@ -95,7 +95,7 @@ public class RoomServiceImpl implements RoomService {
 			System.out.println("[[[ROOM FIND OK]]]");
 			roomMatchDto.setRoom_id(result.get(0).getId());
 			participants = jdbcRoomMatchDao.findParticipants(roomMatchDto.getRoom_id());
-			slack.sendSuccessMsg(participants);
+			slack.sendEnterMsg(participants, roomMatchDto.getUser_id());
 		}
 		//방참가
 		roomEnter(roomMatchDto);
