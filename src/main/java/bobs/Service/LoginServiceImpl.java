@@ -1,8 +1,11 @@
 package bobs.Service;
 
 import bobs.Dto.SessionDto;
+import bobs.PropInjector.PropInjector;
+import bobs.PropInjector.PropInjectorImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -17,14 +20,21 @@ import java.nio.charset.Charset;
 @Service
 public class LoginServiceImpl implements LoginService {
 
+	private final PropInjector propInject;
+
+	@Autowired
+	public LoginServiceImpl() {
+		this.propInject = new PropInjectorImpl();
+	}
+
 	@Override
 	public String getOAuthToken(String code) {
 
 		System.out.println("Authorization Code======>{}" + code);
 
-		String uid = "629bdab8a98df03b4e7a38c0bbc9a9d5697a0964b0f21413def813faa8125917";
-		String secret = "{secret}";
-		String redirect_uri = "http://localhost:8080/42OAuth";
+		String uid = propInject.get42Uid();
+		String secret = propInject.get42Secret();
+		String redirect_uri = propInject.getBaseUrl() + "42OAuth";
 
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();

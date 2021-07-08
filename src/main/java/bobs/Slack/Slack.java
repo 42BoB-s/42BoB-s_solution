@@ -1,5 +1,7 @@
 package bobs.Slack;
 
+import bobs.PropInjector.PropInjector;
+import bobs.PropInjector.PropInjectorImpl;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,6 +15,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Slack implements SlackApiHandler {
+
+    public PropInjector propInject;
     public HttpHeaders header;
     public RestTemplate restTemplate;
     public HttpEntity<String> entity;
@@ -20,11 +24,12 @@ public class Slack implements SlackApiHandler {
 
     public Slack ()
     {
+        propInject = new PropInjectorImpl();
         header = new HttpHeaders();
         restTemplate = new RestTemplate();
         jsonObject = new JSONObject();
         header.setContentType(MediaType.APPLICATION_JSON);
-        header.set("Authorization", "Bearer " + token);
+        header.set("Authorization", "Bearer " + propInject.getSlackToken());
         jsonObject.put("Content-Type", "application/x-www-form-urlencoded");
         entity = new HttpEntity<String>(jsonObject.toString(),header);
     }
@@ -32,7 +37,7 @@ public class Slack implements SlackApiHandler {
     @Override
     public ResponseEntity<String> getResponseEntity(String apiName)
     {
-        return restTemplate.exchange(url + apiName, HttpMethod.GET, entity, String.class);
+        return restTemplate.exchange(propInject.getSlackUrl() + apiName, HttpMethod.GET, entity, String.class);
     }
 
     @Override
@@ -60,7 +65,7 @@ public class Slack implements SlackApiHandler {
         jsonObject.put("channel", memberId);  // 수신자 id 지정
         jsonObject.put("text", text); // 보낼 내용
         entity = new HttpEntity<String>(jsonObject.toString(), header);
-        String log = restTemplate.postForObject(url + "chat.postMessage", entity, String.class);
+        String log = restTemplate.postForObject(propInject.getSlackUrl() + "chat.postMessage", entity, String.class);
         System.out.println("send msg to " + memberId + " : " + text + "\n" + log);
     }
 
