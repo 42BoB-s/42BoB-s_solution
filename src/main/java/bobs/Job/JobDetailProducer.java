@@ -1,17 +1,10 @@
 package bobs.Job;
 
 import org.quartz.JobDetail;
-import org.springframework.stereotype.Component;
 
-import static org.quartz.JobBuilder.newJob;
+// JobDetail을 생성하여 반환하기 위한 인터페이스
+public interface JobDetailProducer {
 
-@Component
-public class JobDetailProducer {
-    public JobDetail getAlarmDetail() {
-        JobDetail AlarmJobDetail = newJob(AlarmJob.class)
-                .withIdentity("Alarm", "AlarmGroup")
-                .usingJobData("ret_count", 0)
-                .build();
-        return AlarmJobDetail;
-    }
+    // AlarmJob의 JobDetail을 생성하기 위한 메서드
+    JobDetail getAlarmDetail();
 }

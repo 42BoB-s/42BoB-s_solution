@@ -17,20 +17,20 @@ public class AlarmJob implements Job {
     private JdbcRoomMatchDao roomMatchDao;
     private Slack Slack = new Slack();
     private JobDetailProducer jobDetailProducer;
-    private JobTriggerPorducer jobTriggerPorducer;
+    private JobTriggerProducer jobTriggerProducer;
     private Scheduler scheduler;
 
-    public AlarmJob(JdbcRoomInfoDao roomInfoDao,JdbcRoomMatchDao roomMatchDao,JobDetailProducer jobDetailProducer,JobTriggerPorducer jobTriggerPorducer, Scheduler scheduler) {
+    public AlarmJob(JdbcRoomInfoDao roomInfoDao, JdbcRoomMatchDao roomMatchDao, JobDetailProducerImpl jobDetailProducer, JobTriggerProducerImpl jobTriggerPorducerImpl, Scheduler scheduler) {
         this.roomInfoDao = roomInfoDao;
         this.roomMatchDao = roomMatchDao;
         this.jobDetailProducer= jobDetailProducer;
-        this.jobTriggerPorducer = jobTriggerPorducer;
+        this.jobTriggerProducer = jobTriggerPorducerImpl;
         this.scheduler = scheduler;
     }
 
     @SneakyThrows
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
+    public void execute(JobExecutionContext context) {
 
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         int ret_count = dataMap.getIntValue("ret_count");
@@ -41,7 +41,7 @@ public class AlarmJob implements Job {
             JobExecutionException e = new JobExecutionException("Retries exceeded");
             /* 5회 재시도에도 오류가 계속 된다면 스케줄을 멈추고 다시 등록*/
             e.setUnscheduleAllTriggers(true);
-            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(),jobTriggerPorducer.getAlarmTrigger());
+            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(), jobTriggerProducer.getAlarmTrigger());
             /*여기에 로그를 남기면 좋을것 같은데..*/
 
             throw e;

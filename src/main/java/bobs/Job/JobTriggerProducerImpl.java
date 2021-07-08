@@ -7,8 +7,9 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 @Component
-public class JobTriggerPorducer {
+public class JobTriggerProducerImpl implements JobTriggerProducer {
 
+    @Override
     public Trigger getAlarmTrigger() {
         Trigger AlarmTrigger = newTrigger()
                 .withIdentity("AlarmTrigger", "AlarmGroup")

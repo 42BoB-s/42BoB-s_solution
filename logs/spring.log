@@ -200,3 +200,189 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
 
 2021-07-07 23:56:43.946 ERROR 1908 --- [http-nio-8080-exec-1] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/] and exception [Cannot call sendError() after the response has been committed] as the response has already been committed. As a result, the response may have the wrong status code.
+2021-07-08 13:57:23.491  INFO 25016 --- [main] bobs.bobsMain                            : Starting bobsMain on DESKTOP-F2J4U26 with PID 25016 (C:\Users\User\Desktop\tmp\build\classes\java\main started by User in C:\Users\User\Desktop\tmp)
+2021-07-08 13:57:23.494  INFO 25016 --- [main] bobs.bobsMain                            : No active profile set, falling back to default profiles: default
+2021-07-08 13:57:24.492  INFO 25016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-08 13:57:24.515  INFO 25016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-08 13:57:24.515  INFO 25016 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-07-08 13:57:24.642  INFO 25016 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-08 13:57:24.642  INFO 25016 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1114 ms
+2021-07-08 13:57:24.804  INFO 25016 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-07-08 13:57:24.813  INFO 25016 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-07-08 13:57:24.814  INFO 25016 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-07-08 13:57:24.814  INFO 25016 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-07-08 13:57:24.815  INFO 25016 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-07-08 13:57:24.815  INFO 25016 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-07-08 13:57:24.815  INFO 25016 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-07-08 13:57:24.815  INFO 25016 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@404eca05
+2021-07-08 13:57:24.950  INFO 25016 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-08 13:57:25.163  INFO 25016 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-07-08 13:57:25.163  INFO 25016 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-07-08 13:57:25.190  INFO 25016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-08 13:57:25.194  INFO 25016 --- [main] bobs.bobsMain                            : Started bobsMain in 2.108 seconds (JVM running for 4.237)
+2021-07-08 13:57:28.399  INFO 25016 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-08 13:57:28.400  INFO 25016 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-08 13:57:28.407  INFO 25016 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-07-08 13:57:28.728  WARN 25016 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [305] milliseconds.
+2021-07-08 13:57:28.743 ERROR 25016 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot call sendError() after the response has been committed] with root cause
+
+java.lang.IllegalStateException: Cannot call sendError() after the response has been committed
+	at org.apache.catalina.connector.ResponseFacade.sendError(ResponseFacade.java:472) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:454) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:53) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:853) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.22.jar:9.0.22]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2021-07-08 13:57:28.767 ERROR 25016 --- [http-nio-8080-exec-1] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/] and exception [Cannot call sendError() after the response has been committed] as the response has already been committed. As a result, the response may have the wrong status code.
+2021-07-08 13:57:31.036  INFO 25016 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-08 13:57:31.133  INFO 25016 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-08 13:58:31.982  INFO 25016 --- [quartzScheduler_Worker-1] org.quartz.core.JobRunShell              : Job AlarmGroup.Alarm threw a JobExecutionException: 
+
+org.quartz.JobExecutionException: java.lang.NullPointerException
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:67) ~[main/:na]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.1.jar:na]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.1.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at bobs.Slack.Slack.getMembersId(Slack.java:79) ~[main/:na]
+	at bobs.Slack.Slack.sendSuccessMsg(Slack.java:101) ~[main/:na]
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:56) ~[main/:na]
+	... 2 common frames omitted
+
+2021-07-08 13:58:41.460  INFO 25016 --- [quartzScheduler_Worker-2] org.quartz.core.JobRunShell              : Job AlarmGroup.Alarm threw a JobExecutionException: 
+
+org.quartz.JobExecutionException: java.lang.NullPointerException
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:67) ~[main/:na]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.1.jar:na]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.1.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at bobs.Slack.Slack.getMembersId(Slack.java:79) ~[main/:na]
+	at bobs.Slack.Slack.sendSuccessMsg(Slack.java:101) ~[main/:na]
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:56) ~[main/:na]
+	... 2 common frames omitted
+
+2021-07-08 13:58:51.467  INFO 25016 --- [quartzScheduler_Worker-3] org.quartz.core.JobRunShell              : Job AlarmGroup.Alarm threw a JobExecutionException: 
+
+org.quartz.JobExecutionException: java.lang.NullPointerException
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:67) ~[main/:na]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.1.jar:na]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.1.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at bobs.Slack.Slack.getMembersId(Slack.java:79) ~[main/:na]
+	at bobs.Slack.Slack.sendSuccessMsg(Slack.java:101) ~[main/:na]
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:56) ~[main/:na]
+	... 2 common frames omitted
+
+2021-07-08 13:59:01.489  INFO 25016 --- [quartzScheduler_Worker-4] org.quartz.core.JobRunShell              : Job AlarmGroup.Alarm threw a JobExecutionException: 
+
+org.quartz.JobExecutionException: java.lang.NullPointerException
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:67) ~[main/:na]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.1.jar:na]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.1.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at bobs.Slack.Slack.getMembersId(Slack.java:79) ~[main/:na]
+	at bobs.Slack.Slack.sendSuccessMsg(Slack.java:101) ~[main/:na]
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:56) ~[main/:na]
+	... 2 common frames omitted
+
+2021-07-08 13:59:11.477  INFO 25016 --- [quartzScheduler_Worker-5] org.quartz.core.JobRunShell              : Job AlarmGroup.Alarm threw a JobExecutionException: 
+
+org.quartz.JobExecutionException: java.lang.NullPointerException
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:67) ~[main/:na]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.1.jar:na]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.1.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at bobs.Slack.Slack.getMembersId(Slack.java:79) ~[main/:na]
+	at bobs.Slack.Slack.sendSuccessMsg(Slack.java:101) ~[main/:na]
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:56) ~[main/:na]
+	... 2 common frames omitted
+
+2021-07-08 13:59:21.464  INFO 25016 --- [quartzScheduler_Worker-6] org.quartz.core.JobRunShell              : Job AlarmGroup.Alarm threw a JobExecutionException: 
+
+org.quartz.JobExecutionException: java.lang.NullPointerException
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:67) ~[main/:na]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.1.jar:na]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.1.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at bobs.Slack.Slack.getMembersId(Slack.java:79) ~[main/:na]
+	at bobs.Slack.Slack.sendSuccessMsg(Slack.java:101) ~[main/:na]
+	at bobs.Job.AlarmJob.execute(AlarmJob.java:56) ~[main/:na]
+	... 2 common frames omitted
+
+2021-07-08 13:59:28.348  INFO 6848 --- [main] bobs.bobsMain                            : Starting bobsMain on DESKTOP-F2J4U26 with PID 6848 (C:\Users\User\Desktop\tmp\build\classes\java\main started by User in C:\Users\User\Desktop\tmp)
+2021-07-08 13:59:28.351  INFO 6848 --- [main] bobs.bobsMain                            : No active profile set, falling back to default profiles: default
+2021-07-08 13:59:29.197  INFO 6848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-08 13:59:29.223  INFO 6848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-08 13:59:29.223  INFO 6848 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-07-08 13:59:29.339  INFO 6848 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-08 13:59:29.339  INFO 6848 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 959 ms
+2021-07-08 13:59:29.481  INFO 6848 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-07-08 13:59:29.489  INFO 6848 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-07-08 13:59:29.489  INFO 6848 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-07-08 13:59:29.490  INFO 6848 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-07-08 13:59:29.490  INFO 6848 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-07-08 13:59:29.490  INFO 6848 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-07-08 13:59:29.490  INFO 6848 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-07-08 13:59:29.490  INFO 6848 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@43bf5397
+2021-07-08 13:59:29.614  INFO 6848 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-08 13:59:29.795  INFO 6848 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-07-08 13:59:29.795  INFO 6848 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-07-08 13:59:29.818  INFO 6848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-08 13:59:29.822  INFO 6848 --- [main] bobs.bobsMain                            : Started bobsMain in 1.815 seconds (JVM running for 2.72)
+2021-07-08 13:59:31.049  INFO 6848 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-08 13:59:31.123  INFO 6848 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

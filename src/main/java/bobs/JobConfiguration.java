@@ -1,8 +1,9 @@
 package bobs;
 
-
 import bobs.Job.JobDetailProducer;
-import bobs.Job.JobTriggerPorducer;
+import bobs.Job.JobDetailProducerImpl;
+import bobs.Job.JobTriggerProducerImpl;
+import bobs.Job.JobTriggerProducer;
 import org.quartz.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,13 @@ public class JobConfiguration {
 
     private final Scheduler scheduler;
     private final JobDetailProducer jobDetailProducer;
-    private final JobTriggerPorducer jobTriggerPorducer;
+    private final JobTriggerProducer jobTriggerProducer;
 
     @Autowired
-    public JobConfiguration(Scheduler scheduler,  JobDetailProducer jobDetailProducer, JobTriggerPorducer jobTriggerPorducer) {
+    public JobConfiguration(Scheduler scheduler, JobDetailProducerImpl jobDetailProducer, JobTriggerProducerImpl jobTriggerPorducerImpl) {
         this.scheduler = scheduler;
         this.jobDetailProducer = jobDetailProducer;
-        this.jobTriggerPorducer = jobTriggerPorducer;
+        this.jobTriggerProducer = jobTriggerPorducerImpl;
 
     }
 
@@ -32,7 +33,7 @@ public class JobConfiguration {
         try {
 
             /* Job을 스케줄러에 등록*/
-            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(), jobTriggerPorducer.getAlarmTrigger());
+            scheduler.scheduleJob(jobDetailProducer.getAlarmDetail(), jobTriggerProducer.getAlarmTrigger());
 
         } catch (SchedulerException e) {
             e.printStackTrace();
