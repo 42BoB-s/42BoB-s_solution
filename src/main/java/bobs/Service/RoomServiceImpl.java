@@ -89,6 +89,13 @@ public class RoomServiceImpl implements RoomService {
 		if (result.size() == 0) { // 방이 없는 경우
 			System.out.println("[[[ROOM FIND FAIL]]]");
 			// 방생성
+			// category '모두'인데 방이 생성되는 경우 랜덤 생성
+			if(roomInfoDto.getCategory_id() == 0)
+			{
+				double randomValue = Math.random();
+				int intValue = (int)(randomValue * 3) + 1; // 3은 0을 제외한 카테고리 수
+				roomInfoDto.setCategory_id(intValue);
+			}
 			roomInfoDto.setDeadline(endTime);
 			roomMatchDto.setRoom_id(roomCreate(roomInfoDto));
 		} else { // 방이 있는 경우 ( 4명인 방 제외 )

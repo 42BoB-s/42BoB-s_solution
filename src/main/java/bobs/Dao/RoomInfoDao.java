@@ -24,7 +24,7 @@ public interface RoomInfoDao {
 	String WHERE_CATEGORY = " AND category_id = ?";
 	String WHERE_ROOMINFO_ORDER = " ORDER BY created_at ASC";
 	String SQL_FINDSAMETIMEROOM = "SELECT * FROM room_info"
-			+" WHERE deadline >= DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
+			+" WHERE deadline > DATE_FORMAT(DATE_SUB(?, INTERVAL 1 HOUR), '%Y-%m-%d %H:%i:%s')"
 			+" AND deadline <= DATE_FORMAT(?, '%Y-%m-%d %H:%i:%s')"
 			+" AND (room_status = 'active' OR room_status = 'succeed')";
 	String SQL_ROOMSTATUSUPDATE = "UPDATE room_info SET room_status = ? WHERE id = ?";
