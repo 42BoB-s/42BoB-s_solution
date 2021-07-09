@@ -1,5 +1,6 @@
 package bobs.Slack;
 
+import bobs.Dto.RoomInfoDto;
 import bobs.PropInjector.PropInjector;
 import bobs.PropInjector.PropInjectorImpl;
 import org.json.simple.JSONArray;
@@ -9,10 +10,13 @@ import org.json.simple.parser.ParseException;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Slack implements SlackApiHandler {
 
@@ -117,6 +121,22 @@ public class Slack implements SlackApiHandler {
                 String friends = joinNames(membersName, elem.getKey());
                 sendMsg(elem.getValue(), friends + "약속이 취소되었습니다.");
             }
+        }
+    }
+
+    public void sendEnterMsg(List<String> participants, String enterMember, RoomInfoDto roomInfoDto) throws java.text.ParseException
+    {
+        // 보낼 text 생성
+        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(roomInfoDto.getDeadline());
+        String time = new SimpleDateFormat("a h:mm").format(date);
+        String text = String.format("%s님이 식사 약속(%s, %s)에 참여하셨습니다.",
+                enterMember, (roomInfoDto.getLocation_id() == 1? "서초": "개포"), time);
+        // msg 보내기
+        Map<String,String> memberIds = getMembersId(participants);
+        for (Map.Entry<String, String> elem : memberIds.entrySet())
+        {
+            if (elem.getValue() != null)
+                sendMsg(elem.getValue(), text);
         }
     }
 }
