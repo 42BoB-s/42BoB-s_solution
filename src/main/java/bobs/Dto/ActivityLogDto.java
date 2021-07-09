@@ -1,6 +1,7 @@
 package bobs.Dto;
 
 
+import bobs.domain.CanceledRoom;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,14 @@ public class ActivityLogDto {
         logDto.setUser_id(session.getUser_id());
         logDto.setLocation_id(session.getLocation_id());
 
+        return logDto;
+    }
+
+    public ActivityLogDto getRoomExitLog(CanceledRoom canceledRoom, RoomInfoDto tmp) {
+        ActivityLogDto logDto = new ActivityLogDto();
+        logDto.setActivity_status("room_exit");
+        logDto.setUser_id(canceledRoom.getUser_id());
+        logDto.setLocation_id(tmp.getLocation_id());
         return logDto;
     }
 }

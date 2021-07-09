@@ -93,16 +93,8 @@ public class JdbcRoomMatchDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
 		if (leftParticipants.size() == 0)
 			roomInfoDao.roomStatusUpdate(canceledRoom.getRoom_id(), "destroyed");
 		RoomInfoDto tmp = roomInfoDao.getRoomInfoDto(canceledRoom.getRoom_id());
-		activityLogDao.create(updateActivityLogDto(canceledRoom, tmp, "room_exit"));
+		activityLogDao.create(new ActivityLogDto().getRoomExitLog(canceledRoom, tmp));
 		return leftParticipants;
-	}
-
-	public ActivityLogDto updateActivityLogDto(CanceledRoom canceledRoom, RoomInfoDto tmp, String status) {
-		ActivityLogDto LogDto = new ActivityLogDto();
-		LogDto.setUser_id(canceledRoom.getUser_id());
-		LogDto.setActivity_status(status);
-		LogDto.setLocation_id(tmp.getLocation_id());
-		return LogDto;
 	}
 
 	private RowMapper<BaseDto> StrRowMapper(String col) {
