@@ -18,6 +18,7 @@ public class JdbcActivityLogDao implements BaseDao<ActivityLogDto>,ActivityLogDa
 
     @Override
     public int create(ActivityLogDto activityLogDto) {
+        System.out.println("");
         int chk = 0;
         try {
             activityLogDto.setId(jdbcTemplate.queryForObject(SQL_LOGSEQ, Integer.class));

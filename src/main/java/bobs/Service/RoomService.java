@@ -1,5 +1,6 @@
 package bobs.Service;
 
+import bobs.Dto.ActivityLogDto;
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
 import bobs.domain.CanceledRoom;
@@ -21,7 +22,7 @@ public interface RoomService {
 	// 방의 중복 유저 체크
 	boolean userDupleCheck(RoomMatchDto roomMatchDto);
 	// 방에 입장하는 서비스
-	int roomEnter(RoomMatchDto roomMatchDto);
+	int roomEnter(RoomMatchDto roomMatchDto, ActivityLogDto logDto);
 	List<Room> findRooms(String id);
 	void cancelRoom(CanceledRoom canceledRoom);
 	// 같은 시간대에 등록됬는지 체크

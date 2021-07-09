@@ -105,7 +105,6 @@ public class JdbcRoomMatchDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
 		return LogDto;
 	}
 
-
 	private RowMapper<BaseDto> StrRowMapper(String col) {
 		return (rs, rowNum) -> {
 			BaseDto Dto = new BaseDto();

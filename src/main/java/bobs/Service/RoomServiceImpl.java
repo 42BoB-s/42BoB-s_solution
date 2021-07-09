@@ -1,13 +1,16 @@
 package bobs.Service;
 
 
+import bobs.Dao.Class.JdbcActivityLogDao;
 import bobs.Dao.Class.JdbcRoomInfoDao;
 import bobs.Dao.Class.JdbcRoomMatchDao;
+import bobs.Dto.ActivityLogDto;
 import bobs.Dto.RoomInfoDto;
 import bobs.Dto.RoomMatchDto;
 import bobs.Slack.Slack;
 import bobs.domain.CanceledRoom;
 import bobs.domain.Room;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,15 +29,16 @@ public class RoomServiceImpl implements RoomService {
 	private JdbcRoomInfoDao jdbcRoomInfoDao;
 	private JdbcRoomMatchDao jdbcRoomMatchDao;
 	private JdbcRoomMatchDao RoomMatchDao;
+	private JdbcActivityLogDao activityLogDao;
 
 	@Autowired
-	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao, JdbcRoomMatchDao RoomMatchDao)
+	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao, JdbcRoomMatchDao RoomMatchDao, JdbcActivityLogDao activityLogDao)
 	{
 		this.jdbcRoomInfoDao = jdbcRoomInfoDao;
 		this.jdbcRoomMatchDao = jdbcRoomMatchDao;
 		this.RoomMatchDao = RoomMatchDao;
+		this.activityLogDao = activityLogDao;
 	}
-
 
 	@Override
 	public int roomCreate(RoomInfoDto roomInfoDto) {
@@ -45,7 +49,6 @@ public class RoomServiceImpl implements RoomService {
 			System.out.println("[[[ROOM INSERT FAIL]]]");
 		return room_id;
 	}
-
 
 	@Override
 	public boolean roomCountCheck(RoomMatchDto roomMatchDto) {
@@ -72,8 +75,8 @@ public class RoomServiceImpl implements RoomService {
 		Slack slack = new Slack();
 		List<String> participants = new ArrayList<>();
 		List<RoomInfoDto> result = new ArrayList<>();
-		/*if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
-			return (1);*/
+		if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
+			return (1);
 		if (!enterCheck(roomInfoDto, roomMatchDto, endTime)) // 같은 시간대에 등록한적이 있는지 체크
 			return (2);
 		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, endTime);
@@ -105,18 +108,21 @@ public class RoomServiceImpl implements RoomService {
 			slack.sendEnterMsg(participants, roomMatchDto.getUser_id(), roomInfoDto, endTime);
 		}
 		//방참가
-		roomEnter(roomMatchDto);
+		/* 방참가 activity log를 위한 내용*/
+		roomEnter(roomMatchDto, new ActivityLogDto().getRoomEnterLog(roomInfoDto, roomMatchDto));
 		return 0;
 	}
 
 	@Override
-	public int roomEnter(RoomMatchDto roomMatchDto) {
+	public int roomEnter(RoomMatchDto roomMatchDto, ActivityLogDto logDto) {
 		int chk = 0;
 		RoomInfoDto status = new RoomInfoDto();
 		status.setId(roomMatchDto.getRoom_id());
 		chk = jdbcRoomMatchDao.create(roomMatchDto);
-		if (chk == 1)
+		if (chk == 1) {
 			System.out.println("[[[ROOM ENTER OK]]]");
+			activityLogDao.create(logDto);
+		}
 		else
 			System.out.println("[[[ROOM ENTER FAIL]]]");
 		return chk;
