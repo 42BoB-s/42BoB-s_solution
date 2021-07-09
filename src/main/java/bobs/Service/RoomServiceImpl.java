@@ -68,14 +68,14 @@ public class RoomServiceImpl implements RoomService {
 
 	//roomMatchDto(임시)의 user_id는 나중에 세션에서 받아와서 처리해야함
 	@Override
-	public boolean findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
+	public int findVaildRoom(RoomInfoDto roomInfoDto, RoomMatchDto roomMatchDto, String endTime) {
 		Slack slack = new Slack();
 		List<String> participants = new ArrayList<>();
 		List<RoomInfoDto> result = new ArrayList<>();
 		if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
-			return (false);
+			return (1);
 		if (!enterCheck(roomInfoDto, roomMatchDto, endTime)) // 같은 시간대에 등록한적이 있는지 체크
-			return (false);
+			return (2);
 		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, endTime);
 		for (RoomInfoDto dto : tmpList) {
 			roomMatchDto.setRoom_id(dto.getId());
@@ -83,7 +83,7 @@ public class RoomServiceImpl implements RoomService {
 				if (!userDupleCheck(roomMatchDto)) // 4명미만의 방이나, 이미 내가 참가한 곳이 있을수 있으니 체크
 					result.add(dto);
 				else
-					return (false);
+					return (3);
 			}
 		}
 		if (result.size() == 0) { // 방이 없는 경우
@@ -102,11 +102,11 @@ public class RoomServiceImpl implements RoomService {
 			System.out.println("[[[ROOM FIND OK]]]");
 			roomMatchDto.setRoom_id(result.get(0).getId());
 			participants = jdbcRoomMatchDao.findParticipants(roomMatchDto.getRoom_id());
-			//slack.sendEnterMsg(participants, roomMatchDto.getUser_id(), roomInfoDto);
+			slack.sendEnterMsg(participants, roomMatchDto.getUser_id(), roomInfoDto);
 		}
 		//방참가
 		roomEnter(roomMatchDto);
-		return true;
+		return 0;
 	}
 
 	@Override
