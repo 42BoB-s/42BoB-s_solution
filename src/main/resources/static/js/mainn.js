@@ -24,7 +24,7 @@ function calljson() {
 		var newbutton = document.createElement("div");
 		newbutton.setAttribute('class', 'col-8 col-sm-5 col-lg-4 col-xl-4 col-md-4 col-xxl-4 mb-5');
 		if (menus[menudata].room_status === 'succeed') {
-			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menuButtonTimeConvert(menus[menudata].enter_at) + "~</br>" + menus[menudata].location_name + "</br>" + menus[menudata].participants + "</p></br></button></div>";
+			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button disabled class='mymenubutton' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menuButtonTimeConvert(menus[menudata].enter_at) + "~</br>" + menus[menudata].location_name + "</br>" + menus[menudata].participants + "</p></br></button></div>";
 			succeedSet.appendChild(newbutton);
 		} else if (menus[menudata].room_status === 'active') {
 			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' onclick='cancelRoom(this)' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menuButtonTimeConvert(menus[menudata].enter_at) + "~</br>" + menus[menudata].location_name + "</br>" + menus[menudata].participants + "</p></br></button></div>";
