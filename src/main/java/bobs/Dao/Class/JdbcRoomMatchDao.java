@@ -92,8 +92,8 @@ public class JdbcRoomMatchDao implements BaseDao<RoomMatchDto>, RoomMatchDao {
 		List<String> leftParticipants = findParticipants(canceledRoom.getRoom_id());
 		if (leftParticipants.size() == 0)
 			roomInfoDao.roomStatusUpdate(canceledRoom.getRoom_id(), "destroyed");
-		RoomInfoDto tmp = roomInfoDao.getRoomInfoDto(canceledRoom.getRoom_id());
-		activityLogDao.create(new ActivityLogDto().getRoomExitLog(canceledRoom, tmp));
+		activityLogDao.create(new ActivityLogDto().
+				getRoomExitLog(canceledRoom, roomInfoDao.getRoomInfoDto(canceledRoom.getRoom_id())));
 		return leftParticipants;
 	}
 

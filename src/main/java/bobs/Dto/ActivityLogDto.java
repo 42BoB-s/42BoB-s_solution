@@ -5,8 +5,6 @@ import bobs.domain.CanceledRoom;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.websocket.Session;
-
 @Getter
 @Setter
 public class ActivityLogDto {
@@ -17,14 +15,14 @@ public class ActivityLogDto {
     String user_id;
 
     public ActivityLogDto() {
-
     }
 
-    public ActivityLogDto getRoomEnterLog(RoomInfoDto roomInfo, RoomMatchDto roommatch) {
+    public ActivityLogDto getRoomEnterLog(RoomInfoDto roomInfo, RoomMatchDto roomMatch) {
         ActivityLogDto logDto = new ActivityLogDto();
         logDto.setActivity_status("room_enter");
-        logDto.setUser_id(roommatch.getUser_id());
+        logDto.setUser_id(roomMatch.getUser_id());
         logDto.setLocation_id(roomInfo.getLocation_id());
+
         return logDto;
     }
 
@@ -37,11 +35,11 @@ public class ActivityLogDto {
         return logDto;
     }
 
-    public ActivityLogDto getRoomExitLog(CanceledRoom canceledRoom, RoomInfoDto tmp) {
+    public ActivityLogDto getRoomExitLog(CanceledRoom canceledRoom, RoomInfoDto roomInfo) {
         ActivityLogDto logDto = new ActivityLogDto();
         logDto.setActivity_status("room_exit");
         logDto.setUser_id(canceledRoom.getUser_id());
-        logDto.setLocation_id(tmp.getLocation_id());
+        logDto.setLocation_id(roomInfo.getLocation_id());
         return logDto;
     }
 }
