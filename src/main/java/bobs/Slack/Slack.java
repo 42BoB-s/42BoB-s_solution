@@ -124,11 +124,17 @@ public class Slack implements SlackApiHandler {
         }
     }
 
-    public void sendEnterMsg(List<String> participants, String enterMember, RoomInfoDto roomInfoDto) throws java.text.ParseException
+    public void sendEnterMsg(List<String> participants, String enterMember, RoomInfoDto roomInfoDto)
     {
         // 보낼 text 생성
-        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(roomInfoDto.getDeadline());
-        String time = new SimpleDateFormat("a h:mm").format(date);
+        Date date = null;
+        String time = "";
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(roomInfoDto.getDeadline());
+            time = new SimpleDateFormat("a h:mm").format(date);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
         String text = String.format("%s님이 식사 약속(%s, %s)에 참여하셨습니다.",
                 enterMember, (roomInfoDto.getLocation_id() == 1? "서초": "개포"), time);
         // msg 보내기
