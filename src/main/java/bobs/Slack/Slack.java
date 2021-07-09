@@ -124,7 +124,7 @@ public class Slack implements SlackApiHandler {
         }
     }
 
-    public void sendEnterMsg(List<String> participants, String enterMember, RoomInfoDto roomInfoDto)
+    public void sendEnterMsg(List<String> participants, String enterMember, RoomInfoDto roomInfoDto ,String endTime)
     {
         // 보낼 text 생성
         Date date = null;
