@@ -54,7 +54,6 @@ public class RoomController {
 			id = sessionDto.getUser_id();
 		roomMatchDto.setUser_id(id);
 		System.out.println("revervation");
-		String startTime = request.get("timeFrom");
 		String endTime = request.get("timeTo");
 
 		//false 일때 alert 출력해서 실패했다고 출력 필요.
@@ -73,53 +72,4 @@ public class RoomController {
 		//System.out.println(readJSONStringFromRequestBody(request));
 		return "mainn";
 	}
-	
-	//myoon님
-	private String readJSONStringFromRequestBody(HttpServletRequest request){
-		StringBuffer json = new StringBuffer();
-		String line = null;
-		
-		try {
-			BufferedReader reader = request.getReader();
-			while((line = reader.readLine()) != null) {
-				json.append(line);
-			}
-			
-		}catch(Exception e) {
-			System.out.println("Error reading JSON string: " + e.toString());
-		}
-		return json.toString();
-	}
-//@PostMapping("/main")
-//public String cancel(HttpSession httpSession, CanceledRoom canceledRoom) {
-//
-//		SessionDto sessionDto = (SessionDto)httpSession.getAttribute("session");
-//		String id = "";
-//		if (sessionDto != null)
-//			id = sessionDto.getUser_id();
-//
-//		roomService.cancelRoom(canceledRoom);
-//		return "mainn";
-//	}
-	
-	//	@GetMapping("/main")
-//	public String listRoom(@RequestParam(value="id", required = false) String id, Model model){
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		try{
-//			String rooms = objectMapper.writeValueAsString(roomService.findRooms(id));
-//			model.addAttribute("rooms", rooms);
-//		} catch (JsonProcessingException e)
-//		{
-//			e.printStackTrace();;
-//		}
-//		return "mainn";
-//	}
-
-//	@GetMapping("/main")
-//	public Object listRoom(@RequestBody User user) {
-//		Map<String, Object> data = new HashMap<String, Object>();
-//		data.put("user_id", user.getUser_id());
-//		data.put("rooms", roomService.findRooms((user.getUser_id())));
-//		return data;
-//	}
 }
