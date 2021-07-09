@@ -24,21 +24,13 @@ import java.util.List;
 
 @Transactional
 @Service
+@RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
 
-	private JdbcRoomInfoDao jdbcRoomInfoDao;
-	private JdbcRoomMatchDao jdbcRoomMatchDao;
-	private JdbcRoomMatchDao RoomMatchDao;
-	private JdbcActivityLogDao activityLogDao;
-
-	@Autowired
-	public RoomServiceImpl(JdbcRoomInfoDao jdbcRoomInfoDao, JdbcRoomMatchDao jdbcRoomMatchDao, JdbcRoomMatchDao RoomMatchDao, JdbcActivityLogDao activityLogDao)
-	{
-		this.jdbcRoomInfoDao = jdbcRoomInfoDao;
-		this.jdbcRoomMatchDao = jdbcRoomMatchDao;
-		this.RoomMatchDao = RoomMatchDao;
-		this.activityLogDao = activityLogDao;
-	}
+	private final JdbcRoomInfoDao jdbcRoomInfoDao;
+	private final JdbcRoomMatchDao jdbcRoomMatchDao;
+	private final JdbcRoomMatchDao RoomMatchDao;
+	private final JdbcActivityLogDao activityLogDao;
 
 	@Override
 	public int roomCreate(RoomInfoDto roomInfoDto) {
