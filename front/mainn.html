@@ -16,7 +16,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- time choose style -->
-
 		<!-- End of Bootswatch-->
 		<style>
 .flex-row{
@@ -54,6 +53,27 @@
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" placeholder="이름" aria-label="name" aria-describedby="basic-addon2">
 						</div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="input-group date" id="datetimepicker3">
+                                        <input type="text" class="form-control">
+                                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datetimepicker3').datetimepicker({
+                                            format: 'LT'
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" placeholder="시작시간" aria-label="name" aria-describedby="basic-addon2">
 							<p class="text-center">&nbsp~&nbsp</p>
