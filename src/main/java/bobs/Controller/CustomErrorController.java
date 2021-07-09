@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/errors")
 public class CustomErrorController implements ErrorController {
 
-    @GetMapping
-    public String error400Page() {
-        return "/errors/error";
+    @RequestMapping()
+    public String allErrorHandler() {
+        return "/error/error";
     }
+
     @Override
     public String getErrorPath() {
-        return null;
+        return "/error";
     }
 }
