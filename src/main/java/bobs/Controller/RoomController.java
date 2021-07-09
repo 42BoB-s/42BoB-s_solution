@@ -43,7 +43,7 @@ public class RoomController {
 	}
 	
 	@PostMapping("/enter")
-	public @ResponseBody String enterOrCreate(HttpServletResponse response, @RequestBody Map<String, String> request, HttpSession httpSession){
+	public @ResponseBody int enterOrCreate(HttpServletResponse response, @RequestBody Map<String, String> request, HttpSession httpSession){
 		RoomInfoDto roomInfoDto = new RoomInfoDto();
 		roomInfoDto.setLocation_id(Integer.parseInt(request.get("location")));
 		roomInfoDto.setCategory_id(Integer.parseInt(request.get("menu")));
@@ -59,7 +59,7 @@ public class RoomController {
 		//false 일때 alert 출력해서 실패했다고 출력 필요.
 		//id는 roomMatchDto가 아니라 session에서 받아와야함.
 /*방 생성 및 참여에 실패했다는 경고메시지 출력*/
-		return String.valueOf(roomService.findVaildRoom(roomInfoDto, roomMatchDto, endTime));
+		return roomService.findVaildRoom(roomInfoDto, roomMatchDto, endTime);
 	}
 	
 	@PostMapping("/cancel")

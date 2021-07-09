@@ -130,7 +130,7 @@ public class Slack implements SlackApiHandler {
         Date date = null;
         String time = "";
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(roomInfoDto.getDeadline());
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTime);
             time = new SimpleDateFormat("a h:mm").format(date);
         } catch (java.text.ParseException e) {
             e.printStackTrace();
