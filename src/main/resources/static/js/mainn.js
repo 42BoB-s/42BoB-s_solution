@@ -1,11 +1,4 @@
 
-var menuSet = {
-    '0' : 'all',
-    '1' : 'korea',
-    '2' : 'china',
-    '3' : 'us'
-};
-
 var menuSet_kor = {
     '0' : '모두',
     '1' : '한식',
@@ -13,16 +6,15 @@ var menuSet_kor = {
     '3' : '양식'
 }
 
-var locationSet = {
-	'1' : 'gaepo',
-	'2' : 'seocho'
-};
-
 var locationSet_kor = {
-	'1' : '개포',
-	'2' : '서초'
+	'1' : '서초',
+	'2' : '개포'
 };
 
+function menuButtonTimeConvert(time) {
+	var sep = time.split(':');
+	return (sep[0] + ':' + sep[1]);
+}
 
 function calljson() {
 	var menus = myMSG;
@@ -32,35 +24,13 @@ function calljson() {
 		var newbutton = document.createElement("div");
 		newbutton.setAttribute('class', 'col-8 col-sm-5 col-lg-4 col-xl-4 col-md-4 col-xxl-4 mb-5');
 		if (menus[menudata].room_status === 'succeed') {
-			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button disabled class='mymenubutton'' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menus[menudata].enter_at + "~</br>" + menus[menudata].participants + "</p></br></button></div>";
+			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menuButtonTimeConvert(menus[menudata].enter_at) + "~</br>" + menus[menudata].location_name + "</br>" + menus[menudata].participants + "</p></br></button></div>";
 			succeedSet.appendChild(newbutton);
 		} else if (menus[menudata].room_status === 'active') {
-			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' onclick='cancelRoom(this)' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + "~</br>" + menus[menudata].enter_at + menus[menudata].participants + "</p></br></button></div>";
+			newbutton.innerHTML = "<div class='card bg-light border-0 h-100'><button class='mymenubutton' onclick='cancelRoom(this)' value='" + menus[menudata].category_name + "|" + menus[menudata].enter_at + "|" + menus[menudata].room_id + "'></br><h2 class='fs-4 fw-bold'>" + menus[menudata].category_name + " 먹어요!</h2></br><p class='mb-0'>" + menuButtonTimeConvert(menus[menudata].enter_at) + "~</br>" + menus[menudata].location_name + "</br>" + menus[menudata].participants + "</p></br></button></div>";
 			activeSet.appendChild(newbutton);
 		}
 	}
-}
-
-function menuSelect(self) {
-	var selectors = document.getElementsByClassName("menuselector");
-	var i = 0;
-	while (i < selectors.length) {
-		if (selectors[i].value != self.value)
-			selectors[i].style.backgroundColor = "rgb(249, 249, 249)";
-		++i;
-	}
-	document.getElementById(menuSet[self.value]).style.backgroundColor = "rgb(171,227,228)";
-}
-
-function locationSelect(self) {
-	var selectors = document.getElementsByClassName("locationselector");
-	var i = 0;
-	while (i < selectors.length) {
-		if (selectors[i].value != self.value)
-			selectors[i].style.backgroundColor = "rgb(249, 249, 249)";
-		++i;
-	}
-	document.getElementById(locationSet[self.value]).style.backgroundColor = "rgb(171,227,228)";
 }
 
 function getFormData() {
@@ -108,10 +78,16 @@ function getFormData() {
 						, data: JSON.stringify(json_data)
 						, contentType: "application/json; charset=UTF-8"
 						, success: function (data) {
-							if (data == "false")
+							if (data == 1)
 								swal({
 									title: "방 생성에 실패했습니다.",
-									text: "서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.",
+									text: "한 시간 단위로 예약해주시길 바랍니다.",
+									icon: "error",
+								}).then(() => {window.location.replace("http://localhost:8080/main");});
+							else if (data == 2)
+								swal({
+									title: "방 생성에 실패했습니다.",
+									text: "같은 시간에 예약이 있습니다.",
 									icon: "error",
 								}).then(() => {window.location.replace("http://localhost:8080/main");});
 							else
@@ -144,24 +120,32 @@ function cancelRoom(self) {
 		time : time,
 		room_id : room_id
 	}
-
-	if (confirm(time + "시에 있는 " + menu + " 예약을 취소하시겠습니까?")) {
-		$.ajax({
-			url: "cancel"
-			, method: "POST"
-			, dataType: "text"
-			, data: JSON.stringify(json_data)
-			, contentType: "application/json; charset=UTF-8"
-			, success: function () {
-				alert("약속이 취소되었습니다.");
-				window.location.replace("http://localhost:8080/main");
-			}
-			, error: function (request, status, error) {
-				alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
-				alert('code:' + request.status+ '\n' + 'message:' + request.responseText + '\n' + 'error:' + error);
-			}
-		})
-	}
+	swal({
+		title : "취소하시겠습니까?",
+		text : '시간 :' + menuButtonTimeConvert(time) + '\n메뉴 : ' + menu,
+		icon : 'info',
+		buttons : ['아니오', '예'],
+	}).then(function(isConfirm) {
+		if (isConfirm) {
+			$.ajax({
+				url: "cancel"
+				, method: "POST"
+				, dataType: "text"
+				, data: JSON.stringify(json_data)
+				, contentType: "application/json; charset=UTF-8"
+				, success: function () {
+					swal({
+						title: "약속이 취소되었습니다!",
+						icon: "success",
+					}).then(() => {window.location.replace("http://localhost:8080/main");});
+				}
+				, error: function (request, status, error) {
+					alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
+					alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error:' + error);
+				}
+			})
+		}
+	});
 }
 
 function fillZero(str) {
