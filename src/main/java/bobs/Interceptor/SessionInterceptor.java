@@ -36,7 +36,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다')");
 			out.println("</script>");
-			response.sendRedirect("login");
+			response.sendRedirect(propInject.getBaseUrl() + "login");
 		}
 		System.out.println("------------session check end---------------");
 		return super.preHandle(request, response, handler);

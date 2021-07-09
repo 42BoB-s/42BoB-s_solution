@@ -13,7 +13,7 @@ public class JobTriggerProducerImpl implements JobTriggerProducer {
     public Trigger getAlarmTrigger() {
         Trigger AlarmTrigger = newTrigger()
                 .withIdentity("AlarmTrigger", "AlarmGroup")
-                .withSchedule(cronSchedule("1/10 * * * * ?"))
+                .withSchedule(cronSchedule("0 55 * * * ?"))
                 .forJob("Alarm", "AlarmGroup")
                 .build();
         return AlarmTrigger;

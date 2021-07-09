@@ -32,7 +32,7 @@ public class RoomServiceImpl implements RoomService {
 	{
 		this.jdbcRoomInfoDao = jdbcRoomInfoDao;
 		this.jdbcRoomMatchDao = jdbcRoomMatchDao;
-		this. RoomMatchDao = RoomMatchDao;
+		this.RoomMatchDao = RoomMatchDao;
 	}
 
 
