@@ -13,11 +13,7 @@ public class JobTriggerProducerImpl implements JobTriggerProducer {
     public Trigger getAlarmTrigger() {
         Trigger AlarmTrigger = newTrigger()
                 .withIdentity("AlarmTrigger", "AlarmGroup")
-<<<<<<< HEAD
-                .withSchedule(cronSchedule("0 55 * * * ?"))
-=======
                 .withSchedule(cronSchedule("0 55 * * * ?")) // 매 시각 55분마다
->>>>>>> abbc7aa2479d66a75ed6e5c5bcfeef8913d02ebc
                 .forJob("Alarm", "AlarmGroup")
                 .build();
         return AlarmTrigger;

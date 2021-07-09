@@ -386,3 +386,118 @@ Caused by: java.lang.NullPointerException: null
 2021-07-08 13:59:29.822  INFO 6848 --- [main] bobs.bobsMain                            : Started bobsMain in 1.815 seconds (JVM running for 2.72)
 2021-07-08 13:59:31.049  INFO 6848 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2021-07-08 13:59:31.123  INFO 6848 --- [quartzScheduler_Worker-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-09 13:37:57.207  INFO 14308 --- [main] bobs.bobsMain                            : Starting bobsMain on DESKTOP-I9215HP with PID 14308 (C:\Users\192293\Desktop\bobs\build\classes\java\main started by 192293 in C:\Users\192293\Desktop\bobs)
+2021-07-09 13:37:57.217  INFO 14308 --- [main] bobs.bobsMain                            : No active profile set, falling back to default profiles: default
+2021-07-09 13:37:58.145  INFO 14308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-09 13:37:58.169  INFO 14308 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-09 13:37:58.170  INFO 14308 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-07-09 13:37:58.286  INFO 14308 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-09 13:37:58.287  INFO 14308 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1024 ms
+2021-07-09 13:37:58.455  INFO 14308 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-07-09 13:37:58.464  INFO 14308 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-07-09 13:37:58.464  INFO 14308 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-07-09 13:37:58.465  INFO 14308 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-07-09 13:37:58.465  INFO 14308 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-07-09 13:37:58.466  INFO 14308 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-07-09 13:37:58.466  INFO 14308 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-07-09 13:37:58.466  INFO 14308 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@54755dd9
+2021-07-09 13:37:58.594  INFO 14308 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-09 13:37:58.833  INFO 14308 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-07-09 13:37:58.833  INFO 14308 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-07-09 13:37:58.860  INFO 14308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-09 13:37:58.865  INFO 14308 --- [main] bobs.bobsMain                            : Started bobsMain in 2.092 seconds (JVM running for 2.934)
+2021-07-09 13:38:04.734  INFO 14308 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-09 13:38:04.735  INFO 14308 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-09 13:38:04.743  INFO 14308 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2021-07-09 13:38:04.889  WARN 14308 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [132] milliseconds.
+2021-07-09 13:38:04.906  INFO 14308 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-09 13:38:04.972  INFO 14308 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-09 13:46:12.523  INFO 14308 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-07-09 13:46:12.524  INFO 14308 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-07-09 13:46:12.525  INFO 14308 --- [Thread-2] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-07-09 13:46:12.525  INFO 14308 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-07-09 13:46:12.526  INFO 14308 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-07-09 13:46:12.526  INFO 14308 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-07-09 13:46:12.527  INFO 14308 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-09 13:46:12.580  INFO 14308 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-09 13:46:40.148  INFO 12100 --- [main] bobs.bobsMain                            : Starting bobsMain on DESKTOP-I9215HP with PID 12100 (C:\Users\192293\Desktop\bobs\build\classes\java\main started by 192293 in C:\Users\192293\Desktop\bobs)
+2021-07-09 13:46:40.150  INFO 12100 --- [main] bobs.bobsMain                            : No active profile set, falling back to default profiles: default
+2021-07-09 13:46:40.968  INFO 12100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-09 13:46:40.986  INFO 12100 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-09 13:46:40.986  INFO 12100 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-07-09 13:46:41.085  INFO 12100 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-09 13:46:41.086  INFO 12100 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 908 ms
+2021-07-09 13:46:41.234  INFO 12100 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-07-09 13:46:41.242  INFO 12100 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-07-09 13:46:41.242  INFO 12100 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-07-09 13:46:41.242  INFO 12100 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-07-09 13:46:41.243  INFO 12100 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-07-09 13:46:41.243  INFO 12100 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-07-09 13:46:41.243  INFO 12100 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-07-09 13:46:41.243  INFO 12100 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6abdec0e
+2021-07-09 13:46:41.362  INFO 12100 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-09 13:46:41.533  INFO 12100 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-07-09 13:46:41.533  INFO 12100 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-07-09 13:46:41.558  INFO 12100 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-09 13:46:41.561  INFO 12100 --- [main] bobs.bobsMain                            : Started bobsMain in 1.679 seconds (JVM running for 2.387)
+2021-07-09 13:46:49.333  INFO 12100 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-09 13:46:49.334  INFO 12100 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-09 13:46:49.343  INFO 12100 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2021-07-09 13:46:49.489  WARN 12100 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [133] milliseconds.
+2021-07-09 13:46:49.506  INFO 12100 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-09 13:46:49.565  INFO 12100 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-09 13:51:17.887  INFO 12100 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-07-09 13:51:17.888  INFO 12100 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-07-09 13:51:17.889  INFO 12100 --- [Thread-2] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-07-09 13:51:17.889  INFO 12100 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-07-09 13:51:17.889  INFO 12100 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-07-09 13:51:17.889  INFO 12100 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-07-09 13:51:17.890  INFO 12100 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-09 13:51:17.944  INFO 12100 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-09 13:51:21.604  INFO 18744 --- [main] bobs.bobsMain                            : Starting bobsMain on DESKTOP-I9215HP with PID 18744 (C:\Users\192293\Desktop\bobs\build\classes\java\main started by 192293 in C:\Users\192293\Desktop\bobs)
+2021-07-09 13:51:21.610  INFO 18744 --- [main] bobs.bobsMain                            : No active profile set, falling back to default profiles: default
+2021-07-09 13:51:22.492  INFO 18744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-09 13:51:22.511  INFO 18744 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-09 13:51:22.511  INFO 18744 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2021-07-09 13:51:22.612  INFO 18744 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-09 13:51:22.613  INFO 18744 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 953 ms
+2021-07-09 13:51:22.762  INFO 18744 --- [main] org.quartz.impl.StdSchedulerFactory      : Using default implementation for ThreadExecutor
+2021-07-09 13:51:22.769  INFO 18744 --- [main] org.quartz.core.SchedulerSignalerImpl    : Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2021-07-09 13:51:22.769  INFO 18744 --- [main] org.quartz.core.QuartzScheduler          : Quartz Scheduler v.2.3.1 created.
+2021-07-09 13:51:22.769  INFO 18744 --- [main] org.quartz.simpl.RAMJobStore             : RAMJobStore initialized.
+2021-07-09 13:51:22.770  INFO 18744 --- [main] org.quartz.core.QuartzScheduler          : Scheduler meta-data: Quartz Scheduler (v2.3.1) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2021-07-09 13:51:22.770  INFO 18744 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2021-07-09 13:51:22.770  INFO 18744 --- [main] org.quartz.impl.StdSchedulerFactory      : Quartz scheduler version: 2.3.1
+2021-07-09 13:51:22.770  INFO 18744 --- [main] org.quartz.core.QuartzScheduler          : JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2daf06fc
+2021-07-09 13:51:22.887  INFO 18744 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-09 13:51:23.083  INFO 18744 --- [main] o.s.s.quartz.SchedulerFactoryBean        : Starting Quartz Scheduler now
+2021-07-09 13:51:23.083  INFO 18744 --- [main] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2021-07-09 13:51:23.111  INFO 18744 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-09 13:51:23.117  INFO 18744 --- [main] bobs.bobsMain                            : Started bobsMain in 1.817 seconds (JVM running for 2.775)
+2021-07-09 13:51:25.591  INFO 18744 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-09 13:51:25.591  INFO 18744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-09 13:51:25.597  INFO 18744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2021-07-09 13:51:25.743  WARN 18744 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [134] milliseconds.
+2021-07-09 13:51:25.761  INFO 18744 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-09 13:51:25.821  INFO 18744 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
