@@ -72,8 +72,8 @@ public class RoomServiceImpl implements RoomService {
 		Slack slack = new Slack();
 		List<String> participants = new ArrayList<>();
 		List<RoomInfoDto> result = new ArrayList<>();
-		if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
-			return (1);
+		/*if (!timeCheck(endTime)) // 시간이 정확히 들어왔는지 체크(1시간단위)
+			return (1);*/
 		if (!enterCheck(roomInfoDto, roomMatchDto, endTime)) // 같은 시간대에 등록한적이 있는지 체크
 			return (2);
 		List<RoomInfoDto> tmpList = jdbcRoomInfoDao.vaildRoomSelect(roomInfoDto, endTime);
