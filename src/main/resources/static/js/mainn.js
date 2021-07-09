@@ -65,55 +65,70 @@ function locationSelect(self) {
 
 function getFormData() {
 	var tt = new Date;
-	var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
-	var timeFrom = timeConvert(document.getElementsByName("meetTimeFrom")[0].value, tt);
-	var timeTo = timeConvert(document.getElementsByName("meetTimeTo")[0].value, tt);
+	var timeTo = timeConvert(document.getElementsByName("meetTime")[0].value, tt);
 	var menu_html = document.querySelector('input[name="menu"]:checked');
 	var menu = menu_html.value;
 	var location_html = document.querySelector('input[name="location"]:checked');
 	var location = location_html.value;
-	var tt = new Date;
-	var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
-	//$(document).ready(function(){
-		//  $('submit').click(f)
-		//})
 	var noTime = timeConvert('', tt);
-	if (timeFrom === noTime) {
-		alert('시작 시간을 선택해주세요');
-	} else if (timeTo === noTime) {
-		alert('마지막 시간을 선택해주세요');
-	} else if (timeTo < timeFrom) {
-		alert('마지막 시간이 시작 시간보다 빠릅니다');
-	} else if (confirm(timeFrom + "시부터 " + timeTo + "까지 " + locationSet_kor[location] + "에서 " + menuSet_kor[menu] + " 예약을 하시겠습니까?")) {
-		if (timeFrom < curTime) {
-			alert('시작 시간이 현재 시간보다 이릅니다');
-		} else {
-			var json_data = {
-				id: myID,
-				menu: menu,
-				timeFrom: timeFrom,
-				timeTo: timeTo,
-				location: location
+	if (timeTo === noTime) {
+		swal({
+			title: "시간을 입력해주세요!",
+			text: "최소 5분 후 예약부터 가능합니다.",
+			icon: "warning",
+		});
+	} else {
+		swal({
+			title : "예약하시겠습니까?",
+			text : '시간 :' + timeTo + '\n위치 : ' + locationSet_kor[location] + '\n메뉴 : ' + menuSet_kor[menu],
+			icon : 'info',
+			buttons : ['아니오', '예'],
+		}).then(function(isConfirm) {
+			if (isConfirm) {
+				tt = new Date;
+				tt.setMinutes(tt.getMinutes() + 5);
+				var curTime = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+fillZero(tt.getHours())+':'+fillZero(tt.getMinutes())+':00';
+				if (timeTo < curTime) {
+					swal({
+						title: "방 생성에 실패했습니다.",
+						text: "최소 5분 후 예약부터 가능합니다.",
+						icon: "error",
+					});
+				} else {
+					var json_data = {
+						id: myID,
+						menu: menu,
+						timeTo: timeTo,
+						location: location
+					}
+					$.ajax({
+						url: "enter"
+						, method: "POST"
+						, dataType: "text"
+						, data: JSON.stringify(json_data)
+						, contentType: "application/json; charset=UTF-8"
+						, success: function (data) {
+							if (data == "false")
+								swal({
+									title: "방 생성에 실패했습니다.",
+									text: "서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.",
+									icon: "error",
+								}).then(() => {window.location.replace("http://localhost:8080/main");});
+							else
+								swal({
+									title: "방이 생성되었습니다!",
+									text: "잠시만 기다리면 밥동료가 찾아옵니다.",
+									icon: "success",
+								}).then(() => {window.location.replace("http://localhost:8080/main");});
+						}
+						, error: function (request, status, error) {
+							alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
+							alert('code:' + request.status+ '\n' + 'message:' + request.responseText + '\n' + 'error:' + error);
+						}
+					})
+				}
 			}
-			$.ajax({
-				url: "enter"
-				, method: "POST"
-				, dataType: "text"
-				, data: JSON.stringify(json_data)
-				, contentType: "application/json; charset=UTF-8"
-				, success: function (data) {
-					if (data == "false")
-						alert("방 생성 및 참여에 실패했습니다");
-					else
-						alert("등록이 완료되었습니다.");
-					window.location.replace("http://localhost:8080/main");
-				}
-				, error: function (request, status, error) {
-					alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
-					alert('code:' + request.status+ '\n' + 'message:' + request.responseText + '\n' + 'error:' + error);
-				}
-			})
-		}
+		});
 	}
 }
 
@@ -157,4 +172,3 @@ function timeConvert(str, tt) {
 	str = tt.getFullYear()+'-'+fillZero((tt.getMonth() + 1))+'-'+fillZero(tt.getDate())+' '+str+':00';
 	return str;
 }
-

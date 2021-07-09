@@ -15,6 +15,7 @@
 		<link href="_assets/css/styles.css" rel="stylesheet" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<!-- End of Bootswatch-->
 		<style>
 body{
@@ -74,7 +75,7 @@ body{
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item"><span class="nav-link active"><script>document.write(myID);</script></span></li>
-								<li class="nav-item"><a class="nav-link" href="http://localhost:8080/logout">Logout</a></li>
+								<li class="nav-item"><a class="nav-link" href="http://leeworld9.ipdisk.co.kr:58080/logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -103,19 +104,9 @@ body{
 						<!-- Time Picker -->
 						<h3 style="margin-bottom: 3vh;">새 예약 잡기</h3>
 						<div class="mob input-group mb-3">
-							<label class="text-grey mr-1 m-2">시작 시간</label>
-							<input class="ml-1 form-control" type="time" name="meetTimeFrom" aria-label="name" aria-describedby="basic-addon2">
-							<p class="text-center m-2">&nbsp~&nbsp</p>
-							<label class="text-grey mr-1 m-2">종료 시간</label>
-							<input class="ml-1 form-control" type="time" name="meetTimeTo" aria-label="name" aria-describedby="basic-addon2">
+							<label class="text-grey mr-1 m-2" >예약 시간</label>
+							<input class="ml-1 form-control" type="time" name="meetTime" aria-label="name" aria-describedby="basic-addon2">
 						</div>
-						<!-- <div class="input-group mb-3">
-							<input type="text" class="form-control" placeholder="시작시간" aria-label="name"
-							aria-describedby="basic-addon2">
-							<p class="text-center">&nbsp~&nbsp</p>
-							<input type="text" class="form-control" placeholder="종료시간" aria-label="name"
-							aria-describedby="basic-addon2">
-							</div> -->
 							<!-- Menu Picker -->
 							<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 								<input type="radio" class="btn-check" name="menu" value="0" id="btnradio0" autocomplete="off" checked>
