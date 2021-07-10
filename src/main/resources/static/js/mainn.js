@@ -83,19 +83,19 @@ function getFormData() {
 									title: "방 생성에 실패했습니다.",
 									text: "한 시간 단위로 예약해주시길 바랍니다.",
 									icon: "error",
-								}).then(() => {window.location.replace("http://localhost:8080/main");});
+								}).then(() => {window.location.replace("http://3.37.110.111:8080/main");});
 							else if (data == 2)
 								swal({
 									title: "방 생성에 실패했습니다.",
 									text: "같은 시간에 예약이 있습니다.",
 									icon: "error",
-								}).then(() => {window.location.replace("http://localhost:8080/main");});
+								}).then(() => {window.location.replace("http://3.37.110.111:8080/main");});
 							else
 								swal({
 									title: "방이 생성되었습니다!",
 									text: "잠시만 기다리면 밥동료가 찾아옵니다.",
 									icon: "success",
-								}).then(() => {window.location.replace("http://localhost:8080/main");});
+								}).then(() => {window.location.replace("http://3.37.110.111:8080/main");});
 						}
 						, error: function (request, status, error) {
 							alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
@@ -137,7 +137,7 @@ function cancelRoom(self) {
 					swal({
 						title: "약속이 취소되었습니다!",
 						icon: "success",
-					}).then(() => {window.location.replace("http://localhost:8080/main");});
+					}).then(() => {window.location.replace("http://3.37.110.111:8080/main");});
 				}
 				, error: function (request, status, error) {
 					alert('서버에 예상치 못한 에러가 발생하였습니다. 잠시 후 다시 시도해주시길 바랍니다.');
