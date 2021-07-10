@@ -24,7 +24,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- Sweet Alert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<!-- End of Bootswatch-->
+	<!-- Time picker-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<style>
 		.flex-row {
 			overflow-x: auto;
@@ -87,12 +89,7 @@
 	<header class="py-5 ">
 		<div class="container px-lg-5">
 			<div class="p-4 p-lg-5 flex-row-header bg-light rounded-3 text-center">
-				<div class="m-4 m-lg-5">
-					<!-- Time Picker -->
-					<div class="mob input-group mb-3">
-							<label class="text-grey mr-1 m-2" >종료 시간</label>
-							<input class="ml-1 form-control" id="endtime" type="time" name="from" aria-label="name" aria-describedby="basic-addon2">
-					</div>
+				<div class="m-4 m-lg-5">					
 					<!-- <div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="시작시간" aria-label="name"
 							aria-describedby="basic-addon2">
@@ -101,6 +98,8 @@
 							aria-describedby="basic-addon2">
 					</div> -->
 					<!-- Menu Picker -->
+					
+					<br>
 					<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
 						<label class="btn btn-lg btn-outline-primary" for="btnradio1">한식</label>
@@ -126,6 +125,15 @@
 					</div>
 					<br>
 					<br>
+
+					<!-- Time Picker -->
+					<div class="mob input-group mb-3">
+						<!-- <label class="text-grey mr-1 m-2" >종료 시간</label>
+						<input class="ml-1 form-control" id="endtime" type="time" name="from" aria-label="name" aria-describedby="basic-addon2"> -->
+						<label class="text-grey mr-1 m-2" >종료 시간</label>
+						<input class="ml-1 form-control timepicker" id="endtime2" name="from" aria-label="name" aria-describedby="basic-addon2" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown">
+					</div>
+					<br>
 					<div class="d-grid gap-2">
 						<button class="btn btn-primary mychkbutton" id="submit" type="button">생성하기</button>
 					</div>
@@ -136,13 +144,67 @@
 
 	<!-- header script -->
 	<script>
+		$('.timepicker').timepicker(
+		{
+			timeFormat: 'hh:mm p',
+			interval: 60,
+			minTime: '00:00',
+			maxTime: '23:00',
+			defaultTime: '',
+			startTime: '01:00',
+			dynamic: true,
+			dropdown: true,
+			scrollbar: true
+		});
+
 		$("#submit").click(function(){
-			var endtime = $("#endtime").val();
+			var endtime = $("#endtime2").val();
+			/********* 필수!! ************/
+			// 여기에 저장되는 값을 서버로 넘기어 주세요
+			var ret;
 			let today = new Date();
 
+			let year = today.getFullYear();
+			let month = today.getMonth() + 1;
+			let day = today.getDate();
 			let hours = today.getHours();
-			let minutes = today.getMinutes() + 5;
-			let curPlusFive = hours + ":" + minutes;
+			let minutes = today.getMinutes();
+			let curTime = hours + ":" + minutes; // time to current
+			let curPlusFive = hours + ":" + (minutes + 5); // time to next five min future
+			// make time canonical
+			// if minutes over the 60
+			if (minutes + 5 >= 60)
+			{
+				if(hours + 1 >= 25)
+					curPlusFive = 01 + ":" + ((minutes + 5) % 60);
+				else
+					curPlusFive = (hours + 1) + ":" + ((minutes + 5) % 60);
+			} // end of over the 60
+			// normal case
+			else
+			{
+				curPlusFive = hours + ":" + (minutes + 5);
+			} // end of normal case
+
+			// split hours and make full time as 24 rule
+			var str = endtime.split(' ');
+			if(str[1] == 'PM')
+			{
+				if(str[0] == '12:00')
+					endtime = '12:00';
+				else
+				{
+					var tmp = str[0].split(':');
+					endtime = String(parseInt(tmp[0]) + 12) + ':00';
+				}
+			} else{
+				if (str[0] == '12:00')
+					endtime = '24:00';
+				else endtime = String(str[0]);
+			} // end of split and change hours
+			console.log(endtime, curPlusFive, curTime);
+
+			// if endtime is null
 			if (endtime == '')
 			{
 				swal({
@@ -150,15 +212,17 @@
 					text: "최소 5분 후 예약부터 가능합니다.",
 					icon: "warning",
 				});
-			}
-			else if(endtime <= curPlusFive)
+			} // end of endtime is null
+			// if endtime is under than curPlusFive
+			else if(endtime <= curPlusFive && curTime <= endtime)
 			{
 				swal({
 					title: "방 생성에 실패했습니다.",
 					text: "최소 5분 후 예약부터 가능합니다.",
 					icon: "error",
 				});
-			}
+			} // end of error
+			// if today or tomorrow and successful time selected
 			else if(endtime != '')
 			{
 				swal({
@@ -166,7 +230,86 @@
 					text: "잠시만 기다리면 밥동료가 찾아옵니다.",
 					icon: "success",
 				});
-			}
+				// if user select tomorrow
+				if (endtime <= curPlusFive)
+				{
+					// day end
+					//28 or 29
+					if (month == '2' && (day == '28' || day == '29'))
+					{
+						//윤년
+						if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+						{
+							if(day == '29')
+								ret = String(year) +'-0' + String(month + 1) + '-01' + ' ' + endtime + ':00';
+							else
+								ret = String(year) +'-0' + String(month) + '-' + String(day) + ' ' + endtime + ':00';
+						}
+						else if (day == '28')
+						{
+							ret = String(year) +'-0' + String(month + 1) + '-01' + ' ' + endtime + ':00';
+						}
+					}
+					//30
+					else if ((month == '4' || month == '6' || month == '9'
+							|| month == '11') && day == '30')
+					{
+						if(month == '11' || month == '9')
+							ret = String(year) +'-' + String(month + 1) + '-01' + ' ' + endtime + ':00';
+						else
+							ret = String(year) +'-0' + String(month + 1) + '-01' + ' ' + endtime + ':00';
+					}
+					else if ((month == '1' || month == '3' || month == '5'
+							|| month == '7' || month == '8' || month == '10'
+							|| month == '12') && day == '31')
+					{
+						if (month == '10')
+							ret = String(year) +'-' + String(month + 1) + '-01' + ' ' + endtime + ':00';
+						else if (month == '12')
+							ret = String(year) +'-01-01' + ' ' + endtime + ':00';
+						else
+							ret = String(year) +'-0' + String(month + 1) + '-01' + ' ' + endtime + ':00';
+					} // end of day end
+					// normal tomorrow
+					else
+					{
+						if(month == '10' || month == '11' || month == '12')
+						{
+							if(day >= 9)
+								ret = String(year) +'-' + String(month) + '-' + String(day + 1) + ' ' + endtime + ':00';
+							else
+								ret = String(year) +'-' + String(month) + '-0' + String(day + 1) + ' ' + endtime + ':00';
+						}
+						else
+						{
+							if(day >= 9)
+								ret = String(year) +'-0' + String(month) + '-' + String(day + 1) + ' ' + endtime + ':00';
+							else
+								ret = String(year) +'-0' + String(month) + '-0' + String(day + 1) + ' ' + endtime + ':00';
+						}
+					} // end of normal tomorrow
+
+				} // end of tomorrow
+				// select today
+				else
+				{
+					if(month == '10' || month == '11' || month == '12')
+						{
+							if(day >= 9)
+								ret = String(year) +'-' + String(month) + '-' + String(day) + ' ' + endtime + ':00';
+							else
+								ret = String(year) +'-' + String(month) + '-0' + String(day) + ' ' + endtime + ':00';
+						}
+						else
+						{
+							if(day >= 9)
+								ret = String(year) +'-0' + String(month) + '-' + String(day) + ' ' + endtime + ':00';
+							else
+								ret = String(year) +'-0' + String(month) + '-0' + String(day) + ' ' + endtime + ':00';
+						}
+				} // end of today
+				console.log(ret);
+			} // end of success
 		})
 	</script>
 	<!-- End of header script -->
