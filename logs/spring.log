@@ -5519,3 +5519,12 @@ Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving temp
 
 2021-07-10 15:36:51.429  INFO 3537 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2021-07-10 15:36:51.652  INFO 3537 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-10 15:44:14.189  WARN 3537 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m52s429ms476µs453ns).
+2021-07-10 15:44:14.203  INFO 3537 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-07-10 15:44:14.204  INFO 3537 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-07-10 15:44:14.205  INFO 3537 --- [Thread-2] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2021-07-10 15:44:14.207  INFO 3537 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2021-07-10 15:44:14.207  INFO 3537 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2021-07-10 15:44:14.207  INFO 3537 --- [Thread-2] org.quartz.core.QuartzScheduler          : Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2021-07-10 15:44:14.208  INFO 3537 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-10 15:44:14.230  INFO 3537 --- [Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
