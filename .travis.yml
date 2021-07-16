@@ -10,6 +10,8 @@ cache:
         directories:
                 - '$HOME/.m2/repository'
                 - '$HOME/.gradle'
+
+# main브랜치에 푸시되었을 때 수행할 명령어                  
 script: "./gradlew clean build"
 
 # CI 실행완료 시 메일로 알람
