@@ -22,10 +22,10 @@ notifications:
 
 
 before_deploy:
-        - zip -r bobs
+        - zip -r 42BoB-s_solution 
         - mkdir -p deploy
-        - mv bobs.zip deploy/bobs.zip
-        - echo "before_deploy"
+        - mv 42BoB-s_solution.zip deploy/42BoB-s_solution.zip
+
 deploy:
         - provider: s3
           access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
