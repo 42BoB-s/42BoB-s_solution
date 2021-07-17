@@ -22,7 +22,7 @@ notifications:
 
 
 before_deploy:
-        - zip -r 42BoB-s_solution 
+        - zip -r 42BoB-s_solution *
         - mkdir -p deploy
         - mv 42BoB-s_solution.zip deploy/42BoB-s_solution.zip
 
