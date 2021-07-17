@@ -37,7 +37,5 @@ deploy:
           local_dir: deploy # before_deploy에서 생성한 디렉토리
           wait_until_deployed: true
           on:
-                branches:
-                        only:
-                                - main
+                branch: main
 
