@@ -20,3 +20,21 @@ notifications:
                 recipients:
                         - mhong0800@gmail.com
 
+
+before_deploy:
+        - zip -r bobs
+        - mkdir -p deploy
+        - mv bobs.zip deploy/bobs.zip
+
+deploy:
+        - provider: s3
+          access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+          secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+          bucket: 42bobs-build # S3 버킷i
+          region: ap-northeast-2
+          skip_cleanup: true
+          acl: private #zip 파일 접근을 private으로
+          local_dir: deploy # before_deploy에서 생성한 디렉토리
+          wait_until_deployed: true
+
+
