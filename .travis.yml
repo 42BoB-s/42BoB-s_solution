@@ -45,7 +45,7 @@ deploy:
           key: 42BoB-s_solution.zip # 빌드 파일을 압축해서 전달
           bundle_type: zip
           application: 42Bobs # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
-          deployment_group: $2Bobs-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+          deployment_group: 42Bobs-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
           region: ap-northeast-2
           wait-until-deployed: true
           on:
