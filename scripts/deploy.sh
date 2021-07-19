@@ -1,6 +1,6 @@
 #!/bin/bash
 REPOSITORY=/home/ubuntu/app/step2
-PROJECT_NAME=42Bobs
+PROJECT_NAME=bobs
 echo "> Build 파일 복사"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 echo "> 8080포트 kill"
