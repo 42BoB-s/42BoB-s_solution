@@ -22,10 +22,14 @@ notifications:
 
 
 before_deploy:
-        - zip -r 42Bobs *
-        - mkdir -p deploy
-        - mv 42Bobs.zip deploy/42Bobs.zip
-
+        - mkdir -p before-deploy # zip에 포함시킬 파일들을 담을 디렉토리 생성 ①
+        - cp scripts/*.sh before-deploy/ 
+        - cp appspec.yml before-deploy/
+        - cp build/libs/*.jar before-deploy/
+        - cd before-deploy && zip -r before-deploy * # beforedeploy로이동 후 전체 압축 
+        - cd ../ && mkdir -p deploy # 상위 디렉토리로 이동 후 deploy 디렉토리 생성
+        - mv before-deploy/before-deploy.zip deploy/42Bobs.zip
+                            # deploy로 zip파일 이동
 deploy:
         - provider: s3
           access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
