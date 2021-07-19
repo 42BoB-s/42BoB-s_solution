@@ -11,7 +11,7 @@ public class PropInjectorImpl implements PropInjector {
 
     @PostConstruct
     void propInit() throws IOException {
-        prop.addLast(new ResourcePropertySource("classpath:application.properties"));
+        prop.addLast(new ResourcePropertySource("/home/ubuntu/app/bobs/application.properties"));
     }
 
     @Override
