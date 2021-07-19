@@ -11,6 +11,8 @@ cache:
                 - '$HOME/.m2/repository'
                 - '$HOME/.gradle'
 
+before_script: "cp /home/ubuntu/app/bobs/application.properties $HOME/src/main/resources/application.properties"
+
 # main브랜치에 푸시되었을 때 수행할 명령어                  
 script: "./gradlew clean build"
 
