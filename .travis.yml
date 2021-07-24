@@ -50,3 +50,4 @@ before_install:
   -in application.tar.enc -out application.tar -d
 - tar xvf application.tar
 - mv application.yml src/main/resource
+- ls src/main/resources/
