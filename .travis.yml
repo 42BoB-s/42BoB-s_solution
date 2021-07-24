@@ -49,7 +49,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_5c967de37745_key -iv $encrypted_5c967de37745_iv
   -in application.tar.enc -out application.tar -d
 - tar xvf application.tar
-- mv application.yml src/main/resource
+- mv application.yml src/main/resources
 - pwd
 - ls
 - ls src/main/resources/
