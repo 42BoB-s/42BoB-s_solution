@@ -16,7 +16,7 @@ public class bobsMain {
 	{
 		SpringApplication.run(bobsMain.class, args);
 	}
-/*	@Bean
+	@Bean
 	public ServletWebServerFactory servletContainer() {
 		// Enable SSL Trafic
 		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
@@ -49,5 +49,4 @@ public class bobsMain {
 		connector.setRedirectPort(8443);
 		return connector;
 	}
-	*/
 }

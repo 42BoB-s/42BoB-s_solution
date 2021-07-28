@@ -4,11 +4,11 @@ PROJECT_NAME=bobs
 echo "> Build 파일 복사"
 cp $REPOSITORY/zip/*.jar $REPOSITORY/
 echo "> 8080포트 kill"
-fuser -k -n tcp 8080
-sleep 5
+sudo fuser -k 8080/tcp
+sleep 3
 echo "> 8443포트 kill"
-fuser -k -n tcp 8443
-sleep 5
+sudo fuser -k 8443/tcp
+sleep 3
 echo "> 새 애플리케이션 배포"
 JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 echo "> JAR Name: $JAR_NAME"
