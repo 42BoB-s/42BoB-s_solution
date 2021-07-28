@@ -51,3 +51,4 @@ before_install:
 - tar xvf application.tar
 - mv application.yml src/main/resources
 - ls src/main/resources/
+- cat src/main/resources/application.yml
